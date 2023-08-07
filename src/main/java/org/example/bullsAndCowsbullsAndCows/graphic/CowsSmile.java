@@ -1,11 +1,11 @@
-package org.example.bullsAndCowsbullsAndCows;
+package org.example.bullsAndCowsbullsAndCows.graphic;
 
 import java.awt.Graphics;
 import java.awt.Color;
 import javax.swing.JComponent;
 
 //Класс с изображением КОРОВЫ
-class CowsSmile extends JComponent
+public class CowsSmile extends JComponent
 {
     @Override
     public void paintComponent (Graphics a)

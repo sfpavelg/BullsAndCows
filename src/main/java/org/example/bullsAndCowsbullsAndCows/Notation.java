@@ -1,11 +1,11 @@
 package org.example.bullsAndCowsbullsAndCows;
 
-class  Notation {//вложенный класс с дополнительной информацией
+public class  Notation {//вложенный класс с дополнительной информацией
     String b;
     String f;
     int a;
 
-    Notation(int a){
+    public Notation(int a){
         this.a=a;
 
         if (a==3){

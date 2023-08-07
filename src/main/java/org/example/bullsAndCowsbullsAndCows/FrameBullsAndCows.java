@@ -1,21 +1,20 @@
 package org.example.bullsAndCowsbullsAndCows;
 
+import org.example.bullsAndCowsbullsAndCows.button.ButtonStart;
+import org.example.bullsAndCowsbullsAndCows.graphic.BullsSmile;
+import org.example.bullsAndCowsbullsAndCows.graphic.CowsSmile;
+
 import javax.swing.*;
 import java.awt.*;
 import javax.swing.border.*;
-import java.awt.Graphics;
 import java.awt.Color;
-import java.awt.Font;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-import java.text.DecimalFormat;
 import java.awt.BorderLayout;
 
 
 //НАЧАЛО КЛАССА
-class FrameBullsAndCows extends JFrame {
+public class FrameBullsAndCows extends JFrame {
 
     //ПОЛЕ
     TextField numberEnter;  //поле для ввода цифр
@@ -55,14 +54,13 @@ class FrameBullsAndCows extends JFrame {
     String randomNumberStory = "";    //Строковая переменная
     String CowsResult = "Поймано Коров 0"; //Строковая переменная
     String BullsResult = "Поймано Быков 0"; //Строковая переменная
-    String stringBitDepth = "Загадано 0 значное число";//Переменная индикации разрядности
+    String stringBitDepth; //Переменная индикации разрядности
     String userName;             //Строковая переменная
     String randomNumberTable;    //Строковая переменная
     JTextArea textAreaStory; //поле истории попыток
-    JTextArea textBitDepth; //поле разрядности загаданного числа
     JTextArea textAreaHighScoreTable; //поле таблицы рекордов
     int intCounter = 0; //переменная счётчика попыток
-    int intBitDepth;
+    int intBitDepth; //переменная разрядности числа
     public static StopWatch stopWatch; //таймер
     JFrameSelection jFrameSelection; // выбор разрядности, объект будет запущен кнопкой "Начать Игру"
 
@@ -70,9 +68,14 @@ class FrameBullsAndCows extends JFrame {
     FrameBullsAndCows() {
 
 //создаём окно игры
-        super("Быки и Коровы");//заголовок
-        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);//завершение программы при закрытии окна
-        addWindowListener(new WindowAdapter() { //при закрытии основного окна, закроет все дополнительные и отключит таймер
+
+        super("Быки и Коровы");  //заголовок
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE); //завершение программы при закрытии окна
+        setBounds(50, 50, 1100, 550); //размер окна и местоположение на экране
+        setResizable(false); //размер окна нельзя изменить
+
+//при закрытии основного окна, закроет все дополнительные и отключит таймер
+        addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosing(WindowEvent e) {
                 FrameBullsAndCows.stopWatch.stopStopWatch();
@@ -80,14 +83,10 @@ class FrameBullsAndCows extends JFrame {
             }
         });
 
-
-        setBounds(50, 50, 1100, 550); //размер окна и местоположение на экране
-        setResizable(false); //размер окна нельзя изменить
-
 //Создаём ОБЪЕКТЫ всех переменных
         numberEnter = new TextField(6);     //создаём окна ввода
         btOk = new JButton("OK");     //создаём кнопку
-        btStart = new JButton("Начать игру");//создаём кнопку
+//        btStart = new JButton("Начать игру");//создаём кнопку
         btInstruction = new JButton("Инструкция");//создаём кнопку
         btRegistration = new JButton("Регистрация"); //создаём кнопку
         pnBulls = new JPanel();  //создаём панель для мордочки Быка
@@ -96,14 +95,14 @@ class FrameBullsAndCows extends JFrame {
         pnTimer = new JPanel();    //создаём панель Таймера
         pnCounter = new JPanel();  //создаём панель Счётчика
         pnBitDepth = new JPanel(); //создаём панель выбранной разрядности
-        userName = "Павел"; //Временная текстовая переменная, которая будет заглушкой для лейбела регистрации
+        userName = "Павел"; //Временная текстовая переменная, которая будет заглушкой для лейбла регистрации
         lblUserName = new JLabel(userName);
         lblCowsResult = new JLabel(CowsResult);   //лейбелы результатов Коров
         lblBullsResult = new JLabel(BullsResult); //лейбелы результатов Быков
+        lblBitDepth = new JLabel();//лейбл разрядности загаданного числа
 //        stringBitDepth = "" + Data.bitDepth; //конвертируем int в String
 //        stringBitDepth = "" + intBitDepth; //конвертируем int в String
 //        lblBitDepth = new JLabel(StringBitDepth);//лейбл разрядности загаданного числа
-        textBitDepth = new JTextArea(25, 8); //создаём текстовое разрядности загаданного числа
         textAreaStory = new JTextArea(25, 8); //создаём текстовое поле размещения попыток
         scrollPaneHistory = new JScrollPane(textAreaStory); //создаём скроллпанель для размещения textArea
         randomNumberTable = "1.Павел 45 sec  5 попыток"; //временная заглушка для таблицы результатов
@@ -132,21 +131,27 @@ class FrameBullsAndCows extends JFrame {
         btInstruction.addActionListener(e -> new JFrameInstruction());
 
 //Слушатель кнопки (Начать игру)
-        btStart.addActionListener(e -> {
-            Data.bitDepth = 0;  //пишем в переменную 0, если значение переменной уже изменялось ранее
-            jFrameSelection = new JFrameSelection(); //вызвали класс выбора.
-            intBitDepth = jFrameSelection.startJFrameSelection();
-            stringBitDepth = "" + intBitDepth; //конвертируем int в String
-            lblBitDepth.setText(stringBitDepth);
-            new NumberRandom(intBitDepth);
-            new Notation(intBitDepth);
-            Data.bitDepth = intBitDepth;
-//это мы открываем временное окно оповещения
-//Главная фишка его в том, что программа стопорится и ждёт его закрытия.
-            JOptionPane.showMessageDialog(null, Data.notation, "Сообщение", JOptionPane.INFORMATION_MESSAGE);
-//запуск таймера, сразу после закрытия предыдущего окна
-            FrameBullsAndCows.stopWatch.startStopWatch();
-        });
+        ButtonStart btStart = new ButtonStart(lblBitDepth);
+        stringBitDepth = btStart.buttonStart();
+//        lblBitDepth.setText(stringBitDepth);
+//        pnBitDepth.validate();
+//        pnBitDepth.repaint();
+//        lblBitDepth.setText(btStart.buttonStart());
+
+////Слушатель кнопки (Начать игру)
+//        btStart.addActionListener(e -> {
+//            jFrameSelection = new JFrameSelection(); //вызвали класс выбора.
+//            intBitDepth = jFrameSelection.startJFrameSelection();
+//            stringBitDepth = "" + intBitDepth; //конвертируем int в String
+//            lblBitDepth.setText(stringBitDepth);
+//            new NumberRandom(intBitDepth);
+//            new Notation(intBitDepth);
+////это мы открываем временное окно оповещения
+////Главная фишка его в том, что программа стопорится и ждёт его закрытия.
+//            JOptionPane.showMessageDialog(null, Data.notation, "Сообщение", JOptionPane.INFORMATION_MESSAGE);
+////запуск таймера, сразу после закрытия предыдущего окна
+//            FrameBullsAndCows.stopWatch.startStopWatch();
+//        });
 
 //Слушатель кнопки (ОК)
         btOk.addActionListener(e -> {
@@ -196,30 +201,30 @@ class FrameBullsAndCows extends JFrame {
         pnSouth.add(pnSouth2, BorderLayout.CENTER);
         pnSouth.add(pnSouth3, BorderLayout.EAST);
 
-        //Север делим на три области и заполняем
+//Север делим на три области и заполняем
         pnNorth1 = new JPanel();
         pnNorth2 = new JPanel();
         pnNorth3 = new JPanel();
-//pnNorth4 = new JPanel();
-//pnNorth5 = new JPanel();
+
+//Определяем ориентацию компонентов в панелях
         pnNorth1.setLayout(new FlowLayout(FlowLayout.LEFT));//ориентация по левому краю
         pnNorth2.setLayout(new FlowLayout(FlowLayout.CENTER));//ориентация по центру
         pnNorth3.setLayout(new FlowLayout(FlowLayout.RIGHT));//ориентация по правому краю
-//pnNorth4.setLayout(new FlowLayout(FlowLayout.LEFT));//ориентация по левому краю
-//pnNorth5.setLayout(new FlowLayout(FlowLayout.RIGHT));//ориентация по правому краю
         pnCounter.setLayout(new FlowLayout(FlowLayout.LEFT));//ориентация по левому краю
         pnTimer.setLayout(new FlowLayout(FlowLayout.RIGHT));//ориентация по правому краю
-
         pnNorth.setLayout(new BorderLayout());//без бордера элементы по углам не расходятся
         pnNorth.add(pnNorth1, BorderLayout.WEST);
         pnNorth.add(pnNorth2, BorderLayout.CENTER);
         pnNorth.add(pnNorth3, BorderLayout.EAST);
 
 //Подсказка выбранной разрядности
-        pnBitDepth.add(new JLabel("Выбрана разрядность: "));
+//        pnBitDepth.add(new JLabel("Выбрана разрядность: "));
 //        lblBitDepth = new JLabel(""+ intBitDepth);
-        lblBitDepth = new JLabel();
+
+        stringBitDepth = "Разрядность ещё не выбрана";
+        lblBitDepth.setText(stringBitDepth);
         pnBitDepth.add(lblBitDepth);
+
 
         pnNorth1.add(pnBitDepth);
 //       pnNorth1.add(lblBitDepth);
@@ -236,7 +241,7 @@ class FrameBullsAndCows extends JFrame {
 
 //тут таймер
         pnTimer.setLayout(new BorderLayout());//без этого менеджера графика не рисуется?!!
-        pnTimer.setPreferredSize(new Dimension(80, 30));//Так как вставка рисунка, то размеры нужно задать. автоматически панель не понимает
+        pnTimer.setPreferredSize(new Dimension(80, 30));//Так как вставка рисунка, то размеры нужно задать, автоматически панель не понимает
         pnTimer.add(new JPTimer());
 
 //закидываем панели счётчика и таймера в панель pnNorth3
@@ -310,11 +315,5 @@ class FrameBullsAndCows extends JFrame {
 
 //Делаем окно и всё что в нём видимым
         setVisible(true);
-    }
-
-    public void update() {
-        int intBitDepth = Data.bitDepth;
-        pnNorth1.repaint();
-//        pnNorth1.validate();
     }
 }

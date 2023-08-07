@@ -7,7 +7,7 @@ import java.awt.Color;
 import javax.swing.JComponent;
 import java.text.DecimalFormat;
 
-class JPTimer extends JComponent
+public class JPTimer extends JComponent
 {
     @Override
     public void paintComponent (Graphics a)
