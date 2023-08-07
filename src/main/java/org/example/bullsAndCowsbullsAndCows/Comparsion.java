@@ -6,7 +6,7 @@ import java.awt.event.ActionListener;
 import java.util.Arrays;
 
 //Класс сравнения рандомного числа и введенного числа
-class Comparsion {
+public class Comparsion {
 
     //Поле
     int numberRandom; //число рандома
@@ -17,7 +17,7 @@ class Comparsion {
     char[] numberRandomChar; //массив для рандомного числа
     char[] numberEnterChar; //массив для вводимого числа
 
-    Comparsion(String numberEnter){ //конструктор с вводимым числом на входе
+    public Comparsion(String numberEnter){ //конструктор с вводимым числом на входе
         this.numberEnter=numberEnter;
 //нужна ещё проверка что это цифры,но это позже!!!!!!!!!!!!!!!
 
@@ -86,7 +86,6 @@ class Comparsion {
             jn.setResizable(false); //размер окна нельзя изменить
             JTextArea jTextArea2 = new JTextArea();
             String f=" Проверьте разрядность числа. \n В вашем числе либо больше\n цифр, либо меньше. ";
-            /*String f=" <html>Проверьте разрядность числа. В вашем числе либо больше цифр, либо меньше.<\html> ";*/
             jTextArea2.setText(f);
             jTextArea2.setEditable(false);
             jn.add(jTextArea2);
@@ -97,7 +96,7 @@ class Comparsion {
 //условие автостопа таймера это быки равно разрядности
 //и значение быков не нулевое как в начале игры, потомучто разрядность тоже нулевая в начале игры.
             FrameBullsAndCows.stopWatch.stopStopWatch();//остановка таймера
-            //и тут запись кудато результата.... нкужно дописать код (тьаблица рекордов!)
+            //и тут запись куда-то результата.... нужно дописать код (таблица рекордов!)
 
 //окно поздравления с победой
             JFrame jn = new JFrame("БИНГО!");
@@ -105,7 +104,13 @@ class Comparsion {
             jn.setBounds(500,300,245,140); //размер окна и местоположение на экране
             jn.setResizable(false); //размер окна нельзя изменить
             JTextArea jTextArea2 = new JTextArea();
-            String f="  *********************************************\n                          Победа!!!!\n               Все БЫКИ пойманы!\n Вы отгадали все цифры, в количестве:" + Data.bulls + " !\n          Вами было сделано " + (1+Data.intCounter) + " попыток!!!"+ "\n            Время прохождения: " + Data.hour+":"+Data.min+":"+Data.sec+":"+Data.mis + "\n  *********************************************";
+            String f="  *********************************************" +
+                    "\n                          Победа!!!!" +
+                    "\n               Все БЫКИ пойманы!" +
+                    "\n Вы отгадали все цифры, в количестве:" + Data.bulls + " !" +
+                    "\n          Вами было сделано " + (1+Data.intCounter) + " попыток!!!"+ "" +
+                    "\n            Время прохождения: " + Data.hour+":"+Data.min+":"+Data.sec+":"+Data.mis + "" +
+                    "\n  *********************************************";
 
             jTextArea2.setText(f);
             jTextArea2.setEditable(false);

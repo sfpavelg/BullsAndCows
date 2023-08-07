@@ -1,6 +1,7 @@
 package org.example.bullsAndCowsbullsAndCows.button;
 
 import org.example.bullsAndCowsbullsAndCows.*;
+import org.example.bullsAndCowsbullsAndCows.enumBitDepth.BitDepth;
 
 import javax.swing.*;
 
@@ -10,6 +11,7 @@ public class ButtonStart extends JButton {
     String stringBitDepth = null;
     public ButtonStart(JLabel lblBitDepth) {
         this.lblBitDepth = lblBitDepth;
+
         setText("Начать Игру!");
     }
     public String buttonStart(){
@@ -17,7 +19,7 @@ public class ButtonStart extends JButton {
         addActionListener(e -> {
             JFrameSelection jFrameSelection = new JFrameSelection(); //вызвали класс выбора.
             intBitDepth = jFrameSelection.startJFrameSelection();
-            stringBitDepth = "" + intBitDepth; //конвертируем int в String
+            stringBitDepth = "Загадано " + BitDepth.findByValueBitDepth(intBitDepth) + " число!"; //Достаём из ENUM нужное текстовое название по int значению
             lblBitDepth.setText(stringBitDepth);
             new NumberRandom(intBitDepth);
             new Notation(intBitDepth);

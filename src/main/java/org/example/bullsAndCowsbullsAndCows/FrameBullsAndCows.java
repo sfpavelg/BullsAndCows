@@ -1,5 +1,6 @@
 package org.example.bullsAndCowsbullsAndCows;
 
+import org.example.bullsAndCowsbullsAndCows.button.ButtonOK;
 import org.example.bullsAndCowsbullsAndCows.button.ButtonStart;
 import org.example.bullsAndCowsbullsAndCows.graphic.BullsSmile;
 import org.example.bullsAndCowsbullsAndCows.graphic.CowsSmile;
@@ -18,8 +19,9 @@ public class FrameBullsAndCows extends JFrame {
 
     //ПОЛЕ
     TextField numberEnter;  //поле для ввода цифр
-    JButton btOk;           //кнопка Подтверждения ввода
-    JButton btStart;        //кнопка  Старта
+    //    JButton btOk;           //кнопка Подтверждения ввода
+    ButtonOK btOk;           //кнопка Подтверждения ввода
+    ButtonStart btStart;        //кнопка  Старта
     JButton btRegistration; //кнопка регистрации
     JButton btInstruction;  //кнопка правила игры
     JPanel pnBulls;         //панель картинки Бык
@@ -34,8 +36,6 @@ public class FrameBullsAndCows extends JFrame {
     JPanel pnNorth1;        //панель1 СЕВЕРА, где разрядность числа
     JPanel pnNorth2;        //панель2 СЕВЕРА, где кнопка регистрации
     JPanel pnNorth3;        //панель3 СЕВЕРА, где таймер и счётчик
-    //JPanel pnNorth4;        //панель4 СЕВЕРА, где счётчик
-//JPanel pnNorth5;        //панель5 СЕВЕРА, где таймер
     JPanel pnSouth;         //панель ЮГ
     JPanel pnSouth1;        //панель1 ЮГА, где ввод чисел
     JPanel pnSouth2;        //панель2 ЮГА, где кнопка начала игры
@@ -60,15 +60,13 @@ public class FrameBullsAndCows extends JFrame {
     JTextArea textAreaStory; //поле истории попыток
     JTextArea textAreaHighScoreTable; //поле таблицы рекордов
     int intCounter = 0; //переменная счётчика попыток
-    int intBitDepth; //переменная разрядности числа
     public static StopWatch stopWatch; //таймер
-    JFrameSelection jFrameSelection; // выбор разрядности, объект будет запущен кнопкой "Начать Игру"
+//    JFrameSelection jFrameSelection; // выбор разрядности, объект будет запущен кнопкой "Начать Игру"
 
     //КОНСТРУКТОР
     FrameBullsAndCows() {
 
 //создаём окно игры
-
         super("Быки и Коровы");  //заголовок
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE); //завершение программы при закрытии окна
         setBounds(50, 50, 1100, 550); //размер окна и местоположение на экране
@@ -84,11 +82,7 @@ public class FrameBullsAndCows extends JFrame {
         });
 
 //Создаём ОБЪЕКТЫ всех переменных
-        numberEnter = new TextField(6);     //создаём окна ввода
-        btOk = new JButton("OK");     //создаём кнопку
-//        btStart = new JButton("Начать игру");//создаём кнопку
-        btInstruction = new JButton("Инструкция");//создаём кнопку
-        btRegistration = new JButton("Регистрация"); //создаём кнопку
+        numberEnter = new TextField(6);  //создаём окна ввода угадываемого числа
         pnBulls = new JPanel();  //создаём панель для мордочки Быка
         pnCows = new JPanel();   //создаём панель для мордочки Коровы
         pnUserName = new JPanel();  //создаём панель Имени Игрока
@@ -97,12 +91,10 @@ public class FrameBullsAndCows extends JFrame {
         pnBitDepth = new JPanel(); //создаём панель выбранной разрядности
         userName = "Павел"; //Временная текстовая переменная, которая будет заглушкой для лейбла регистрации
         lblUserName = new JLabel(userName);
-        lblCowsResult = new JLabel(CowsResult);   //лейбелы результатов Коров
-        lblBullsResult = new JLabel(BullsResult); //лейбелы результатов Быков
+        lblCowsResult = new JLabel(CowsResult);   //лейбл результатов Коров
+        lblBullsResult = new JLabel(BullsResult); //лейбл результатов Быков
         lblBitDepth = new JLabel();//лейбл разрядности загаданного числа
-//        stringBitDepth = "" + Data.bitDepth; //конвертируем int в String
-//        stringBitDepth = "" + intBitDepth; //конвертируем int в String
-//        lblBitDepth = new JLabel(StringBitDepth);//лейбл разрядности загаданного числа
+        lblCounter = new JLabel("" + intCounter); //лейбл счётчика попыток
         textAreaStory = new JTextArea(25, 8); //создаём текстовое поле размещения попыток
         scrollPaneHistory = new JScrollPane(textAreaStory); //создаём скроллпанель для размещения textArea
         randomNumberTable = "1.Павел 45 sec  5 попыток"; //временная заглушка для таблицы результатов
@@ -111,6 +103,13 @@ public class FrameBullsAndCows extends JFrame {
         scrollPaneTable = new JScrollPane(textAreaHighScoreTable);//создаём скроллпанель для таблицы результатов
         stopWatch = new StopWatch(); //создаём экземпляр таймера
 
+//кнопки
+        btInstruction = new JButton("Инструкция");//создаём кнопку "Инструкция"
+        btInstruction.addActionListener(e -> new JFrameInstruction()); //Слушатель кнопки (Инструкция)
+        btOk = new ButtonOK(numberEnter, lblCowsResult, lblBullsResult, textAreaStory, lblCounter);     //создаём кнопку "ОК"
+        btStart = new ButtonStart(lblBitDepth); //создаём кнопку "Старт Игры!"
+        stringBitDepth = btStart.buttonStart(); //Запускаем слушателя в кнопке "Старт Игры!" и ловим выбранную разрядность числа
+        btRegistration = new JButton("Регистрация"); //создаём кнопку "Регистрация"
 
 //Блокируем поле ввода не более выбранной разрядности
 //    numberEnter.addKeyListener(new KeyAdapter() {
@@ -123,51 +122,6 @@ public class FrameBullsAndCows extends JFrame {
 // конец фрагмента ограничения на количество вводимых знаков
 //при первом запуске, если не произведена селекция,Data.bitDepth будет равно 0
 //ввести цифры будет невозможно
-
-
-//создаём слушателей кнопок и события для них
-
-//Слушатель кнопки (Инструкция)
-        btInstruction.addActionListener(e -> new JFrameInstruction());
-
-//Слушатель кнопки (Начать игру)
-        ButtonStart btStart = new ButtonStart(lblBitDepth);
-        stringBitDepth = btStart.buttonStart();
-//        lblBitDepth.setText(stringBitDepth);
-//        pnBitDepth.validate();
-//        pnBitDepth.repaint();
-//        lblBitDepth.setText(btStart.buttonStart());
-
-////Слушатель кнопки (Начать игру)
-//        btStart.addActionListener(e -> {
-//            jFrameSelection = new JFrameSelection(); //вызвали класс выбора.
-//            intBitDepth = jFrameSelection.startJFrameSelection();
-//            stringBitDepth = "" + intBitDepth; //конвертируем int в String
-//            lblBitDepth.setText(stringBitDepth);
-//            new NumberRandom(intBitDepth);
-//            new Notation(intBitDepth);
-////это мы открываем временное окно оповещения
-////Главная фишка его в том, что программа стопорится и ждёт его закрытия.
-//            JOptionPane.showMessageDialog(null, Data.notation, "Сообщение", JOptionPane.INFORMATION_MESSAGE);
-////запуск таймера, сразу после закрытия предыдущего окна
-//            FrameBullsAndCows.stopWatch.startStopWatch();
-//        });
-
-//Слушатель кнопки (ОК)
-        btOk.addActionListener(e -> {
-            Data.numberEnter = numberEnter.getText();//забираем вводимое число текстовой строкой и кидаем в класс данных
-            new Comparsion(Data.numberEnter); //вызвали класс сравнения, с введенным числом на входе
-            CowsResult = "Поймано Коров " + Data.cows; //Строковая переменная с результатом  пойманных коров
-            BullsResult = "Поймано Быков " + Data.bulls; //Строковая переменная с результатом пойманных быков
-            lblCowsResult.setText(CowsResult); //вывели на лэйбл пойманных коров
-            lblBullsResult.setText(BullsResult);//вывели на лэйбл пойманных быков
-//заполняем историю попыток
-            randomNumberStory = randomNumberStory + "\n" + Data.numberEnter + "    " + Data.bulls + "  " + Data.cows;
-            textAreaStory.setText(randomNumberStory);
-            intCounter++; //увеличили переменную числа попыток на +1
-            Data.intCounter = intCounter;//количество попыток отправили в базу данных
-            lblCounter.setText("" + intCounter);//вывели на лэбл текущее количество попыток и конвертировали в String путём конкатинации.
-        });
 
 //делим окно на пять сторон света и в каждую вставляем свою панель
         pnNorth = new JPanel();
@@ -218,16 +172,12 @@ public class FrameBullsAndCows extends JFrame {
         pnNorth.add(pnNorth3, BorderLayout.EAST);
 
 //Подсказка выбранной разрядности
-//        pnBitDepth.add(new JLabel("Выбрана разрядность: "));
-//        lblBitDepth = new JLabel(""+ intBitDepth);
-
         stringBitDepth = "Разрядность ещё не выбрана";
         lblBitDepth.setText(stringBitDepth);
         pnBitDepth.add(lblBitDepth);
 
-
+//Заполняем северные панели
         pnNorth1.add(pnBitDepth);
-//       pnNorth1.add(lblBitDepth);
         pnUserName.add(lblUserName);
         pnNorth2.add(pnUserName);
         pnNorth2.add(btRegistration);
@@ -236,7 +186,7 @@ public class FrameBullsAndCows extends JFrame {
 
 //счётчик
         pnCounter.add(new JLabel("Счётчик попыток:"));
-        lblCounter = new JLabel("" + intCounter);
+//        lblCounter = new JLabel("" + intCounter);
         pnCounter.add(lblCounter);
 
 //тут таймер
