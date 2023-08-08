@@ -4,6 +4,7 @@ import org.example.bullsAndCowsbullsAndCows.button.ButtonOK;
 import org.example.bullsAndCowsbullsAndCows.button.ButtonStart;
 import org.example.bullsAndCowsbullsAndCows.graphic.BullsSmile;
 import org.example.bullsAndCowsbullsAndCows.graphic.CowsSmile;
+import org.example.bullsAndCowsbullsAndCows.tableModel.TableModelStory;
 
 import javax.swing.*;
 import java.awt.*;
@@ -49,7 +50,7 @@ public class FrameBullsAndCows extends JFrame {
     JLabel lblCounter;           //лейбл количества попыток
     JLabel lblBitDepth;          //лейбл разрядности загаданного числа
     JLabel lblTimer;             //лейбл таймер
-    JScrollPane scrollPaneHistory;//окно прокрутки введеных чисел
+    JScrollPane scrollPaneHistory;//окно прокрутки введённых чисел
     JScrollPane scrollPaneTable;//окно прокрутки таблицы рекордов
     String randomNumberStory = "";    //Строковая переменная
     String CowsResult = "Поймано Коров 0"; //Строковая переменная
@@ -57,11 +58,13 @@ public class FrameBullsAndCows extends JFrame {
     String stringBitDepth; //Переменная индикации разрядности
     String userName;             //Строковая переменная
     String randomNumberTable;    //Строковая переменная
-    JTextArea textAreaStory; //поле истории попыток
+    //    JTextArea textAreaStory; //поле истории попыток
     JTextArea textAreaHighScoreTable; //поле таблицы рекордов
     int intCounter = 0; //переменная счётчика попыток
     public static StopWatch stopWatch; //таймер
-//    JFrameSelection jFrameSelection; // выбор разрядности, объект будет запущен кнопкой "Начать Игру"
+    //    JFrameSelection jFrameSelection; // выбор разрядности, объект будет запущен кнопкой "Начать Игру"
+    JTable tableStory; //****
+    TableModelStory tableModel; //****
 
     //КОНСТРУКТОР
     FrameBullsAndCows() {
@@ -69,7 +72,7 @@ public class FrameBullsAndCows extends JFrame {
 //создаём окно игры
         super("Быки и Коровы");  //заголовок
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE); //завершение программы при закрытии окна
-        setBounds(50, 50, 1100, 550); //размер окна и местоположение на экране
+        setBounds(50, 50, 1200, 550); //размер окна и местоположение на экране
         setResizable(false); //размер окна нельзя изменить
 
 //при закрытии основного окна, закроет все дополнительные и отключит таймер
@@ -95,18 +98,27 @@ public class FrameBullsAndCows extends JFrame {
         lblBullsResult = new JLabel(BullsResult); //лейбл результатов Быков
         lblBitDepth = new JLabel();//лейбл разрядности загаданного числа
         lblCounter = new JLabel("" + intCounter); //лейбл счётчика попыток
-        textAreaStory = new JTextArea(25, 8); //создаём текстовое поле размещения попыток
-        scrollPaneHistory = new JScrollPane(textAreaStory); //создаём скроллпанель для размещения textArea
+        //       textAreaStory = new JTextArea(25, 8); //создаём текстовое поле размещения попыток
+        //       scrollPaneHistory = new JScrollPane(textAreaStory); //создаём скроллпанель для размещения textArea
         randomNumberTable = "1.Павел 45 sec  5 попыток"; //временная заглушка для таблицы результатов
         textAreaHighScoreTable = new JTextArea(25, 18); //создаём текстовое поле таблицы результатов
         textAreaHighScoreTable.setText(randomNumberTable); // это временный муляж таблицы
         scrollPaneTable = new JScrollPane(textAreaHighScoreTable);//создаём скроллпанель для таблицы результатов
         stopWatch = new StopWatch(); //создаём экземпляр таймера
+        tableModel = new TableModelStory(new Object[0][0]);//*******
+        tableStory = new JTable(tableModel); //********
+        // Установите ширину столбцов
+
+        scrollPaneHistory = new JScrollPane(tableStory); //создаём скроллпанель для размещения ****
+        scrollPaneHistory.setPreferredSize(new Dimension(120, 400)); // Установите предпочитаемый размер JScrollPane
+        tableStory.getColumnModel().getColumn(0).setPreferredWidth(70);
+        tableStory.getColumnModel().getColumn(1).setPreferredWidth(5);
+        tableStory.getColumnModel().getColumn(2).setPreferredWidth(5);
 
 //кнопки
         btInstruction = new JButton("Инструкция");//создаём кнопку "Инструкция"
         btInstruction.addActionListener(e -> new JFrameInstruction()); //Слушатель кнопки (Инструкция)
-        btOk = new ButtonOK(numberEnter, lblCowsResult, lblBullsResult, textAreaStory, lblCounter);     //создаём кнопку "ОК"
+        btOk = new ButtonOK(numberEnter, lblCowsResult, lblBullsResult, lblCounter, tableModel);     //создаём кнопку "ОК"
         btStart = new ButtonStart(lblBitDepth); //создаём кнопку "Старт Игры!"
         stringBitDepth = btStart.buttonStart(); //Запускаем слушателя в кнопке "Старт Игры!" и ловим выбранную разрядность числа
         btRegistration = new JButton("Регистрация"); //создаём кнопку "Регистрация"
@@ -128,6 +140,7 @@ public class FrameBullsAndCows extends JFrame {
         pnSouth = new JPanel();
         pnEast = new JPanel();
         pnWest = new JPanel();
+//        pnWest.setSize(50, 100);
         pnCenter = new JPanel();
         add(pnNorth, BorderLayout.NORTH);
         add(pnSouth, BorderLayout.SOUTH);
@@ -199,9 +212,9 @@ public class FrameBullsAndCows extends JFrame {
         pnNorth3.add(pnTimer);
 
 //тут таблица историй попыток
-        pnWest.setLayout(new BorderLayout());
-        pnWest.add(new JLabel("Число        Б  К"), BorderLayout.NORTH);
-        pnWest.add(scrollPaneHistory, BorderLayout.SOUTH);
+//        pnWest.setLayout(new BorderLayout());
+//        pnWest.add(scrollPaneHistory, BorderLayout.SOUTH);
+        pnWest.add(scrollPaneHistory);
 
 //Создаем экземпляры мордашек. Классы этих рисунков смотри в пакете.
         CowsSmile cs2 = new CowsSmile();

@@ -9,15 +9,16 @@ public enum BitDepth {
     шестизначное(6),
     семизначное(7);
     private int value;
+    private String name;
 
     BitDepth(int value) {
         this.value = value;
-    }
-    public static BitDepth findByValueBitDepth(int value) {
-        return Arrays.stream(values()).filter(item -> item.getValue() == value).findFirst().orElse(null);
     }
     public int getValue() {
         return value;
     }
 
+    public static BitDepth findByValueBitDepth(int value) {
+        return Arrays.stream(values()).filter(item -> item.getValue() == value).findFirst().orElse(null);
+    }
 }

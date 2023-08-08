@@ -10,15 +10,17 @@ public class BullsSmile extends JComponent
     @Override
     public void paintComponent (Graphics a)
     {
-        a.setColor(Color.RED);
+//        a.setColor(Color.RED);
+        a.setColor(Color.RED.darker());
+        a.fillOval(30, 10, 300, 300);//голова
         a.fillOval(0, 40, 100, 100);//левое ухо
         a.setColor(Color.PINK);
         a.fillOval(10, 50, 80, 80);//левое ухо
-        a.setColor(Color.RED);
+        a.setColor(Color.RED.darker());
         a.fillOval(260, 40, 100, 100);//правое ухо
         a.setColor(Color.PINK);
         a.fillOval(270,50, 80, 80);//правое ухо
-        a.setColor(Color.red);
+        a.setColor(Color.RED.darker());
         a.fillOval(30, 10, 300, 300);//голова
         a.setColor(Color.PINK);
         a.fillOval(80, 190, 210,130);//морда
