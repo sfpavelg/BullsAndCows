@@ -1,6 +1,5 @@
-package org.example.bullsAndCowsbullsAndCows.mathProcessing;
+package org.example.bullsAndCowsbullsAndCows;
 
-import org.example.bullsAndCowsbullsAndCows.FrameBullsAndCows;
 import org.example.bullsAndCowsbullsAndCows.data.Data;
 
 import javax.swing.*;
@@ -117,6 +116,5 @@ public class Comparsion {
             jn.add(jTextArea2);
             jn.setVisible(true);
         }
-
     }//конец метода
 }//конец класса

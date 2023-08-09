@@ -1,4 +1,4 @@
-package org.example.bullsAndCowsbullsAndCows;
+package org.example.bullsAndCowsbullsAndCows.data;
 
 //Класс Данных обмена
 public class Data {
@@ -15,6 +15,7 @@ public class Data {
     public static int bitDepth=0;      //Выбранная разрядность загаданного числа
     public static int intCounter=0;    //Количество попыток
     public static String notation;     //Переменная для дополнительного сообщения (Нотация)
+    public static String instruction;  //Переменная для дополнительного сообщения (Инструкция)
 
     //Пустая заглушка конструктор на случай нечаянного создания экземпляра этого класса, чтобы данные поля не слетели.
     Data(){}

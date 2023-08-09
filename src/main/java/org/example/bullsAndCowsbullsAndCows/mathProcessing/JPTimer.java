@@ -1,4 +1,4 @@
-package org.example.bullsAndCowsbullsAndCows;
+package org.example.bullsAndCowsbullsAndCows.mathProcessing;
 
 import org.example.bullsAndCowsbullsAndCows.data.Data;
 
