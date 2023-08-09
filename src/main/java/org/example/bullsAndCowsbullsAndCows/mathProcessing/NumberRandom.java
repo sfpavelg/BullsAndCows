@@ -1,9 +1,9 @@
 package org.example.bullsAndCowsbullsAndCows;
 
 
-import java.util.Random;
+import org.example.bullsAndCowsbullsAndCows.data.Data;
 
-//задача класса нарандомить число и вернуть его
+// Задача класса нарандомить число и вернуть его
 public class NumberRandom
 {
     public NumberRandom(int a)

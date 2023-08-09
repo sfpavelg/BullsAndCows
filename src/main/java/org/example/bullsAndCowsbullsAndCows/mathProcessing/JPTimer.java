@@ -1,9 +1,8 @@
 package org.example.bullsAndCowsbullsAndCows;
 
-import java.awt.*;
-import javax.swing.*;
+import org.example.bullsAndCowsbullsAndCows.data.Data;
+
 import java.awt.Graphics;
-import java.awt.Color;
 import javax.swing.JComponent;
 import java.text.DecimalFormat;
 

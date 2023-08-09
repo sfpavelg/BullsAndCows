@@ -1,9 +1,9 @@
-package org.example.bullsAndCowsbullsAndCows;
+package org.example.bullsAndCowsbullsAndCows.mathProcessing;
+
+import org.example.bullsAndCowsbullsAndCows.FrameBullsAndCows;
+import org.example.bullsAndCowsbullsAndCows.data.Data;
 
 import javax.swing.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.util.Arrays;
 
 //Класс сравнения рандомного числа и введенного числа
 public class Comparsion {
@@ -21,7 +21,7 @@ public class Comparsion {
         this.numberEnter=numberEnter;
 //нужна ещё проверка что это цифры,но это позже!!!!!!!!!!!!!!!
 
-        numberRandom=Data.numberRandom;//тащим рандом из Data
+        numberRandom= Data.numberRandom;//тащим рандом из Data
         stringNumberRandom = ""+numberRandom; //конвертировали число рандома в String
         numberRandomChar = stringNumberRandom.toCharArray(); //загнали рандом в массив
         numberEnterChar = numberEnter.toCharArray(); //загнали вводимое число в массив

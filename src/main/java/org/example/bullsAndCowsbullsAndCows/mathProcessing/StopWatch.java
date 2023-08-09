@@ -1,5 +1,7 @@
 package org.example.bullsAndCowsbullsAndCows;
 
+import org.example.bullsAndCowsbullsAndCows.data.Data;
+
 import javax.swing.Timer;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
