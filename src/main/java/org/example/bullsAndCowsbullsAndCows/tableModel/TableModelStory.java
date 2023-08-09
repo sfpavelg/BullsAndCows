@@ -56,4 +56,9 @@ public class TableModelStory extends AbstractTableModel {
         data = newData;
         fireTableDataChanged(); //это реализованный метод в AbstractTableModel
     }
+    // Новый метод для очистки данных в таблице:
+    public void clearData() {
+        data = new Object[0][0];
+        fireTableDataChanged();
+    }
 }

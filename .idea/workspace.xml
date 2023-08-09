@@ -96,7 +96,7 @@
       <workItem from="1691409309478" duration="17431000" />
       <workItem from="1691478455926" duration="4391000" />
       <workItem from="1691497247623" duration="12787000" />
-      <workItem from="1691565874751" duration="20033000" />
+      <workItem from="1691565874751" duration="23548000" />
     </task>
     <task id="LOCAL-00001" summary="№2 Сокращаем класс выбора разрядности">
       <created>1691408923774</created>
@@ -140,7 +140,21 @@
       <option name="project" value="LOCAL" />
       <updated>1691514212777</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="№6 code style, Инструкция с JFrame -&gt; на JOptionPane">
+      <created>1691592936707</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1691592936707</updated>
+    </task>
+    <task id="LOCAL-00008" summary="№6 code style, Инструкция с JFrame -&gt; на JOptionPane">
+      <created>1691592966525</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1691592966525</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -164,6 +178,7 @@
     <MESSAGE value="№3 Меняем if-ы на ENUM" />
     <MESSAGE value="№4 Вынесли кнопку &quot;ОК&quot; в отдельный класс" />
     <MESSAGE value="№5 Добавлена таблица историй попыток угадать число" />
-    <option name="LAST_COMMIT_MESSAGE" value="№5 Добавлена таблица историй попыток угадать число" />
+    <MESSAGE value="№6 code style, Инструкция с JFrame -&gt; на JOptionPane" />
+    <option name="LAST_COMMIT_MESSAGE" value="№6 code style, Инструкция с JFrame -&gt; на JOptionPane" />
   </component>
 </project>

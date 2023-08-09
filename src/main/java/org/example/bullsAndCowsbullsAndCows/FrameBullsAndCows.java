@@ -126,7 +126,7 @@ public class FrameBullsAndCows extends JFrame {
 //кнопки
         btInstruction = new ButtonInstruction(this); //создаём кнопку "Инструкция"
         btOk = new ButtonOK(numberEnter, lblCowsResult, lblBullsResult, lblCounter, tableModel);     //создаём кнопку "ОК"
-        btStart = new ButtonStart(lblBitDepth, this); //создаём кнопку "Старт Игры!"
+        btStart = new ButtonStart(lblBitDepth, this, tableModel, lblCounter); //создаём кнопку "Старт Игры!"
         stringBitDepth = btStart.buttonStart(); //Запускаем слушателя в кнопке "Старт Игры!" и ловим выбранную разрядность числа типа String
         btRegistration = new JButton("Регистрация"); //создаём кнопку "Регистрация"
 

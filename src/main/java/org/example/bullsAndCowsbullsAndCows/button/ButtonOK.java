@@ -14,7 +14,6 @@ public class ButtonOK extends JButton {
     private JLabel lblCowsResult;        //лейбл количества Коров
     private JLabel lblBullsResult;       //лейбл количества Быков
     private String randomNumberStory = "";    //Строковая переменная
-    private int intCounter = 0;    //переменная счётчика попыток
     private JLabel lblCounter;     //лейбл количества попыток
     private TableModelStory tableModel; //Класс, который является моделью, принимающей данные истории попыток
 
@@ -35,7 +34,7 @@ public class ButtonOK extends JButton {
             lblCowsResult.setText(CowsResult); //вывели на лейбл под рисунком сколько было поймано коров
             lblBullsResult.setText(BullsResult);//вывели на лейбл под рисунком сколько было поймано быков
 
-//заполняем историю попыток
+//заполняем таблицу историй попыток
             // Получаем новые данные: Data.numberEnter, Data.bulls и Data.cows
             Object[] newData = {Data.numberEnter, Data.bulls, Data.cows};
             // Получаем текущее количество строк в модели таблицы
@@ -56,9 +55,9 @@ public class ButtonOK extends JButton {
             tableModel.updateData(updatedData);
 
 //меняем счётчик попыток
-            intCounter++; //увеличили переменную числа попыток на +1
-            Data.intCounter = intCounter;//количество попыток отправили в базу данных
-            lblCounter.setText("" + intCounter);//вывели на лейбл текущее количество попыток и конвертировали в String путём конкатенации.
+//            intCounter++; //увеличили переменную числа попыток на +1
+            Data.intCounter++;//количество попыток отправили в базу данных
+            lblCounter.setText("" + Data.intCounter);//вывели на лейбл текущее количество попыток и конвертировали в String путём конкатенации.
         });
     }
 }
