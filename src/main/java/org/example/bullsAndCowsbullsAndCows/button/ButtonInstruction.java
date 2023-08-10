@@ -25,7 +25,7 @@ public class ButtonInstruction extends JButton {
              * "Сообщение" - заголовок
              * JOptionPane.INFORMATION_MESSAGE -
              */
-            JOptionPane.showMessageDialog(frameBullsAndCows, Data.instruction, "Сообщение", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(frameBullsAndCows, Data.instruction, "Инструкция", JOptionPane.INFORMATION_MESSAGE);
         });
     }
 }

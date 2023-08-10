@@ -1,6 +1,7 @@
 package org.example.bullsAndCowsbullsAndCows.button;
 
-import org.example.bullsAndCowsbullsAndCows.Comparsion;
+import org.example.bullsAndCowsbullsAndCows.Comparison;
+import org.example.bullsAndCowsbullsAndCows.FrameBullsAndCows;
 import org.example.bullsAndCowsbullsAndCows.data.Data;
 import org.example.bullsAndCowsbullsAndCows.tableModel.TableModelStory;
 
@@ -16,19 +17,21 @@ public class ButtonOK extends JButton {
     private String randomNumberStory = "";    //Строковая переменная
     private JLabel lblCounter;     //лейбл количества попыток
     private TableModelStory tableModel; //Класс, который является моделью, принимающей данные истории попыток
+    private FrameBullsAndCows frameBullsAndCows; // Основной класс. Нужен здесь для привязки как к основному фрейму дополнительного окна "Победа" в new Comparison
 
-    public ButtonOK(TextField numberEnter, JLabel lblCowsResult, JLabel lblBullsResult, JLabel lblCounter, TableModelStory tableModel) {
+    public ButtonOK(TextField numberEnter, JLabel lblCowsResult, JLabel lblBullsResult, JLabel lblCounter, TableModelStory tableModel, FrameBullsAndCows frameBullsAndCows) {
         this.numberEnter = numberEnter;
         this.lblCowsResult = lblCowsResult;
         this.lblBullsResult = lblBullsResult;
         this.lblCounter = lblCounter;
         this.tableModel = tableModel;
+        this.frameBullsAndCows = frameBullsAndCows;
 
         setText("OK");
 
         addActionListener(e -> {
             Data.numberEnter = numberEnter.getText();//забираем вводимое число текстовой строкой и кидаем в класс данных
-            new Comparsion(Data.numberEnter); //вызвали класс сравнения, с введенным числом на входе
+            new Comparison(Data.numberEnter, frameBullsAndCows); //вызвали класс сравнения, с введенным числом на входе и с объектом основного фрейма для дополнительного окна "Победа"
             CowsResult = "Поймано Коров " + Data.cows; //Строковая переменная с обновлённым результатом пойманных коров
             BullsResult = "Поймано Быков " + Data.bulls; //Строковая переменная с обновлённым результатом пойманных быков
             lblCowsResult.setText(CowsResult); //вывели на лейбл под рисунком сколько было поймано коров
@@ -55,7 +58,6 @@ public class ButtonOK extends JButton {
             tableModel.updateData(updatedData);
 
 //меняем счётчик попыток
-//            intCounter++; //увеличили переменную числа попыток на +1
             Data.intCounter++;//количество попыток отправили в базу данных
             lblCounter.setText("" + Data.intCounter);//вывели на лейбл текущее количество попыток и конвертировали в String путём конкатенации.
         });
