@@ -2,6 +2,7 @@ package org.example.bullsAndCowsbullsAndCows;
 
 import org.example.bullsAndCowsbullsAndCows.button.ButtonInstruction;
 import org.example.bullsAndCowsbullsAndCows.button.ButtonOK;
+import org.example.bullsAndCowsbullsAndCows.button.ButtonRegistration;
 import org.example.bullsAndCowsbullsAndCows.button.ButtonStart;
 import org.example.bullsAndCowsbullsAndCows.graphic.BullsSmile;
 import org.example.bullsAndCowsbullsAndCows.graphic.CowsSmile;
@@ -26,7 +27,8 @@ public class FrameBullsAndCows extends JFrame {
     private TextField numberEnter;  //поле для ввода цифр
     private ButtonOK btOk;           //кнопка Подтверждения ввода
     private ButtonStart btStart;        //кнопка  Старта
-    private JButton btRegistration; //кнопка регистрации
+//    private JButton btRegistration; //кнопка регистрации
+    private ButtonRegistration btRegistration; //кнопка регистрации
     private ButtonInstruction btInstruction;  //кнопка правила игры
     private JPanel pnBulls;         //панель картинки Бык
     private JPanel pnCows;          //панель картинки Корова
@@ -135,7 +137,7 @@ public class FrameBullsAndCows extends JFrame {
         btOk = new ButtonOK(numberEnter, lblCowsResult, lblBullsResult, lblCounter, tableModel, this);     //создаём кнопку "ОК"
         btStart = new ButtonStart(lblBitDepth, this, tableModel, lblCounter); //создаём кнопку "Старт Игры!"
         stringBitDepth = btStart.buttonStart(); //Запускаем слушателя в кнопке "Старт Игры!" и ловим выбранную разрядность числа типа String
-        btRegistration = new JButton("Регистрация"); //создаём кнопку "Регистрация"
+        btRegistration = new ButtonRegistration(this); //создаём кнопку "Регистрация"
 
 //Блокируем поле ввода не более выбранной разрядности
 //    numberEnter.addKeyListener(new KeyAdapter() {

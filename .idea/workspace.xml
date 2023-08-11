@@ -99,7 +99,7 @@
       <workItem from="1691565874751" duration="24439000" />
       <workItem from="1691653327175" duration="4361000" />
       <workItem from="1691767669119" duration="1055000" />
-      <workItem from="1691768773028" duration="2464000" />
+      <workItem from="1691768773028" duration="7599000" />
     </task>
     <task id="LOCAL-00001" summary="№2 Сокращаем класс выбора разрядности">
       <created>1691408923774</created>
@@ -178,7 +178,14 @@
       <option name="project" value="LOCAL" />
       <updated>1691768634526</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="№11 Позиционирование последней строки в scrollPaneHistory">
+      <created>1691771521021</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1691771521021</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -206,6 +213,7 @@
     <MESSAGE value="№7 Обнуление таблицы попыток и счётчика попыток" />
     <MESSAGE value="№9 Comparison" />
     <MESSAGE value="№10 Позиционирование по центру колонок Быки и коровы" />
-    <option name="LAST_COMMIT_MESSAGE" value="№10 Позиционирование по центру колонок Быки и коровы" />
+    <MESSAGE value="№11 Позиционирование последней строки в scrollPaneHistory" />
+    <option name="LAST_COMMIT_MESSAGE" value="№11 Позиционирование последней строки в scrollPaneHistory" />
   </component>
 </project>
