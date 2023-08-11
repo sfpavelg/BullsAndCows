@@ -98,7 +98,8 @@
       <workItem from="1691497247623" duration="12787000" />
       <workItem from="1691565874751" duration="24439000" />
       <workItem from="1691653327175" duration="4361000" />
-      <workItem from="1691767669119" duration="659000" />
+      <workItem from="1691767669119" duration="1055000" />
+      <workItem from="1691768773028" duration="2464000" />
     </task>
     <task id="LOCAL-00001" summary="№2 Сокращаем класс выбора разрядности">
       <created>1691408923774</created>
@@ -170,7 +171,14 @@
       <option name="project" value="LOCAL" />
       <updated>1691767770097</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="№10 Позиционирование по центру колонок Быки и коровы">
+      <created>1691768634526</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1691768634526</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -197,6 +205,7 @@
     <MESSAGE value="№6 code style, Инструкция с JFrame -&gt; на JOptionPane" />
     <MESSAGE value="№7 Обнуление таблицы попыток и счётчика попыток" />
     <MESSAGE value="№9 Comparison" />
-    <option name="LAST_COMMIT_MESSAGE" value="№9 Comparison" />
+    <MESSAGE value="№10 Позиционирование по центру колонок Быки и коровы" />
+    <option name="LAST_COMMIT_MESSAGE" value="№10 Позиционирование по центру колонок Быки и коровы" />
   </component>
 </project>

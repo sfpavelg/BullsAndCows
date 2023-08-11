@@ -105,8 +105,11 @@ public class FrameBullsAndCows extends JFrame {
         textAreaHighScoreTable.setText(randomNumberTable); // это временный муляж таблицы
         scrollPaneTable = new JScrollPane(textAreaHighScoreTable);//создаём скролл панель для таблицы результатов
         stopWatch = new StopWatch(); //создаём экземпляр таймера
-        tableModel = new TableModelStory(new Object[0][0]);//Объект модели истории попыток
-        tableStory = new JTable(tableModel); //Табличная панель истории попыток
+//        tableModel = new TableModelStory(new Object[0][0], tableStory);
+//        tableStory = new JTable(tableModel);
+        tableStory = new JTable();//Табличная панель истории попыток. Её инициализируем раньше, чем tableModel, так как этот объект нужен tableModel на вход
+        tableModel = new TableModelStory(new Object[0][0], tableStory); //Объект модели истории попыток
+        tableStory.setModel(tableModel); // Ну а теперь уже на вход поступает tableModel
         scrollPaneHistory = new JScrollPane(tableStory); //создаём скролл панель для размещения таблицы истории попыток
 
         tableStory.getColumnModel().getColumn(1).setCellRenderer(new CenteredTableCellRenderer()); // устанавливаем выравнивание по центру для второй колонки (быки)

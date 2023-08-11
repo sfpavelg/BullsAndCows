@@ -1,16 +1,17 @@
 package org.example.bullsAndCowsbullsAndCows.tableModel;
 
+import javax.swing.*;
 import javax.swing.table.AbstractTableModel;
 
 //Класс, который является моделью, принимающей данные истории попыток
 public class TableModelStory extends AbstractTableModel {
     private String[] columnNames = {"Число", "Б", "К"}; //Собираем столбцы в массив строк, это будет шапка таблицы.
+    private Object[][] data; //Двумерный массив будет телом таблицы. То есть каждая строка будет содержать значения Data.numberEnter, Data.bulls, Data.cows
+    private JTable tableStory; //Табличная панель для истории попыток. Эта зависимость нужна здесь для визуализации последней строки в скролл панели
 
-    //Двумерный массив будет телом таблицы. То есть каждая строка будет содержать значения Data.numberEnter, Data.bulls, Data.cows
-    private Object[][] data;
-
-    public TableModelStory(Object[][] data) { //Конструктором принимаем данные на вход: заполненный массив
+    public TableModelStory(Object[][] data, JTable tableStory) { //Конструктором принимаем данные на вход: заполненный массив и табличную панель
         this.data = data;
+        this.tableStory = tableStory;
     }
 
     /**
@@ -63,6 +64,11 @@ public class TableModelStory extends AbstractTableModel {
     public void updateData(Object[][] newData) {
         data = newData;
         fireTableDataChanged(); //это реализованный метод в AbstractTableModel
+        // Прокручиваем скроллпанель к последней строке
+        if (data.length > 0) {
+            int lastIndex = data.length - 1;
+            tableStory.scrollRectToVisible(tableStory.getCellRect(lastIndex, 0, true));
+        }
     }
     // Новый метод для очистки данных в таблице:
     public void clearData() {
