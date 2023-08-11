@@ -45,7 +45,7 @@ public class Comparison {
                         numberRandomChar[i] = 'B';
                     }
                 }//конец вложенного цикла
-            }//конец цыкла
+            }//конец цикла
 
             for (int i = 0; i < numberRandomChar.length; i++) {
                 for (int j = 0; j < numberEnterChar.length; j++) {

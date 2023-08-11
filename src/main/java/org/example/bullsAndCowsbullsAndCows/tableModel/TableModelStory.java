@@ -34,6 +34,10 @@ public class TableModelStory extends AbstractTableModel {
      * @param column Номер колонки
      * @return  columnNames[column]
      *
+     *  getColumnClass(int column) этот метод нужен для позиционированию колонок по центу
+     * @param column Номер колонки
+     * @return  CenteredTableCellRenderer.class вызываем работу класса позиционирования на колонке с таким индексом
+     *
      */
     @Override
     public int getRowCount() { return data.length; }
@@ -49,6 +53,10 @@ public class TableModelStory extends AbstractTableModel {
     @Override
     public String getColumnName(int column) {
         return columnNames[column];
+    }
+    @Override
+    public Class<?> getColumnClass(int column) {
+        return CenteredTableCellRenderer.class;
     }
 
     // Новый метод для обновления данных в таблице:

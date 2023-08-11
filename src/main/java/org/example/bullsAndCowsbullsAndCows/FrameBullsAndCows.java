@@ -7,6 +7,7 @@ import org.example.bullsAndCowsbullsAndCows.graphic.BullsSmile;
 import org.example.bullsAndCowsbullsAndCows.graphic.CowsSmile;
 import org.example.bullsAndCowsbullsAndCows.mathProcessing.JPTimer;
 import org.example.bullsAndCowsbullsAndCows.mathProcessing.StopWatch;
+import org.example.bullsAndCowsbullsAndCows.tableModel.CenteredTableCellRenderer;
 import org.example.bullsAndCowsbullsAndCows.tableModel.TableModelStory;
 
 import javax.swing.*;
@@ -107,6 +108,9 @@ public class FrameBullsAndCows extends JFrame {
         tableModel = new TableModelStory(new Object[0][0]);//Объект модели истории попыток
         tableStory = new JTable(tableModel); //Табличная панель истории попыток
         scrollPaneHistory = new JScrollPane(tableStory); //создаём скролл панель для размещения таблицы истории попыток
+
+        tableStory.getColumnModel().getColumn(1).setCellRenderer(new CenteredTableCellRenderer()); // устанавливаем выравнивание по центру для второй колонки (быки)
+        tableStory.getColumnModel().getColumn(2).setCellRenderer(new CenteredTableCellRenderer()); // устанавливаем выравнивание по центру для третьей колонки (коровы)
 
 // Размеры таблицы истории угадываемых чисел
         /**
