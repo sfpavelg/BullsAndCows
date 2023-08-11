@@ -1,6 +1,6 @@
 package org.example.bullsAndCowsbullsAndCows.button;
 
-import org.example.bullsAndCowsbullsAndCows.Comparison;
+import org.example.bullsAndCowsbullsAndCows.mathProcessing.Comparison;
 import org.example.bullsAndCowsbullsAndCows.FrameBullsAndCows;
 import org.example.bullsAndCowsbullsAndCows.data.Data;
 import org.example.bullsAndCowsbullsAndCows.tableModel.TableModelStory;
