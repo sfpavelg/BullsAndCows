@@ -1,27 +1,26 @@
 package org.example.bullsAndCowsbullsAndCows.button;
 
-import org.example.bullsAndCowsbullsAndCows.FrameBullsAndCows;
 import org.example.bullsAndCowsbullsAndCows.registration.RegistrationDialog;
+import org.example.bullsAndCowsbullsAndCows.repository.SQLiteConnector;
 
 import javax.swing.*;
 
 public class ButtonRegistration extends JButton {
-    FrameBullsAndCows frameBullsAndCows;
-    public ButtonRegistration(FrameBullsAndCows frameBullsAndCows){
-        this.frameBullsAndCows = frameBullsAndCows;
-        setText("Регистрация");
+    RegistrationDialog registrationDialog;
+    SQLiteConnector connector;
+    public ButtonRegistration( RegistrationDialog registrationDialog) {
+        this.registrationDialog = registrationDialog;
+        setText("Зарегистрироваться");
         addActionListener(e -> {
-            openRegistrationDialog();
+            // Здесь вы можете получить значения из RegistrationDialog
+            String username = registrationDialog.getUsername();
+            String password = registrationDialog.getPassword();
+
+            // ... выполните необходимые действия с полученными значениями ...
+            connector = new SQLiteConnector();
+            connector.insertUser(username, password);
+
+            connector.closeConnection();
         });
-    }
-    private void openRegistrationDialog() {
-        RegistrationDialog dialog = new RegistrationDialog(frameBullsAndCows);
-        dialog.setVisible(true);
-
-        // Здесь вы можете получить значения из RegistrationDialog
-        String username = dialog.getUsername();
-        String password = dialog.getPassword();
-
-        // ... выполните необходимые действия с полученными значениями ...
     }
 }

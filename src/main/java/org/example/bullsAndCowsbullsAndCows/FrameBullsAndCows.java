@@ -2,7 +2,7 @@ package org.example.bullsAndCowsbullsAndCows;
 
 import org.example.bullsAndCowsbullsAndCows.button.ButtonInstruction;
 import org.example.bullsAndCowsbullsAndCows.button.ButtonOK;
-import org.example.bullsAndCowsbullsAndCows.button.ButtonRegistration;
+import org.example.bullsAndCowsbullsAndCows.button.ButtonAuthorization;
 import org.example.bullsAndCowsbullsAndCows.button.ButtonStart;
 import org.example.bullsAndCowsbullsAndCows.graphic.BullsSmile;
 import org.example.bullsAndCowsbullsAndCows.graphic.CowsSmile;
@@ -28,7 +28,7 @@ public class FrameBullsAndCows extends JFrame {
     private ButtonOK btOk;           //кнопка Подтверждения ввода
     private ButtonStart btStart;        //кнопка  Старта
 //    private JButton btRegistration; //кнопка регистрации
-    private ButtonRegistration btRegistration; //кнопка регистрации
+    private ButtonAuthorization btRegistration; //кнопка регистрации
     private ButtonInstruction btInstruction;  //кнопка правила игры
     private JPanel pnBulls;         //панель картинки Бык
     private JPanel pnCows;          //панель картинки Корова
@@ -107,8 +107,6 @@ public class FrameBullsAndCows extends JFrame {
         textAreaHighScoreTable.setText(randomNumberTable); // это временный муляж таблицы
         scrollPaneTable = new JScrollPane(textAreaHighScoreTable);//создаём скролл панель для таблицы результатов
         stopWatch = new StopWatch(); //создаём экземпляр таймера
-//        tableModel = new TableModelStory(new Object[0][0], tableStory);
-//        tableStory = new JTable(tableModel);
         tableStory = new JTable();//Табличная панель истории попыток. Её инициализируем раньше, чем tableModel, так как этот объект нужен tableModel на вход
         tableModel = new TableModelStory(new Object[0][0], tableStory); //Объект модели истории попыток
         tableStory.setModel(tableModel); // Ну а теперь уже на вход поступает tableModel
@@ -129,15 +127,15 @@ public class FrameBullsAndCows extends JFrame {
          */
         scrollPaneHistory.setPreferredSize(new Dimension(120, 400)); // Установим предпочитаемый размер JScrollPane
         tableStory.getColumnModel().getColumn(0).setPreferredWidth(70); // Установим ширину столбца угадываемого числа
-        tableStory.getColumnModel().getColumn(1).setPreferredWidth(5);  // Установим ширину столбца быки
-        tableStory.getColumnModel().getColumn(2).setPreferredWidth(5);  // Установим ширину столбца коровы
+        tableStory.getColumnModel().getColumn(1).setPreferredWidth(10);  // Установим ширину столбца быки
+        tableStory.getColumnModel().getColumn(2).setPreferredWidth(10);  // Установим ширину столбца коровы
 
 //кнопки
         btInstruction = new ButtonInstruction(this); //создаём кнопку "Инструкция"
         btOk = new ButtonOK(numberEnter, lblCowsResult, lblBullsResult, lblCounter, tableModel, this);     //создаём кнопку "ОК"
         btStart = new ButtonStart(lblBitDepth, this, tableModel, lblCounter); //создаём кнопку "Старт Игры!"
         stringBitDepth = btStart.buttonStart(); //Запускаем слушателя в кнопке "Старт Игры!" и ловим выбранную разрядность числа типа String
-        btRegistration = new ButtonRegistration(this); //создаём кнопку "Регистрация"
+        btRegistration = new ButtonAuthorization(this); //создаём кнопку "Регистрация"
 
 //Блокируем поле ввода не более выбранной разрядности
 //    numberEnter.addKeyListener(new KeyAdapter() {
