@@ -96,7 +96,7 @@ public class FrameBullsAndCows extends JFrame {
         pnBitDepth = new JPanel(); //создаём панель выбранной разрядности
         pnCowsResult = new JPanel();  //создаём объект pnCowsResult (нужно перенести выше....)
         pnBullsResult = new JPanel(); //создаём объект pnBullsResult
-        userName = "Павел"; //Временная текстовая переменная, которая будет заглушкой для лейбла регистрации
+        userName = "Павел Геннадьевич Софеин"; //Временная текстовая переменная, которая будет заглушкой для лейбла регистрации
         lblUserName = new JLabel(userName);
         lblCowsResult = new JLabel(CowsResult);   //лейбл результатов Коров
         lblBullsResult = new JLabel(BullsResult); //лейбл результатов Быков

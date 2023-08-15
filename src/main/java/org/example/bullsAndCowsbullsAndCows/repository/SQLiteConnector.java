@@ -1,9 +1,11 @@
 package org.example.bullsAndCowsbullsAndCows.repository;
 
+import javax.swing.*;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.sql.ResultSet;
 
 public class SQLiteConnector {
     private Connection connection;
@@ -48,29 +50,52 @@ public class SQLiteConnector {
 
     public SQLiteConnector() {
         try {
-            Class.forName("org.sqlite.JDBC");
-            connection = DriverManager.getConnection("jdbc:sqlite:database.db");
+            Class.forName("org.sqlite.JDBC"); //поиск драйвера SQLite
+            connection = DriverManager.getConnection("jdbc:sqlite:database.db"); //Соединение с БД database.db, одно на все запросы
 
             // Создание таблицы, если она не существует
-            createTable();
+            createTable(); //А вот и первый запрос к БД
         } catch (ClassNotFoundException | SQLException e) {
             e.printStackTrace();
         }
     }
-
-    private void createTable() throws SQLException {
-        String sql = "CREATE TABLE IF NOT EXISTS user (id INTEGER PRIMARY KEY AUTOINCREMENT, username TEXT, password TEXT)";
-        PreparedStatement statement = connection.prepareStatement(sql);
-        statement.execute();
+// Метод создающий таблицу user в БД, если этой таблицы там нет. У таблицы 3 колонки, id - автоматический ключ-идентификатор, username и password
+    private void createTable() throws SQLException { //В этом запросе может быть исключение, но обработку пробрасываем дальше
+        String sql = "CREATE TABLE IF NOT EXISTS user (id INTEGER PRIMARY KEY AUTOINCREMENT, username TEXT, password TEXT)"; //SQL запрос, но пока это просто String переменная
+        PreparedStatement statement = connection.prepareStatement(sql); //Это и есть запрос к БД. Это как грузовик, а connection - дорога до БД, sql - то что нужно отвезти
+        statement.execute(); //Команда грузовику statement - "ехать!"
     }
 
+// Метод добавляющий пользователя. На входе аргументы: (String username, String password)
+
     public void insertUser(String username, String password) {
-        String sql = "INSERT INTO user (username, password) VALUES (?, ?)";
+        // Проверяем длину имени пользователя
+        if (username.length() > 30) {
+            JOptionPane.showMessageDialog(null, "Имя пользователя должно содержать не более 30 символов!");
+            return;
+        }
+        // SQL запросы
+        String checkSql = "SELECT COUNT(*) FROM user WHERE username = ?"; //Проверяем: есть ли юзер с таким именем?
+        String insertSql = "INSERT INTO user (username, password) VALUES (?, ?)"; //Добавляем юзера с паролем
         try {
-            PreparedStatement statement = connection.prepareStatement(sql);
-            statement.setString(1, username);
-            statement.setString(2, password);
-            statement.executeUpdate();
+            // Проверяем наличие пользователя с заданным именем
+            PreparedStatement checkStatement = connection.prepareStatement(checkSql); // Первый запрос, который соберёт всех юзеров с таким именем
+            checkStatement.setString(1, username); // Передали нужный параметр (имя) в этот запрос
+            ResultSet resultSet = checkStatement.executeQuery(); //  Поместили результат запроса поиска по имени в объект ResultSet
+            resultSet.next(); // Переходим на первую строку результата
+
+            // Если количество найденных пользователей больше 0, то выводим предупреждение
+            if (resultSet.getInt(1) > 0) {
+                JOptionPane.showMessageDialog(null, "Пользователь с таким именем уже существует!");
+                return;
+            }
+
+            // Если пользователя с заданным именем нет, выполняем вставку
+            PreparedStatement insertStatement = connection.prepareStatement(insertSql);
+            insertStatement.setString(1, username);
+            insertStatement.setString(2, password);
+            insertStatement.executeUpdate();
+
         } catch (SQLException e) {
             e.printStackTrace();
         }

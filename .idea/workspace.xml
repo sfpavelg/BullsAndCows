@@ -109,7 +109,7 @@
       <workItem from="1691653327175" duration="4361000" />
       <workItem from="1691767669119" duration="1055000" />
       <workItem from="1691768773028" duration="9484000" />
-      <workItem from="1692084878945" duration="9080000" />
+      <workItem from="1692084878945" duration="16740000" />
     </task>
     <task id="LOCAL-00001" summary="№2 Сокращаем класс выбора разрядности">
       <created>1691408923774</created>
@@ -209,7 +209,14 @@
       <option name="project" value="LOCAL" />
       <updated>1692094377721</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="№14 doc &quot;Подключение драйвера SQLite&quot;">
+      <created>1692097157858</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1692097157858</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -240,7 +247,8 @@
     <MESSAGE value="№11 Позиционирование последней строки в scrollPaneHistory" />
     <MESSAGE value="№12 Панель Регистрации" />
     <MESSAGE value="№13 Подключил БД SQLite + Repository,ButtonRegistration" />
-    <option name="LAST_COMMIT_MESSAGE" value="№13 Подключил БД SQLite + Repository,ButtonRegistration" />
+    <MESSAGE value="№14 doc &quot;Подключение драйвера SQLite&quot;" />
+    <option name="LAST_COMMIT_MESSAGE" value="№14 doc &quot;Подключение драйвера SQLite&quot;" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
