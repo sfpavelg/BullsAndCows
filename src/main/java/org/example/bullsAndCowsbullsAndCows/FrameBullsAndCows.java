@@ -96,7 +96,7 @@ public class FrameBullsAndCows extends JFrame {
         pnBitDepth = new JPanel(); //создаём панель выбранной разрядности
         pnCowsResult = new JPanel();  //создаём объект pnCowsResult (нужно перенести выше....)
         pnBullsResult = new JPanel(); //создаём объект pnBullsResult
-        userName = "Павел Геннадьевич Софеин"; //Временная текстовая переменная, которая будет заглушкой для лейбла регистрации
+        userName = "Павел"; //Временная текстовая переменная, которая будет заглушкой для лейбла регистрации
         lblUserName = new JLabel(userName);
         lblCowsResult = new JLabel(CowsResult);   //лейбл результатов Коров
         lblBullsResult = new JLabel(BullsResult); //лейбл результатов Быков
@@ -135,7 +135,7 @@ public class FrameBullsAndCows extends JFrame {
         btOk = new ButtonOK(numberEnter, lblCowsResult, lblBullsResult, lblCounter, tableModel, this);     //создаём кнопку "ОК"
         btStart = new ButtonStart(lblBitDepth, this, tableModel, lblCounter); //создаём кнопку "Старт Игры!"
         stringBitDepth = btStart.buttonStart(); //Запускаем слушателя в кнопке "Старт Игры!" и ловим выбранную разрядность числа типа String
-        btRegistration = new ButtonAuthorization(this); //создаём кнопку "Регистрация"
+        btRegistration = new ButtonAuthorization(this, lblUserName); //создаём кнопку "Регистрация"
 
 //Блокируем поле ввода не более выбранной разрядности
 //    numberEnter.addKeyListener(new KeyAdapter() {

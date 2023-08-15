@@ -2,6 +2,7 @@ package org.example.bullsAndCowsbullsAndCows.registration;
 
 import org.example.bullsAndCowsbullsAndCows.FrameBullsAndCows;
 import org.example.bullsAndCowsbullsAndCows.button.ButtonRegistration;
+import org.example.bullsAndCowsbullsAndCows.button.ButtonUserChange;
 
 import javax.swing.JButton;
 import javax.swing.JDialog;
@@ -12,15 +13,16 @@ import javax.swing.JTextField;
 public class RegistrationDialog extends JDialog {
     private JTextField usernameField;
     private JTextField passwordField;
-    private JButton changeUserButton;
+    private ButtonUserChange changeUserButton;
     private ButtonRegistration registerButton;
+    private JLabel lblUserName;
 
-    public RegistrationDialog(FrameBullsAndCows frameBullsAndCows) {
+    public RegistrationDialog(FrameBullsAndCows frameBullsAndCows, JLabel lblUserName) {
         super(frameBullsAndCows, "Регистрация", true);
-
+        this.lblUserName = lblUserName;
         usernameField = new JTextField(20);
         passwordField = new JTextField(20);
-        changeUserButton = new JButton("Сменить пользователя");
+        changeUserButton = new ButtonUserChange(this, lblUserName);
         registerButton = new ButtonRegistration(this);
 
         JPanel panel = new JPanel();

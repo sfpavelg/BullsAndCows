@@ -66,8 +66,14 @@ public class SQLiteConnector {
         statement.execute(); //Команда грузовику statement - "ехать!"
     }
 
-// Метод добавляющий пользователя. На входе аргументы: (String username, String password)
-
+    /**
+     * Метод добавляющий пользователя. На входе аргументы: (String username, String password).
+     * Метод проверяет длину имени пользователя, если длинна более 30 символов, то выскочит окно предупреждения.
+     * Метод проверяет на наличие пользователя с таким именем в БД, если будет совпадение, то выскочит предупреждение.
+     *
+     * @param username - имя пользователя
+     * @param password - пароль
+     */
     public void insertUser(String username, String password) {
         // Проверяем длину имени пользователя
         if (username.length() > 30) {
@@ -95,12 +101,45 @@ public class SQLiteConnector {
             insertStatement.setString(1, username);
             insertStatement.setString(2, password);
             insertStatement.executeUpdate();
+            JOptionPane.showMessageDialog(null, "Пользователь успешно зарегистрирован!\nНажмите кнопку смены пользователя.");
 
         } catch (SQLException e) {
             e.printStackTrace();
         }
     }
 
+    /**
+     * Метод смены зарегистрированного пользователя.
+     *
+     * @param username
+     * @param password
+     * @return
+     */
+    public String changeUser(String username, String password) {
+        String selectSql = "SELECT username FROM user WHERE username = ? AND password = ?";
+        try {
+            PreparedStatement selectStatement = connection.prepareStatement(selectSql);
+            selectStatement.setString(1, username);
+            selectStatement.setString(2, password);
+            ResultSet resultSet = selectStatement.executeQuery();
+
+            // Проверяем наличие совпадения логина и пароля
+            if (resultSet.next()) {
+                JOptionPane.showMessageDialog(null, "Приветствую вас, " + username + "!");
+                return resultSet.getString("username"); // Возвращаем имя пользователя
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        JOptionPane.showMessageDialog(null, "Пользователь с таким именем и паролем не существует!");
+        return null; // Если совпадения не найдены, возвращаем null
+    }
+
+
+
+
+// Метод закрытия соединения с БД
     public void closeConnection() {
         try {
             if (connection != null) {
