@@ -55,8 +55,8 @@
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "project.structure.last.edited": "Modules",
-    "project.structure.proportion": "0.0",
-    "project.structure.side.proportion": "0.0",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
     "settings.editor.selected.configurable": "MavenSettings",
     "vue.rearranger.settings.migration": "true"
   },
@@ -109,7 +109,7 @@
       <workItem from="1691653327175" duration="4361000" />
       <workItem from="1691767669119" duration="1055000" />
       <workItem from="1691768773028" duration="9484000" />
-      <workItem from="1692084878945" duration="6807000" />
+      <workItem from="1692084878945" duration="9080000" />
     </task>
     <task id="LOCAL-00001" summary="№2 Сокращаем класс выбора разрядности">
       <created>1691408923774</created>
@@ -202,7 +202,14 @@
       <option name="project" value="LOCAL" />
       <updated>1691778458929</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="№13 Подключил БД SQLite + Repository,ButtonRegistration">
+      <created>1692094377721</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1692094377721</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -232,7 +239,8 @@
     <MESSAGE value="№10 Позиционирование по центру колонок Быки и коровы" />
     <MESSAGE value="№11 Позиционирование последней строки в scrollPaneHistory" />
     <MESSAGE value="№12 Панель Регистрации" />
-    <option name="LAST_COMMIT_MESSAGE" value="№12 Панель Регистрации" />
+    <MESSAGE value="№13 Подключил БД SQLite + Repository,ButtonRegistration" />
+    <option name="LAST_COMMIT_MESSAGE" value="№13 Подключил БД SQLite + Repository,ButtonRegistration" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
