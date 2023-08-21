@@ -77,28 +77,28 @@ public class Comparison {
             String warning = " Проверьте разрядность числа. \n В вашем числе либо больше\n цифр, либо меньше. ";
             JOptionPane.showMessageDialog(frameBullsAndCows, warning, "Ошибка", JOptionPane.INFORMATION_MESSAGE);
         }
-// условие автостопа таймера: это быки == разрядности
-// и значение быков не нулевое как в начале игры, потому что разрядность тоже нулевая в начале игры.
-        if ((frameBullsAndCows.data.getBulls() == frameBullsAndCows.data.getBitDepth()) && (frameBullsAndCows.data.getBulls() != 0)) { // Остановка таймера и окно поздравления с победой
-            frameBullsAndCows.jpTimer.stopTimer(); // Остановка таймера
-            frameBullsAndCows.data.setMis(frameBullsAndCows.jpTimer.getMilliseconds());
-            frameBullsAndCows.data.setSec(frameBullsAndCows.jpTimer.getSeconds());
-            frameBullsAndCows.data.setMin(frameBullsAndCows.jpTimer.getMinutes());
-            frameBullsAndCows.data.setHour(frameBullsAndCows.jpTimer.getHours());
-// окно поздравления с победой
-            new Victory(frameBullsAndCows); // Заполняем переменную Data.victory актуальными данными.
-            /**
-             * JOptionPane Тут мы открываем окно с дополнительной информацией Victory
-             * Главная фишка такого окна в том, что программа стопорится и ждёт его закрытия.
-             * Аргументы:
-             * frameBullsAndCows - привязываемся к главному окну, по которому и будет центроваться окно сообщения.
-             * Data.notation - текст сообщения
-             * "Сообщение" - заголовок
-             * JOptionPane.INFORMATION_MESSAGE -
-             */
-            JOptionPane.showMessageDialog(frameBullsAndCows, frameBullsAndCows.data.getVictory(), "Победа", JOptionPane.INFORMATION_MESSAGE);
-
-            // ..... и тут запись куда-то результата.... нужно дописать код (таблица рекордов!) .....
-        }
+//// условие автостопа таймера: это быки == разрядности
+//// и значение быков не нулевое как в начале игры, потому что разрядность тоже нулевая в начале игры.
+//        if ((frameBullsAndCows.data.getBulls() == frameBullsAndCows.data.getBitDepth()) && (frameBullsAndCows.data.getBulls() != 0)) { // Остановка таймера и окно поздравления с победой
+//            frameBullsAndCows.jpTimer.stopTimer(); // Остановка таймера
+//            frameBullsAndCows.data.setMis(frameBullsAndCows.jpTimer.getMilliseconds());
+//            frameBullsAndCows.data.setSec(frameBullsAndCows.jpTimer.getSeconds());
+//            frameBullsAndCows.data.setMin(frameBullsAndCows.jpTimer.getMinutes());
+//            frameBullsAndCows.data.setHour(frameBullsAndCows.jpTimer.getHours());
+//// окно поздравления с победой
+//            new Victory(frameBullsAndCows); // Заполняем переменную Data.victory актуальными данными.
+//            /**
+//             * JOptionPane Тут мы открываем окно с дополнительной информацией Victory
+//             * Главная фишка такого окна в том, что программа стопорится и ждёт его закрытия.
+//             * Аргументы:
+//             * frameBullsAndCows - привязываемся к главному окну, по которому и будет центроваться окно сообщения.
+//             * Data.notation - текст сообщения
+//             * "Сообщение" - заголовок
+//             * JOptionPane.INFORMATION_MESSAGE -
+//             */
+//            JOptionPane.showMessageDialog(frameBullsAndCows, frameBullsAndCows.data.getVictory(), "Победа", JOptionPane.INFORMATION_MESSAGE);
+//
+//            // ..... и тут запись куда-то результата.... нужно дописать код (таблица рекордов!) .....
+//        }
     }//конец конструктора
 }//конец класса

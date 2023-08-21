@@ -1,5 +1,6 @@
 package org.example.bullsAndCowsbullsAndCows.button;
 
+import org.example.bullsAndCowsbullsAndCows.information.Victory;
 import org.example.bullsAndCowsbullsAndCows.mathProcessing.Comparison;
 import org.example.bullsAndCowsbullsAndCows.FrameBullsAndCows;
 import org.example.bullsAndCowsbullsAndCows.data.Data;
@@ -42,7 +43,7 @@ public class ButtonOK extends JButton {
             Object[] newData = {frameBullsAndCows.data.getNumberEnter(), frameBullsAndCows.data.getBulls(), frameBullsAndCows.data.getCows()};
             // Получаем текущее количество строк в модели таблицы
             int rowCount = tableModelHistory.getRowCount();
-            // Создаём новый массив данных, увеличив его размер на 1 строчку
+            // Создаём новый двумерный массив данных, увеличив его размер на 1 строчку
             Object[][] updatedData = new Object[rowCount + 1][3];
             // Скопируем текущие данные в новый массив
             for (int i = 0; i < rowCount; i++) {
@@ -60,6 +61,30 @@ public class ButtonOK extends JButton {
 //меняем счётчик попыток
             frameBullsAndCows.data.incrementCounter();//количество попыток отправили в базу данных
             lblCounter.setText("" + frameBullsAndCows.data.getIntCounter());//вывели на лейбл текущее количество попыток и конвертировали в String путём конкатенации.
+
+// условие автостопа таймера: это быки == разрядности
+// и значение быков не нулевое как в начале игры, потому что разрядность тоже нулевая в начале игры.
+            if ((frameBullsAndCows.data.getBulls() == frameBullsAndCows.data.getBitDepth()) && (frameBullsAndCows.data.getBulls() != 0)) { // Остановка таймера и окно поздравления с победой
+                frameBullsAndCows.jpTimer.stopTimer(); // Остановка таймера
+                frameBullsAndCows.data.setMis(frameBullsAndCows.jpTimer.getMilliseconds());
+                frameBullsAndCows.data.setSec(frameBullsAndCows.jpTimer.getSeconds());
+                frameBullsAndCows.data.setMin(frameBullsAndCows.jpTimer.getMinutes());
+                frameBullsAndCows.data.setHour(frameBullsAndCows.jpTimer.getHours());
+// окно поздравления с победой
+                new Victory(frameBullsAndCows); // Заполняем переменную Data.victory актуальными данными.
+                /**
+                 * JOptionPane Тут мы открываем окно с дополнительной информацией Victory
+                 * Главная фишка такого окна в том, что программа стопорится и ждёт его закрытия.
+                 * Аргументы:
+                 * frameBullsAndCows - привязываемся к главному окну, по которому и будет центроваться окно сообщения.
+                 * Data.notation - текст сообщения
+                 * "Сообщение" - заголовок
+                 * JOptionPane.INFORMATION_MESSAGE -
+                 */
+                JOptionPane.showMessageDialog(frameBullsAndCows, frameBullsAndCows.data.getVictory(), "Победа", JOptionPane.INFORMATION_MESSAGE);
+
+                // ..... и тут запись куда-то результата.... нужно дописать код (таблица рекордов!) .....
+            }
         });
     }
 }

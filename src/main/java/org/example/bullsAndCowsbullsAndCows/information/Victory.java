@@ -8,7 +8,7 @@ public class Victory {
                 "\n                          Победа!!!!" +
                 "\n               Все БЫКИ пойманы!" +
                 "\n Вы отгадали все цифры, в количестве:" + frameBullsAndCows.data.getBulls() + " !" +
-                "\n          Вами было сделано " + (frameBullsAndCows.data.getIntCounter() + 1) + " попыток!!!" + "" +
+                "\n          Вами было сделано " + frameBullsAndCows.data.getIntCounter() + " попыток!!!" + "" +
                 "\n            Время прохождения: " + frameBullsAndCows.data.getHour() +
                 ":" + frameBullsAndCows.data.getMin() + ":" + frameBullsAndCows.data.getSec() + ":" + frameBullsAndCows.data.getMis() + "" +
                 "\n  *********************************************");
