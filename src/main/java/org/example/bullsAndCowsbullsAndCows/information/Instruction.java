@@ -1,10 +1,10 @@
 package org.example.bullsAndCowsbullsAndCows.information;
 
-import org.example.bullsAndCowsbullsAndCows.data.Data;
+import org.example.bullsAndCowsbullsAndCows.FrameBullsAndCows;
 
 public class Instruction {
-    public Instruction(){
-        Data.instruction = "\n      В чём заключается суть игры?" +
+    public Instruction(FrameBullsAndCows frameBullsAndCows) {
+        frameBullsAndCows.data.setInstruction("\n      В чём заключается суть игры?" +
                 "\n\n  1. Игра случайно загадает число." +
                 "\n  2. Вам нужно  угадать это число." +
                 "\n  3. Если в вашем предполагаемом числе есть нужная цифра," +
@@ -28,6 +28,6 @@ public class Instruction {
                 "\n      находиться в левом верхнем углу.\n 11.В поле (Поле для ввода числа) введите предполагаемое число" +
                 "\n      и нажмите кнопку (ОК).\n      Это будет ваша первая поптытка угадать число." +
                 "\n      Именно в этот момент включится секундомер.\n      Когда вы число угадаете, он автоматически выключится." +
-                "\n      Удачных вам рекордов!!!";
+                "\n      Удачных вам рекордов!!!");
     }
 }

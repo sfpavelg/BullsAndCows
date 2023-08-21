@@ -1,15 +1,16 @@
 package org.example.bullsAndCowsbullsAndCows.information;
 
-import org.example.bullsAndCowsbullsAndCows.data.Data;
+import org.example.bullsAndCowsbullsAndCows.FrameBullsAndCows;
 
 public class Victory {
-    public Victory(){
-        Data.victory = "  *********************************************" +
+    public Victory(FrameBullsAndCows frameBullsAndCows) {
+        frameBullsAndCows.data.setVictory("  *********************************************" +
                 "\n                          Победа!!!!" +
                 "\n               Все БЫКИ пойманы!" +
-                "\n Вы отгадали все цифры, в количестве:" + Data.bulls + " !" +
-                "\n          Вами было сделано " + (1+Data.intCounter) + " попыток!!!"+ "" +
-                "\n            Время прохождения: " + Data.hour+":"+Data.min+":"+Data.sec+":"+Data.mis + "" +
-                "\n  *********************************************";
-            }
+                "\n Вы отгадали все цифры, в количестве:" + frameBullsAndCows.data.getBulls() + " !" +
+                "\n          Вами было сделано " + (frameBullsAndCows.data.getIntCounter() + 1) + " попыток!!!" + "" +
+                "\n            Время прохождения: " + frameBullsAndCows.data.getHour() +
+                ":" + frameBullsAndCows.data.getMin() + ":" + frameBullsAndCows.data.getSec() + ":" + frameBullsAndCows.data.getMis() + "" +
+                "\n  *********************************************");
+    }
 }

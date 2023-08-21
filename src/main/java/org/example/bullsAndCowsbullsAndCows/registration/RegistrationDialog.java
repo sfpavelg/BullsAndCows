@@ -4,7 +4,6 @@ import org.example.bullsAndCowsbullsAndCows.FrameBullsAndCows;
 import org.example.bullsAndCowsbullsAndCows.button.ButtonRegistration;
 import org.example.bullsAndCowsbullsAndCows.button.ButtonUserChange;
 
-import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JPanel;

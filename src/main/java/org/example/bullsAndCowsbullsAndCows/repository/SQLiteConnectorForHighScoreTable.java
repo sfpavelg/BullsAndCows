@@ -1,11 +1,9 @@
 package org.example.bullsAndCowsbullsAndCows.repository;
 
-import javax.swing.*;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
-import java.sql.ResultSet;
 
 public class SQLiteConnectorForHighScoreTable {
     private Connection connection;
@@ -34,9 +32,5 @@ public class SQLiteConnectorForHighScoreTable {
         PreparedStatement statement = connection.prepareStatement(sql); //Это и есть запрос к БД. Это как грузовик, а connection - дорога до БД, sql - то что нужно отвезти
         statement.execute(); //Команда грузовику statement - "ехать!"
     }
-
-
-
-
 }
 

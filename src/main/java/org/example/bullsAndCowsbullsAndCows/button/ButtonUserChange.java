@@ -6,20 +6,16 @@ import org.example.bullsAndCowsbullsAndCows.repository.SQLiteConnectorForUserTab
 import javax.swing.*;
 
 public class ButtonUserChange extends JButton {
-//    private RegistrationDialog registrationDialog;
     private SQLiteConnectorForUserTable connector;
-//    private JLabel lblUserName;
 
     public ButtonUserChange(RegistrationDialog registrationDialog, JLabel lblUserName) {
-//        this.registrationDialog = registrationDialog;
-//        this.lblUserName = lblUserName;
         setText("Сменить пользователя");
         addActionListener(e -> {
-            // Здесь вы можете получить значения из RegistrationDialog
+            // Здесь  получаем значения из RegistrationDialog
             String username = registrationDialog.getUsername();
             String password = registrationDialog.getPassword();
 
-            // ... выполните необходимые действия с полученными значениями ...
+            // Выполняем необходимые действия с полученными значениями.
             connector = new SQLiteConnectorForUserTable();
             connector.changeUser(username, password);
             connector.closeConnection();

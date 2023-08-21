@@ -1,7 +1,6 @@
 package org.example.bullsAndCowsbullsAndCows.button;
 
 import org.example.bullsAndCowsbullsAndCows.*;
-import org.example.bullsAndCowsbullsAndCows.data.Data;
 import org.example.bullsAndCowsbullsAndCows.enumBitDepth.BitDepth;
 import org.example.bullsAndCowsbullsAndCows.information.Notation;
 import org.example.bullsAndCowsbullsAndCows.mathProcessing.JFrameSelection;
@@ -37,11 +36,11 @@ public class ButtonStart extends JButton {
             intBitDepth = jFrameSelection.startJFrameSelection(); // После выбора, нам вернётся число разрядности.
             stringBitDepth = "Загадано " + BitDepth.findByValueBitDepth(intBitDepth) + " число!"; //Достаём из ENUM нужное текстовое значение разрядности по int-вому значению.
             lblBitDepth.setText(stringBitDepth); //Выводим на лейбл информацию о выбранной разрядности загаданного числа.
-            new NumberRandom(intBitDepth); //Теперь запускаем класс рандома числа с выбранной разрядностью.
-            new Notation(intBitDepth); // Добавляем в дополнительную информацию разрядность выбранного числа
+            new NumberRandom(intBitDepth, frameBullsAndCows); //Теперь запускаем класс рандома числа с выбранной разрядностью.
+            new Notation(intBitDepth, frameBullsAndCows); // Добавляем в дополнительную информацию разрядность выбранного числа
             tableModelHistory.clearData(); //обнуление таблицы истории попыток
-            Data.intCounter = 0; //Обнуление счётчика попыток
-            lblCounter.setText("" + Data.intCounter);//Выводим на лейбл обнулённое количество попыток
+            frameBullsAndCows.data.setIntCounter(0);  //Обнуление счётчика попыток
+            lblCounter.setText("" + frameBullsAndCows.data.getIntCounter());//Выводим на лейбл обнулённое количество попыток
 
             /**
              * JOptionPane Тут мы открываем окно с дополнительной информацией Notation
@@ -52,14 +51,13 @@ public class ButtonStart extends JButton {
              * "Сообщение" - заголовок
              * JOptionPane.INFORMATION_MESSAGE -
              */
-            JOptionPane.showMessageDialog(frameBullsAndCows, Data.notation, "Нотация", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(frameBullsAndCows, frameBullsAndCows.data.getNotation(), "Нотация", JOptionPane.INFORMATION_MESSAGE);
 
 //запуск таймера, сразу после закрытия предыдущего окна
-//            FrameBullsAndCows.stopWatch.startStopWatch();
             jpTimer.startTimer();
 
 //            временное окно загаданного числа для отладки
-//            JOptionPane.showMessageDialog(frameBullsAndCows, Data.numberRandom, "Подсказка", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(frameBullsAndCows, frameBullsAndCows.data.getNumberRandom(), "Подсказка", JOptionPane.INFORMATION_MESSAGE);
 
         });
 

@@ -47,6 +47,23 @@ public class JPTimer extends JComponent {
     }
 
     public void stopTimer() {
+
         timer.stop();  //таймер стоп
+    }
+
+    public int getHours() {
+        return hours;
+    }
+
+    public int getMinutes() {
+        return minutes;
+    }
+
+    public int getSeconds() {
+        return seconds;
+    }
+
+    public int getMilliseconds() {
+        return milliseconds;
     }
 }

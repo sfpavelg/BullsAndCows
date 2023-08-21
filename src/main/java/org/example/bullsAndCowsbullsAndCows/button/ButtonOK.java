@@ -30,16 +30,16 @@ public class ButtonOK extends JButton {
         setText("OK");
 
         addActionListener(e -> {
-            Data.numberEnter = numberEnter.getText();//забираем вводимое число текстовой строкой и кидаем в класс данных
-            new Comparison(Data.numberEnter, frameBullsAndCows); //вызвали класс сравнения, с введенным числом на входе и с объектом основного фрейма для дополнительного окна "Победа"
-            CowsResult = "Поймано Коров " + Data.cows; //Строковая переменная с обновлённым результатом пойманных коров
-            BullsResult = "Поймано Быков " + Data.bulls; //Строковая переменная с обновлённым результатом пойманных быков
+            frameBullsAndCows.data.setNumberEnter(numberEnter.getText());//забираем вводимое число текстовой строкой и кидаем в класс данных
+            new Comparison(frameBullsAndCows.data.getNumberEnter(), frameBullsAndCows); //вызвали класс сравнения, с введенным числом на входе и с объектом основного фрейма для дополнительного окна "Победа"
+            CowsResult = "Поймано Коров " + frameBullsAndCows.data.getCows(); //Строковая переменная с обновлённым результатом пойманных коров
+            BullsResult = "Поймано Быков " + frameBullsAndCows.data.getBulls(); //Строковая переменная с обновлённым результатом пойманных быков
             lblCowsResult.setText(CowsResult); //вывели на лейбл под рисунком сколько было поймано коров
             lblBullsResult.setText(BullsResult);//вывели на лейбл под рисунком сколько было поймано быков
 
 //заполняем таблицу историй попыток
             // Получаем новые данные: Data.numberEnter, Data.bulls и Data.cows
-            Object[] newData = {Data.numberEnter, Data.bulls, Data.cows};
+            Object[] newData = {frameBullsAndCows.data.getNumberEnter(), frameBullsAndCows.data.getBulls(), frameBullsAndCows.data.getCows()};
             // Получаем текущее количество строк в модели таблицы
             int rowCount = tableModelHistory.getRowCount();
             // Создаём новый массив данных, увеличив его размер на 1 строчку
@@ -58,8 +58,8 @@ public class ButtonOK extends JButton {
             tableModelHistory.updateData(updatedData);
 
 //меняем счётчик попыток
-            Data.intCounter++;//количество попыток отправили в базу данных
-            lblCounter.setText("" + Data.intCounter);//вывели на лейбл текущее количество попыток и конвертировали в String путём конкатенации.
+            frameBullsAndCows.data.incrementCounter();//количество попыток отправили в базу данных
+            lblCounter.setText("" + frameBullsAndCows.data.getIntCounter());//вывели на лейбл текущее количество попыток и конвертировали в String путём конкатенации.
         });
     }
 }

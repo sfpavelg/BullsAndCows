@@ -1,15 +1,15 @@
 package org.example.bullsAndCowsbullsAndCows.information;
 
-import org.example.bullsAndCowsbullsAndCows.data.Data;
+import org.example.bullsAndCowsbullsAndCows.FrameBullsAndCows;
 import org.example.bullsAndCowsbullsAndCows.enumBitDepth.BitDepth;
 
 public class Notation {//Заполняем String переменную дополнительной нотации
     private int bitDepth;
 
-    public Notation(int bitDepth) {
+    public Notation(int bitDepth, FrameBullsAndCows frameBullsAndCows) {
         this.bitDepth = bitDepth;
 
-        Data.notation = "Внимание!" + "\n" +
+        frameBullsAndCows.data.setNotation("Внимание!" + "\n" +
                 "Загадано " + BitDepth.findByValueBitDepth(bitDepth) + " число!\n" +
                 "Вы должны его угадать!\n" +
                 "Вводя в (Поле для чисел) предпологаемые числа\n" +
@@ -25,6 +25,6 @@ public class Notation {//Заполняем String переменную допо
                 "с фиксацией потраченного времени\n" +
                 "и количеством сделанных попыток.\n" +
                 "Теперь закройте это окно и начинайте игру!\n" +
-                "Удачи!!";
+                "Удачи!!");
     }
 }

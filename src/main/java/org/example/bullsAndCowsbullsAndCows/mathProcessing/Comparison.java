@@ -25,7 +25,7 @@ public class Comparison {
 
 //нужна ещё проверка, что это цифры, но это позже!!!!!!!!!!!!!!!
 
-        numberRandom = Data.numberRandom;//тащим рандом из Data
+        numberRandom = frameBullsAndCows.data.getNumberRandom();//тащим рандом из Data
         stringNumberRandom = "" + numberRandom; //конвертировали число рандома в String
         numberRandomChar = stringNumberRandom.toCharArray(); //загнали рандом в массив
         numberEnterChar = numberEnter.toCharArray(); //загнали вводимое число в массив
@@ -60,9 +60,9 @@ public class Comparison {
             }//конец цикла
 
 //тут мы закинем в data быков
-            Data.bulls = bulls;
+            frameBullsAndCows.data.setBulls(bulls);
 //тут мы закинем в data коров
-            Data.cows = cows;
+            frameBullsAndCows.data.setCows(cows);
         } else {
 //окно предупреждения о не совпадении разрядности чисел
             /**
@@ -77,14 +77,16 @@ public class Comparison {
             String warning = " Проверьте разрядность числа. \n В вашем числе либо больше\n цифр, либо меньше. ";
             JOptionPane.showMessageDialog(frameBullsAndCows, warning, "Ошибка", JOptionPane.INFORMATION_MESSAGE);
         }
-// условие автостопа таймера это быки равно разрядности
+// условие автостопа таймера: это быки == разрядности
 // и значение быков не нулевое как в начале игры, потому что разрядность тоже нулевая в начале игры.
-        if ((Data.bulls == Data.bitDepth) && (Data.bulls != 0)) { // Остановка таймера и окно поздравления с победой
-
-//            FrameBullsAndCows.stopWatch.stopStopWatch();//остановка таймера
-            frameBullsAndCows.jpTimer.stopTimer(); //остановка таймера
+        if ((frameBullsAndCows.data.getBulls() == frameBullsAndCows.data.getBitDepth()) && (frameBullsAndCows.data.getBulls() != 0)) { // Остановка таймера и окно поздравления с победой
+            frameBullsAndCows.jpTimer.stopTimer(); // Остановка таймера
+            frameBullsAndCows.data.setMis(frameBullsAndCows.jpTimer.getMilliseconds());
+            frameBullsAndCows.data.setSec(frameBullsAndCows.jpTimer.getSeconds());
+            frameBullsAndCows.data.setMin(frameBullsAndCows.jpTimer.getMinutes());
+            frameBullsAndCows.data.setHour(frameBullsAndCows.jpTimer.getHours());
 // окно поздравления с победой
-            new Victory(); // Заполняем переменную Data.victory актуальными данными.
+            new Victory(frameBullsAndCows); // Заполняем переменную Data.victory актуальными данными.
             /**
              * JOptionPane Тут мы открываем окно с дополнительной информацией Victory
              * Главная фишка такого окна в том, что программа стопорится и ждёт его закрытия.
@@ -94,9 +96,9 @@ public class Comparison {
              * "Сообщение" - заголовок
              * JOptionPane.INFORMATION_MESSAGE -
              */
-            JOptionPane.showMessageDialog(frameBullsAndCows, Data.victory, "Победа", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(frameBullsAndCows, frameBullsAndCows.data.getVictory(), "Победа", JOptionPane.INFORMATION_MESSAGE);
 
-            //и тут запись куда-то результата.... нужно дописать код (таблица рекордов!)
+            // ..... и тут запись куда-то результата.... нужно дописать код (таблица рекордов!) .....
         }
     }//конец конструктора
 }//конец класса

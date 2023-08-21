@@ -8,8 +8,9 @@ import javax.swing.*;
 public class ButtonAuthorization extends JButton {
     private RegistrationDialog registrationDialog;
     private FrameBullsAndCows frameBullsAndCows;
-    private  JLabel lblUserName;
-    public ButtonAuthorization(FrameBullsAndCows frameBullsAndCows, JLabel lblUserName){
+    private JLabel lblUserName;
+
+    public ButtonAuthorization(FrameBullsAndCows frameBullsAndCows, JLabel lblUserName) {
         this.frameBullsAndCows = frameBullsAndCows;
         this.lblUserName = lblUserName;
         setText("Авторизация");
@@ -17,6 +18,7 @@ public class ButtonAuthorization extends JButton {
             openRegistrationDialog();
         });
     }
+
     private void openRegistrationDialog() {
         registrationDialog = new RegistrationDialog(frameBullsAndCows, lblUserName);
         registrationDialog.setVisible(true);

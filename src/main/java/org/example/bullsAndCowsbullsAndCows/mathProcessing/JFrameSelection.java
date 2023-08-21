@@ -5,9 +5,10 @@ import org.example.bullsAndCowsbullsAndCows.FrameBullsAndCows;
 import javax.swing.*;
 
 //Класс Окна выбора разрядности
-public class JFrameSelection  {
+public class JFrameSelection {
     private FrameBullsAndCows frameBullsAndCows;
-    public JFrameSelection(FrameBullsAndCows frameBullsAndCows){
+
+    public JFrameSelection(FrameBullsAndCows frameBullsAndCows) {
         this.frameBullsAndCows = frameBullsAndCows;
     }
 

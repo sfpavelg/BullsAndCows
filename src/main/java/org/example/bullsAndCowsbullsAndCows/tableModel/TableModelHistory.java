@@ -19,24 +19,31 @@ public class TableModelHistory extends AbstractTableModel {
      * то все его методы нужно переопределить.
      * Часть методов переопределены в абстрактном классе AbstractTableModel.
      * Но есть методы, которые нам нужно переопределить в нашем классе наследнике.
-     *
+     * <p>
      * getRowCount() это метод возврата длинны общего массива, он будет соответствовать количеству строк на какой-то текущий момент
+     *
      * @return data.length
      */
     @Override
-    public int getRowCount() { return data.length; }
+    public int getRowCount() {
+        return data.length;
+    }
 
     /**
      * getColumnCount() это метод возврата длинны ячейки, он всегда будет длинною в 3 элемента. Использовать этот метод не будем, но переопределить обязаны.
+     *
      * @return columnNames.length
      */
     @Override
-    public int getColumnCount() { return columnNames.length; }
+    public int getColumnCount() {
+        return columnNames.length;
+    }
 
     /**
      * getValueAt(int row, int column) это метод возврата данных в ячейке по номеру строки и столбца
-     * @param row        the row whose value is to be queried
-     * @param column     the column whose value is to be queried
+     *
+     * @param row    the row whose value is to be queried
+     * @param column the column whose value is to be queried
      * @return data[row][column] Возврат данных ячейки
      */
 
@@ -47,8 +54,9 @@ public class TableModelHistory extends AbstractTableModel {
 
     /**
      * getColumnName(int column) этот метод возврата имени колонки, по её номеру.
+     *
      * @param column Номер колонки
-     * @return  columnNames[column]
+     * @return columnNames[column]
      */
 
     @Override
@@ -57,9 +65,10 @@ public class TableModelHistory extends AbstractTableModel {
     }
 
     /**
-     *  getColumnClass(int column) этот метод нужен для позиционирования колонок по центу
+     * getColumnClass(int column) этот метод нужен для позиционирования колонок по центу
+     *
      * @param column Номер колонки
-     * @return  CenteredTableCellRenderer.class вызываем работу класса позиционирования на колонке с таким индексом
+     * @return CenteredTableCellRenderer.class вызываем работу класса позиционирования на колонке с таким индексом
      */
     @Override
     public Class<?> getColumnClass(int column) {
@@ -76,6 +85,7 @@ public class TableModelHistory extends AbstractTableModel {
             tableHistory.scrollRectToVisible(tableHistory.getCellRect(lastIndex, 0, true));
         }
     }
+
     // Новый метод для очистки данных в таблице:
     public void clearData() {
         data = new Object[0][0];

@@ -8,7 +8,8 @@ import javax.swing.*;
 public class ButtonRegistration extends JButton {
     RegistrationDialog registrationDialog;
     SQLiteConnectorForUserTable connector;
-    public ButtonRegistration( RegistrationDialog registrationDialog) {
+
+    public ButtonRegistration(RegistrationDialog registrationDialog) {
         this.registrationDialog = registrationDialog;
         setText("Зарегистрироваться");
         addActionListener(e -> {

@@ -4,10 +4,10 @@ import org.example.bullsAndCowsbullsAndCows.button.ButtonInstruction;
 import org.example.bullsAndCowsbullsAndCows.button.ButtonOK;
 import org.example.bullsAndCowsbullsAndCows.button.ButtonAuthorization;
 import org.example.bullsAndCowsbullsAndCows.button.ButtonStart;
+import org.example.bullsAndCowsbullsAndCows.data.Data;
 import org.example.bullsAndCowsbullsAndCows.graphic.BullsSmile;
 import org.example.bullsAndCowsbullsAndCows.graphic.CowsSmile;
 import org.example.bullsAndCowsbullsAndCows.mathProcessing.JPTimer;
-import org.example.bullsAndCowsbullsAndCows.mathProcessing.StopWatch;
 import org.example.bullsAndCowsbullsAndCows.tableModel.CenteredTableCellRenderer;
 import org.example.bullsAndCowsbullsAndCows.tableModel.TableModelHighScore;
 import org.example.bullsAndCowsbullsAndCows.tableModel.TableModelHistory;
@@ -54,23 +54,20 @@ public class FrameBullsAndCows extends JFrame {
     private JLabel lblUserName;          //лейбл имени игрока
     private JLabel lblCounter;           //лейбл количества попыток
     private JLabel lblBitDepth;          //лейбл разрядности загаданного числа
-//    private JLabel lblTimer;             //лейбл таймер
+    //    private JLabel lblTimer;             //лейбл таймер
     private JScrollPane scrollPaneHistory;//окно прокрутки введённых чисел
     private JScrollPane scrollPaneHighScore;//окно прокрутки таблицы рекордов
     private String CowsResult = "Поймано Коров 0"; //Строковая переменная
     private String BullsResult = "Поймано Быков 0"; //Строковая переменная
     private String stringBitDepth; //Переменная индикации разрядности
-    private String userName;             //Строковая переменная
-//    private String randomNumberTable;    //Строковая переменная
-//    private JTextArea textAreaHighScoreTable; //поле таблицы рекордов
+    private String userName;   //Строковая переменная
     private int intCounter = 0; //переменная счётчика попыток
-//    public static StopWatch stopWatch; //таймер
     public JPTimer jpTimer; // Таймер
     private JTable tableHistory; //Табличная панель для истории попыток
     private JTable tableHighScore; //Таблица Рекордов
     private TableModelHistory tableModelHistory; //Это модель принимающая данные истории попыток
     private TableModelHighScore tableModelHighScore; //Это модель для таблицы Рекордов
-
+    public Data data; // Объект данных
 
 
     //КОНСТРУКТОР
@@ -86,7 +83,7 @@ public class FrameBullsAndCows extends JFrame {
         addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosing(WindowEvent e) {
- //               FrameBullsAndCows.stopWatch.stopStopWatch();
+                //               FrameBullsAndCows.stopWatch.stopStopWatch();
                 System.exit(0);
             }
         });
@@ -107,11 +104,8 @@ public class FrameBullsAndCows extends JFrame {
         lblBullsResult = new JLabel(BullsResult); //лейбл результатов Быков
         lblBitDepth = new JLabel();//лейбл разрядности загаданного числа
         lblCounter = new JLabel("" + intCounter); //лейбл счётчика попыток
-//        randomNumberTable = "1.Павел 45 sec  5 попыток"; //временная заглушка для таблицы результатов
-//        textAreaHighScoreTable = new JTextArea(25, 18); //создаём текстовое поле таблицы результатов
-//        textAreaHighScoreTable.setText(randomNumberTable); // это временный муляж таблицы
-//        stopWatch = new StopWatch(); //создаём экземпляр таймера
         jpTimer = new JPTimer();  //создаём экземпляр таймера
+        data = new Data(); // Экземпляр класса данных
 
 
 // Таблица Истории угадываемых попыток
