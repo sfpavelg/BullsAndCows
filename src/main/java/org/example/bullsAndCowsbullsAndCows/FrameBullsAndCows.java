@@ -54,7 +54,7 @@ public class FrameBullsAndCows extends JFrame {
     private JLabel lblUserName;          //лейбл имени игрока
     private JLabel lblCounter;           //лейбл количества попыток
     private JLabel lblBitDepth;          //лейбл разрядности загаданного числа
-    private JLabel lblTimer;             //лейбл таймер
+//    private JLabel lblTimer;             //лейбл таймер
     private JScrollPane scrollPaneHistory;//окно прокрутки введённых чисел
     private JScrollPane scrollPaneHighScore;//окно прокрутки таблицы рекордов
     private String CowsResult = "Поймано Коров 0"; //Строковая переменная
@@ -78,7 +78,7 @@ public class FrameBullsAndCows extends JFrame {
 //создаём окно игры
         super("Быки и Коровы");  //заголовок
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE); //завершение программы при закрытии окна
-        setBounds(50, 50, 1150, 550); //размер окна и местоположение на экране
+        setBounds(50, 50, 1250, 550); //размер окна и местоположение на экране
         setResizable(false); //размер окна нельзя изменить
 
 //при закрытии основного окна, закроет все дополнительные и отключит таймер, если он запущен
@@ -101,7 +101,7 @@ public class FrameBullsAndCows extends JFrame {
         pnCowsResult = new JPanel();  //создаём объект pnCowsResult (нужно перенести выше....)
         pnBullsResult = new JPanel(); //создаём объект pnBullsResult
         userName = "Смените пользователя"; //Временная текстовая переменная, которая будет заглушкой для лейбла регистрации
-        lblUserName = new JLabel(userName);
+        lblUserName = new JLabel(userName); //лейбл имени игрока
         lblCowsResult = new JLabel(CowsResult);   //лейбл результатов Коров
         lblBullsResult = new JLabel(BullsResult); //лейбл результатов Быков
         lblBitDepth = new JLabel();//лейбл разрядности загаданного числа
@@ -135,7 +135,7 @@ public class FrameBullsAndCows extends JFrame {
         tableHistory.getColumnModel().getColumn(1).setPreferredWidth(10);  // Установим ширину столбца быки
         tableHistory.getColumnModel().getColumn(2).setPreferredWidth(10);  // Установим ширину столбца коровы
 
-// Размеры таблицы Рекордов
+// таблица Рекордов
         tableHighScore = new JTable();//Табличная панель Рекордов. Её инициализируем раньше, чем tableModel, так как этот объект нужен tableModel на вход
         tableModelHighScore = new TableModelHighScore(new Object[0][0], tableHighScore); //Объект модели истории попыток
         tableHighScore.setModel(tableModelHighScore); // Ну а теперь уже на вход поступает tableModel
@@ -153,17 +153,11 @@ public class FrameBullsAndCows extends JFrame {
          * первая должна вместить 7 символов, это будет угадываемое число,
          * вторая и третья по одному символу, это будут быки и коровы
          */
-
-        scrollPaneHighScore.setPreferredSize(new Dimension(200, 400)); // Установим предпочитаемый размер JScrollPane
+        scrollPaneHighScore.setPreferredSize(new Dimension(300, 400)); // Установим предпочитаемый размер JScrollPane
         tableHighScore.getColumnModel().getColumn(0).setPreferredWidth(10); // Установим ширину столбца порядковый "№"
         tableHighScore.getColumnModel().getColumn(1).setPreferredWidth(70);  // Установим ширину столбца "Ник игрока"
         tableHighScore.getColumnModel().getColumn(2).setPreferredWidth(10);  // Установим ширину столбца "Попытки"
         tableHighScore.getColumnModel().getColumn(2).setPreferredWidth(10);  // Установим ширину столбца "Время""
-
-
-
-
-
 
 //кнопки
         btInstruction = new ButtonInstruction(this); //создаём кнопку "Инструкция"
