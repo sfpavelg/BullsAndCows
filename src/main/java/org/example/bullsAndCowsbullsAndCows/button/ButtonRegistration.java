@@ -1,13 +1,13 @@
 package org.example.bullsAndCowsbullsAndCows.button;
 
 import org.example.bullsAndCowsbullsAndCows.registration.RegistrationDialog;
-import org.example.bullsAndCowsbullsAndCows.repository.SQLiteConnector;
+import org.example.bullsAndCowsbullsAndCows.repository.SQLiteConnectorForUserTable;
 
 import javax.swing.*;
 
 public class ButtonRegistration extends JButton {
     RegistrationDialog registrationDialog;
-    SQLiteConnector connector;
+    SQLiteConnectorForUserTable connector;
     public ButtonRegistration( RegistrationDialog registrationDialog) {
         this.registrationDialog = registrationDialog;
         setText("Зарегистрироваться");
@@ -17,7 +17,7 @@ public class ButtonRegistration extends JButton {
             String password = registrationDialog.getPassword();
 
             // ... выполните необходимые действия с полученными значениями ...
-            connector = new SQLiteConnector();
+            connector = new SQLiteConnectorForUserTable();
             connector.insertUser(username, password);
 
             connector.closeConnection();

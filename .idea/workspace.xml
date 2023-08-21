@@ -110,7 +110,12 @@
       <workItem from="1691767669119" duration="1055000" />
       <workItem from="1691768773028" duration="9484000" />
       <workItem from="1692084878945" duration="17352000" />
-      <workItem from="1692127041846" duration="1878000" />
+      <workItem from="1692127041846" duration="2239000" />
+      <workItem from="1692172621949" duration="10852000" />
+      <workItem from="1692259344513" duration="600000" />
+      <workItem from="1692264214679" duration="1953000" />
+      <workItem from="1692350345528" duration="4633000" />
+      <workItem from="1692602988937" duration="879000" />
     </task>
     <task id="LOCAL-00001" summary="№2 Сокращаем класс выбора разрядности">
       <created>1691408923774</created>
@@ -224,7 +229,14 @@
       <option name="project" value="LOCAL" />
       <updated>1692108766901</updated>
     </task>
-    <option name="localTasksCounter" value="17" />
+    <task id="LOCAL-00017" summary="№16 Полная авторизация">
+      <created>1692129174591</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1692129174591</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -257,7 +269,8 @@
     <MESSAGE value="№13 Подключил БД SQLite + Repository,ButtonRegistration" />
     <MESSAGE value="№14 doc &quot;Подключение драйвера SQLite&quot;" />
     <MESSAGE value="№15 Проверка дубликатов при регистрации" />
-    <option name="LAST_COMMIT_MESSAGE" value="№15 Проверка дубликатов при регистрации" />
+    <MESSAGE value="№16 Полная авторизация" />
+    <option name="LAST_COMMIT_MESSAGE" value="№16 Полная авторизация" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

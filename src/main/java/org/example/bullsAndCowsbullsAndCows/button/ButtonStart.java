@@ -6,7 +6,7 @@ import org.example.bullsAndCowsbullsAndCows.enumBitDepth.BitDepth;
 import org.example.bullsAndCowsbullsAndCows.information.Notation;
 import org.example.bullsAndCowsbullsAndCows.mathProcessing.JFrameSelection;
 import org.example.bullsAndCowsbullsAndCows.mathProcessing.NumberRandom;
-import org.example.bullsAndCowsbullsAndCows.tableModel.TableModelStory;
+import org.example.bullsAndCowsbullsAndCows.tableModel.TableModelHistory;
 
 import javax.swing.*;
 
@@ -14,14 +14,14 @@ public class ButtonStart extends JButton {
     private JLabel lblBitDepth;
     private int intBitDepth; // Переменная разрядности выбранного числа типа int.
     private String stringBitDepth = null; // Переменная разрядности выбранного числа типа String.
-    private TableModelStory tableModel; // Класс, который является моделью, принимающей данные истории попыток. Здесь он нужен для обнуления данных
+    private TableModelHistory tableModelHistory; // Класс, который является моделью, принимающей данные истории попыток. Здесь он нужен для обнуления данных
     private FrameBullsAndCows frameBullsAndCows; // Основной класс. Нужен здесь для привязки как к основному фрейму дополнительного окна нотации
     private JLabel lblCounter;     //лейбл количества попыток
 
-    public ButtonStart(JLabel lblBitDepth, FrameBullsAndCows frameBullsAndCows, TableModelStory tableModel, JLabel lblCounter) {
+    public ButtonStart(JLabel lblBitDepth, FrameBullsAndCows frameBullsAndCows, TableModelHistory tableModelHistory, JLabel lblCounter) {
         this.lblBitDepth = lblBitDepth;
         this.frameBullsAndCows = frameBullsAndCows;
-        this.tableModel = tableModel;
+        this.tableModelHistory = tableModelHistory;
         this.lblCounter = lblCounter;
 
         setText("Начать Игру!");
@@ -36,7 +36,7 @@ public class ButtonStart extends JButton {
             lblBitDepth.setText(stringBitDepth); //Выводим на лейбл информацию о выбранной разрядности загаданного числа.
             new NumberRandom(intBitDepth); //Теперь запускаем класс рандома числа с выбранной разрядностью.
             new Notation(intBitDepth); // Добавляем в дополнительную информацию разрядность выбранного числа
-            tableModel.clearData(); //обнуление таблицы истории попыток
+            tableModelHistory.clearData(); //обнуление таблицы истории попыток
             Data.intCounter = 0; //Обнуление счётчика попыток
             lblCounter.setText("" + Data.intCounter);//Выводим на лейбл обнулённое количество попыток
 

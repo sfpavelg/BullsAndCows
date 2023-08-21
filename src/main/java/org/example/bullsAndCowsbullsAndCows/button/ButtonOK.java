@@ -3,7 +3,7 @@ package org.example.bullsAndCowsbullsAndCows.button;
 import org.example.bullsAndCowsbullsAndCows.mathProcessing.Comparison;
 import org.example.bullsAndCowsbullsAndCows.FrameBullsAndCows;
 import org.example.bullsAndCowsbullsAndCows.data.Data;
-import org.example.bullsAndCowsbullsAndCows.tableModel.TableModelStory;
+import org.example.bullsAndCowsbullsAndCows.tableModel.TableModelHistory;
 
 import javax.swing.*;
 import java.awt.*;
@@ -16,15 +16,15 @@ public class ButtonOK extends JButton {
     private JLabel lblBullsResult;       //лейбл количества Быков
     private String randomNumberStory = "";    //Строковая переменная
     private JLabel lblCounter;     //лейбл количества попыток
-    private TableModelStory tableModel; //Класс, который является моделью, принимающей данные истории попыток
+    private TableModelHistory tableModelHistory; //Класс, который является моделью, принимающей данные истории попыток
     private FrameBullsAndCows frameBullsAndCows; // Основной класс. Нужен здесь для привязки как к основному фрейму дополнительного окна "Победа" в new Comparison
 
-    public ButtonOK(TextField numberEnter, JLabel lblCowsResult, JLabel lblBullsResult, JLabel lblCounter, TableModelStory tableModel, FrameBullsAndCows frameBullsAndCows) {
+    public ButtonOK(TextField numberEnter, JLabel lblCowsResult, JLabel lblBullsResult, JLabel lblCounter, TableModelHistory tableModelHistory, FrameBullsAndCows frameBullsAndCows) {
         this.numberEnter = numberEnter;
         this.lblCowsResult = lblCowsResult;
         this.lblBullsResult = lblBullsResult;
         this.lblCounter = lblCounter;
-        this.tableModel = tableModel;
+        this.tableModelHistory = tableModelHistory;
         this.frameBullsAndCows = frameBullsAndCows;
 
         setText("OK");
@@ -41,21 +41,21 @@ public class ButtonOK extends JButton {
             // Получаем новые данные: Data.numberEnter, Data.bulls и Data.cows
             Object[] newData = {Data.numberEnter, Data.bulls, Data.cows};
             // Получаем текущее количество строк в модели таблицы
-            int rowCount = tableModel.getRowCount();
+            int rowCount = tableModelHistory.getRowCount();
             // Создаём новый массив данных, увеличив его размер на 1 строчку
             Object[][] updatedData = new Object[rowCount + 1][3];
             // Скопируем текущие данные в новый массив
             for (int i = 0; i < rowCount; i++) {
                 updatedData[i] = new Object[]{
-                        tableModel.getValueAt(i, 0),
-                        tableModel.getValueAt(i, 1),
-                        tableModel.getValueAt(i, 2)
+                        tableModelHistory.getValueAt(i, 0),
+                        tableModelHistory.getValueAt(i, 1),
+                        tableModelHistory.getValueAt(i, 2)
                 };
             }
             // Добавляем новые данные в последнюю строку нового массива
             updatedData[rowCount] = newData;
             // Обновляем модель таблицы с новыми данными
-            tableModel.updateData(updatedData);
+            tableModelHistory.updateData(updatedData);
 
 //меняем счётчик попыток
             Data.intCounter++;//количество попыток отправили в базу данных

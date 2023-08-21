@@ -4,14 +4,14 @@ import javax.swing.*;
 import javax.swing.table.AbstractTableModel;
 
 //Класс, который является моделью, принимающей данные истории попыток
-public class TableModelStory extends AbstractTableModel {
+public class TableModelHistory extends AbstractTableModel {
     private String[] columnNames = {"Число", "Б", "К"}; //Собираем столбцы в массив строк, это будет шапка таблицы.
     private Object[][] data; //Двумерный массив будет телом таблицы. То есть каждая строка будет содержать значения Data.numberEnter, Data.bulls, Data.cows
-    private JTable tableStory; //Табличная панель для истории попыток. Эта зависимость нужна здесь для визуализации последней строки в скролл панели
+    private JTable tableHistory; //Табличная панель для истории попыток. Эта зависимость нужна здесь для визуализации последней строки в скролл панели
 
-    public TableModelStory(Object[][] data, JTable tableStory) { //Конструктором принимаем данные на вход: заполненный массив и табличную панель
+    public TableModelHistory(Object[][] data, JTable tableHistory) { //Конструктором принимаем данные на вход: заполненный массив и табличную панель
         this.data = data;
-        this.tableStory = tableStory;
+        this.tableHistory = tableHistory;
     }
 
     /**
@@ -22,39 +22,45 @@ public class TableModelStory extends AbstractTableModel {
      *
      * getRowCount() это метод возврата длинны общего массива, он будет соответствовать количеству строк на какой-то текущий момент
      * @return data.length
-     *
-     * getColumnCount() это метод возврата длинны ячейки, он всегда будет длинною в 3 элемента. Использовать этот метод не будем, но переопределить обязаны.
-     * @return columnNames.length
-     *
-     * getValueAt(int row, int column) это метод возврата данных в ячейке по номеру строки и столбца
-     * @param  row Номер строки
-     * @param  column Номер колонки
-     * @return  data[row][column] Возврат данных ячейки
-     *
-     * getColumnName(int column) этот метод возврата имени колонки, по её номеру.
-     * @param column Номер колонки
-     * @return  columnNames[column]
-     *
-     *  getColumnClass(int column) этот метод нужен для позиционированию колонок по центу
-     * @param column Номер колонки
-     * @return  CenteredTableCellRenderer.class вызываем работу класса позиционирования на колонке с таким индексом
-     *
      */
     @Override
     public int getRowCount() { return data.length; }
 
+    /**
+     * getColumnCount() это метод возврата длинны ячейки, он всегда будет длинною в 3 элемента. Использовать этот метод не будем, но переопределить обязаны.
+     * @return columnNames.length
+     */
     @Override
     public int getColumnCount() { return columnNames.length; }
+
+    /**
+     * getValueAt(int row, int column) это метод возврата данных в ячейке по номеру строки и столбца
+     * @param row        the row whose value is to be queried
+     * @param column     the column whose value is to be queried
+     * @return data[row][column] Возврат данных ячейки
+     */
 
     @Override
     public Object getValueAt(int row, int column) {
         return data[row][column];
     }
 
+    /**
+     * getColumnName(int column) этот метод возврата имени колонки, по её номеру.
+     * @param column Номер колонки
+     * @return  columnNames[column]
+     */
+
     @Override
     public String getColumnName(int column) {
         return columnNames[column];
     }
+
+    /**
+     *  getColumnClass(int column) этот метод нужен для позиционирования колонок по центу
+     * @param column Номер колонки
+     * @return  CenteredTableCellRenderer.class вызываем работу класса позиционирования на колонке с таким индексом
+     */
     @Override
     public Class<?> getColumnClass(int column) {
         return CenteredTableCellRenderer.class;
@@ -64,10 +70,10 @@ public class TableModelStory extends AbstractTableModel {
     public void updateData(Object[][] newData) {
         data = newData;
         fireTableDataChanged(); //это реализованный метод в AbstractTableModel
-        // Прокручиваем скроллпанель к последней строке
+        // Прокручиваем скролл-панель к последней строке
         if (data.length > 0) {
             int lastIndex = data.length - 1;
-            tableStory.scrollRectToVisible(tableStory.getCellRect(lastIndex, 0, true));
+            tableHistory.scrollRectToVisible(tableHistory.getCellRect(lastIndex, 0, true));
         }
     }
     // Новый метод для очистки данных в таблице:

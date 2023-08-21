@@ -7,30 +7,30 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.ResultSet;
 
-public class SQLiteConnector {
+public class SQLiteConnectorForUserTable {
     private Connection connection;
 
     /**
-     *  connection - подключение к БД SQLite с названием database.db
-     *  Если подключение произошло, и БД с именем database.db, такая БД будет автоматически создана.
-     *  Ео подключения не будет, если отсутствует драйвер SQLite.
-     *  Для подключения драйвера к проекту нужно сделать следующее:
-     *  1. Подключить Maven к проекту (как это сделать описано ниже).
-     *  2. В pom-файле прописать зависимость:
-     *  <!-- https://mvnrepository.com/artifact/org.xerial/sqlite-jdbc -->
+     * Connection - подключение к БД SQLite с названием database.db
+     * Если подключение произошло, и БД с именем database.db, такая БД будет автоматически создана.
+     * Ео подключения не будет, если отсутствует драйвер SQLite.
+     * Для подключения драйвера к проекту нужно сделать следующее:
+     * 1. Подключить Maven к проекту (как это сделать описано ниже).
+     * 2. В pom-файле прописать зависимость:
+     * <!-- https://mvnrepository.com/artifact/org.xerial/sqlite-jdbc -->
      * <dependency>
-     *     <groupId>org.xerial</groupId>
-     *     <artifactId>sqlite-jdbc</artifactId>
-     *     <version>3.34.0</version>
+     * <groupId>org.xerial</groupId>
+     * <artifactId>sqlite-jdbc</artifactId>
+     * <version>3.34.0</version>
      * </dependency>
-     *  3. Обновите Maven (Зайдите в раздел Maven и нажмите  "Reload All Maven Project")
-     *  4. Затем выполните сборку проекта (Ctrl + F9), и драйвер SQLite JDBC будет автоматически загружен и включен в ваш проект.
-     *  5. Запустите проект, зайдите в раздел "Авторизация" Заполните поля "user" и "password", нажмите кнопку "регистрация"
-     *  Если БД подключилась, то ошибок не будет.
-     *  6. Настройте в IDEA панель "Database" для просмотра содержания таблиц в БД. Для этого дважды кликните по файлу database.db
-     *  и настройте нужные схемы.
-     *
-     *  Для подключения Maven к проекту:
+     * 3. Обновите Maven (Зайдите в раздел Maven и нажмите  "Reload All Maven Project")
+     * 4. Затем выполните сборку проекта (Ctrl + F9), и драйвер SQLite JDBC будет автоматически загружен и включен в ваш проект.
+     * 5. Запустите проект, зайдите в раздел "Авторизация" Заполните поля "user" и "password", нажмите кнопку "регистрация"
+     * Если БД подключилась, то ошибок не будет.
+     * 6. Настройте в IDEA панель "Database" для просмотра содержания таблиц в БД. Для этого дважды кликните по файлу database.db
+     * и настройте нужные схемы.
+     * <p>
+     * Для подключения Maven к проекту:
      * 1. Откройте IntelliJ IDEA и свой проект.
      * 2. Перейдите в меню "File" (Файл) и выберите пункт "Settings" (Настройки).
      * 3. В поисковой строке в верхней части окна настроек введите "Maven".
@@ -48,19 +48,25 @@ public class SQLiteConnector {
      * После обновления проекта вы сможете добавлять зависимости Maven и использовать их в вашем проекте.
      */
 
-    public SQLiteConnector() {
+    public SQLiteConnectorForUserTable() {
         try {
             Class.forName("org.sqlite.JDBC"); //поиск драйвера SQLite
             connection = DriverManager.getConnection("jdbc:sqlite:database.db"); //Соединение с БД database.db, одно на все запросы
 
             // Создание таблицы, если она не существует
-            createTable(); //А вот и первый запрос к БД
+            createTableUser(); // А вот и первый запрос к БД. Создаём, если ещё не создана, таблицу юзеров.
         } catch (ClassNotFoundException | SQLException e) {
             e.printStackTrace();
         }
     }
-// Метод создающий таблицу user в БД, если этой таблицы там нет. У таблицы 3 колонки, id - автоматический ключ-идентификатор, username и password
-    private void createTable() throws SQLException { //В этом запросе может быть исключение, но обработку пробрасываем дальше
+
+    /**
+     * Метод создающий таблицу user в БД, если этой таблицы там нет.
+     * У таблицы 3 колонки, id - автоматический ключ-идентификатор, username и password
+     *
+     * @throws SQLException - ожидаемое, но не обрабатываемое исключение
+     */
+    private void createTableUser() throws SQLException { //В этом запросе может быть исключение, но обработку пробрасываем дальше
         String sql = "CREATE TABLE IF NOT EXISTS user (id INTEGER PRIMARY KEY AUTOINCREMENT, username TEXT, password TEXT)"; //SQL запрос, но пока это просто String переменная
         PreparedStatement statement = connection.prepareStatement(sql); //Это и есть запрос к БД. Это как грузовик, а connection - дорога до БД, sql - то что нужно отвезти
         statement.execute(); //Команда грузовику statement - "ехать!"
@@ -137,9 +143,7 @@ public class SQLiteConnector {
     }
 
 
-
-
-// Метод закрытия соединения с БД
+    // Метод закрытия соединения с БД
     public void closeConnection() {
         try {
             if (connection != null) {

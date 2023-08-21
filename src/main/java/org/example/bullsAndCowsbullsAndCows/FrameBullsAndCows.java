@@ -9,7 +9,8 @@ import org.example.bullsAndCowsbullsAndCows.graphic.CowsSmile;
 import org.example.bullsAndCowsbullsAndCows.mathProcessing.JPTimer;
 import org.example.bullsAndCowsbullsAndCows.mathProcessing.StopWatch;
 import org.example.bullsAndCowsbullsAndCows.tableModel.CenteredTableCellRenderer;
-import org.example.bullsAndCowsbullsAndCows.tableModel.TableModelStory;
+import org.example.bullsAndCowsbullsAndCows.tableModel.TableModelHighScore;
+import org.example.bullsAndCowsbullsAndCows.tableModel.TableModelHistory;
 
 import javax.swing.*;
 import java.awt.*;
@@ -27,7 +28,6 @@ public class FrameBullsAndCows extends JFrame {
     private TextField numberEnter;  //поле для ввода цифр
     private ButtonOK btOk;           //кнопка Подтверждения ввода
     private ButtonStart btStart;        //кнопка  Старта
-//    private JButton btRegistration; //кнопка регистрации
     private ButtonAuthorization btRegistration; //кнопка регистрации
     private ButtonInstruction btInstruction;  //кнопка правила игры
     private JPanel pnBulls;         //панель картинки Бык
@@ -56,17 +56,21 @@ public class FrameBullsAndCows extends JFrame {
     private JLabel lblBitDepth;          //лейбл разрядности загаданного числа
     private JLabel lblTimer;             //лейбл таймер
     private JScrollPane scrollPaneHistory;//окно прокрутки введённых чисел
-    private JScrollPane scrollPaneTable;//окно прокрутки таблицы рекордов
+    private JScrollPane scrollPaneHighScore;//окно прокрутки таблицы рекордов
     private String CowsResult = "Поймано Коров 0"; //Строковая переменная
     private String BullsResult = "Поймано Быков 0"; //Строковая переменная
     private String stringBitDepth; //Переменная индикации разрядности
     private String userName;             //Строковая переменная
-    private String randomNumberTable;    //Строковая переменная
-    private JTextArea textAreaHighScoreTable; //поле таблицы рекордов
+//    private String randomNumberTable;    //Строковая переменная
+//    private JTextArea textAreaHighScoreTable; //поле таблицы рекордов
     private int intCounter = 0; //переменная счётчика попыток
     public static StopWatch stopWatch; //таймер
-    private JTable tableStory; //Табличная панель для истории попыток
-    private TableModelStory tableModel; //Это модель принимающая данные истории попыток
+    private JTable tableHistory; //Табличная панель для истории попыток
+    private JTable tableHighScore; //Таблица Рекордов
+    private TableModelHistory tableModelHistory; //Это модель принимающая данные истории попыток
+    private TableModelHighScore tableModelHighScore; //Это модель для таблицы Рекордов
+
+
 
     //КОНСТРУКТОР
     FrameBullsAndCows() {
@@ -96,26 +100,27 @@ public class FrameBullsAndCows extends JFrame {
         pnBitDepth = new JPanel(); //создаём панель выбранной разрядности
         pnCowsResult = new JPanel();  //создаём объект pnCowsResult (нужно перенести выше....)
         pnBullsResult = new JPanel(); //создаём объект pnBullsResult
-        userName = "Павел"; //Временная текстовая переменная, которая будет заглушкой для лейбла регистрации
+        userName = "Смените пользователя"; //Временная текстовая переменная, которая будет заглушкой для лейбла регистрации
         lblUserName = new JLabel(userName);
         lblCowsResult = new JLabel(CowsResult);   //лейбл результатов Коров
         lblBullsResult = new JLabel(BullsResult); //лейбл результатов Быков
         lblBitDepth = new JLabel();//лейбл разрядности загаданного числа
         lblCounter = new JLabel("" + intCounter); //лейбл счётчика попыток
-        randomNumberTable = "1.Павел 45 sec  5 попыток"; //временная заглушка для таблицы результатов
-        textAreaHighScoreTable = new JTextArea(25, 18); //создаём текстовое поле таблицы результатов
-        textAreaHighScoreTable.setText(randomNumberTable); // это временный муляж таблицы
-        scrollPaneTable = new JScrollPane(textAreaHighScoreTable);//создаём скролл панель для таблицы результатов
+//        randomNumberTable = "1.Павел 45 sec  5 попыток"; //временная заглушка для таблицы результатов
+//        textAreaHighScoreTable = new JTextArea(25, 18); //создаём текстовое поле таблицы результатов
+//        textAreaHighScoreTable.setText(randomNumberTable); // это временный муляж таблицы
         stopWatch = new StopWatch(); //создаём экземпляр таймера
-        tableStory = new JTable();//Табличная панель истории попыток. Её инициализируем раньше, чем tableModel, так как этот объект нужен tableModel на вход
-        tableModel = new TableModelStory(new Object[0][0], tableStory); //Объект модели истории попыток
-        tableStory.setModel(tableModel); // Ну а теперь уже на вход поступает tableModel
-        scrollPaneHistory = new JScrollPane(tableStory); //создаём скролл панель для размещения таблицы истории попыток
 
-        tableStory.getColumnModel().getColumn(1).setCellRenderer(new CenteredTableCellRenderer()); // устанавливаем выравнивание по центру для второй колонки (быки)
-        tableStory.getColumnModel().getColumn(2).setCellRenderer(new CenteredTableCellRenderer()); // устанавливаем выравнивание по центру для третьей колонки (коровы)
 
-// Размеры таблицы истории угадываемых чисел
+// Таблица Истории угадываемых попыток
+        tableHistory = new JTable();//Табличная панель истории попыток. Её инициализируем раньше, чем tableModel, так как этот объект нужен tableModel на вход
+        tableModelHistory = new TableModelHistory(new Object[0][0], tableHistory); //Объект модели истории попыток
+        tableHistory.setModel(tableModelHistory); // Ну а теперь уже на вход поступает tableModel
+        scrollPaneHistory = new JScrollPane(tableHistory); //создаём скролл панель для размещения таблицы истории попыток
+
+        tableHistory.getColumnModel().getColumn(1).setCellRenderer(new CenteredTableCellRenderer()); // устанавливаем выравнивание по центру для второй колонки (быки)
+        tableHistory.getColumnModel().getColumn(2).setCellRenderer(new CenteredTableCellRenderer()); // устанавливаем выравнивание по центру для третьей колонки (коровы)
+
         /**
          * JTable помещается в JScrollPane, а JScrollPane помещается в JPanel,
          * но в данном случае размер нужно задавать именно для JScrollPane
@@ -126,14 +131,44 @@ public class FrameBullsAndCows extends JFrame {
          * вторая и третья по одному символу, это будут быки и коровы
          */
         scrollPaneHistory.setPreferredSize(new Dimension(120, 400)); // Установим предпочитаемый размер JScrollPane
-        tableStory.getColumnModel().getColumn(0).setPreferredWidth(70); // Установим ширину столбца угадываемого числа
-        tableStory.getColumnModel().getColumn(1).setPreferredWidth(10);  // Установим ширину столбца быки
-        tableStory.getColumnModel().getColumn(2).setPreferredWidth(10);  // Установим ширину столбца коровы
+        tableHistory.getColumnModel().getColumn(0).setPreferredWidth(70); // Установим ширину столбца угадываемого числа
+        tableHistory.getColumnModel().getColumn(1).setPreferredWidth(10);  // Установим ширину столбца быки
+        tableHistory.getColumnModel().getColumn(2).setPreferredWidth(10);  // Установим ширину столбца коровы
+
+// Размеры таблицы Рекордов
+        tableHighScore = new JTable();//Табличная панель Рекордов. Её инициализируем раньше, чем tableModel, так как этот объект нужен tableModel на вход
+        tableModelHighScore = new TableModelHighScore(new Object[0][0], tableHighScore); //Объект модели истории попыток
+        tableHighScore.setModel(tableModelHighScore); // Ну а теперь уже на вход поступает tableModel
+        scrollPaneHighScore = new JScrollPane(tableHighScore);//создаём скролл панель для таблицы Рекордов
+
+        tableHighScore.getColumnModel().getColumn(2).setCellRenderer(new CenteredTableCellRenderer()); // устанавливаем выравнивание по центру для второй колонки (попытки)
+        tableHighScore.getColumnModel().getColumn(3).setCellRenderer(new CenteredTableCellRenderer()); // устанавливаем выравнивание по центру для третьей колонки (время)
+
+        /**
+         * JTable помещается в JScrollPane, а JScrollPane помещается в JPanel,
+         * но в данном случае размер нужно задавать именно для JScrollPane
+         * JPanel с помощью менеджера компоновки будет ориентироваться на вложенный контейнер
+         * поэтому размер указываем именно для JScrollPane
+         * Но для JTable мы определим размеры колонок,
+         * первая должна вместить 7 символов, это будет угадываемое число,
+         * вторая и третья по одному символу, это будут быки и коровы
+         */
+
+        scrollPaneHighScore.setPreferredSize(new Dimension(200, 400)); // Установим предпочитаемый размер JScrollPane
+        tableHighScore.getColumnModel().getColumn(0).setPreferredWidth(10); // Установим ширину столбца порядковый "№"
+        tableHighScore.getColumnModel().getColumn(1).setPreferredWidth(70);  // Установим ширину столбца "Ник игрока"
+        tableHighScore.getColumnModel().getColumn(2).setPreferredWidth(10);  // Установим ширину столбца "Попытки"
+        tableHighScore.getColumnModel().getColumn(2).setPreferredWidth(10);  // Установим ширину столбца "Время""
+
+
+
+
+
 
 //кнопки
         btInstruction = new ButtonInstruction(this); //создаём кнопку "Инструкция"
-        btOk = new ButtonOK(numberEnter, lblCowsResult, lblBullsResult, lblCounter, tableModel, this);     //создаём кнопку "ОК"
-        btStart = new ButtonStart(lblBitDepth, this, tableModel, lblCounter); //создаём кнопку "Старт Игры!"
+        btOk = new ButtonOK(numberEnter, lblCowsResult, lblBullsResult, lblCounter, tableModelHistory, this);     //создаём кнопку "ОК"
+        btStart = new ButtonStart(lblBitDepth, this, tableModelHistory, lblCounter); //создаём кнопку "Старт Игры!"
         stringBitDepth = btStart.buttonStart(); //Запускаем слушателя в кнопке "Старт Игры!" и ловим выбранную разрядность числа типа String
         btRegistration = new ButtonAuthorization(this, lblUserName); //создаём кнопку "Регистрация"
 
@@ -227,7 +262,7 @@ public class FrameBullsAndCows extends JFrame {
 //В панель ЗПАДА добавили таблицу истории попыток
         pnWest.add(scrollPaneHistory);
 //В панель ВОСТОКА добавили таблицу рекордов
-        pnEast.add(scrollPaneTable);
+        pnEast.add(scrollPaneHighScore);
 
 //Создаем экземпляры мордашек. Классы этих рисунков смотри в пакете.
         CowsSmile cs2 = new CowsSmile();
