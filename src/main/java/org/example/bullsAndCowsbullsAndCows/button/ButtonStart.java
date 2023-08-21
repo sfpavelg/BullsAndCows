@@ -5,6 +5,7 @@ import org.example.bullsAndCowsbullsAndCows.data.Data;
 import org.example.bullsAndCowsbullsAndCows.enumBitDepth.BitDepth;
 import org.example.bullsAndCowsbullsAndCows.information.Notation;
 import org.example.bullsAndCowsbullsAndCows.mathProcessing.JFrameSelection;
+import org.example.bullsAndCowsbullsAndCows.mathProcessing.JPTimer;
 import org.example.bullsAndCowsbullsAndCows.mathProcessing.NumberRandom;
 import org.example.bullsAndCowsbullsAndCows.tableModel.TableModelHistory;
 
@@ -17,12 +18,14 @@ public class ButtonStart extends JButton {
     private TableModelHistory tableModelHistory; // Класс, который является моделью, принимающей данные истории попыток. Здесь он нужен для обнуления данных
     private FrameBullsAndCows frameBullsAndCows; // Основной класс. Нужен здесь для привязки как к основному фрейму дополнительного окна нотации
     private JLabel lblCounter;     //лейбл количества попыток
+    private JPTimer jpTimer; //Таймер
 
-    public ButtonStart(JLabel lblBitDepth, FrameBullsAndCows frameBullsAndCows, TableModelHistory tableModelHistory, JLabel lblCounter) {
+    public ButtonStart(JLabel lblBitDepth, FrameBullsAndCows frameBullsAndCows, TableModelHistory tableModelHistory, JLabel lblCounter, JPTimer jpTimer) {
         this.lblBitDepth = lblBitDepth;
         this.frameBullsAndCows = frameBullsAndCows;
         this.tableModelHistory = tableModelHistory;
         this.lblCounter = lblCounter;
+        this.jpTimer = jpTimer;
 
         setText("Начать Игру!");
     }
@@ -52,10 +55,12 @@ public class ButtonStart extends JButton {
             JOptionPane.showMessageDialog(frameBullsAndCows, Data.notation, "Нотация", JOptionPane.INFORMATION_MESSAGE);
 
 //запуск таймера, сразу после закрытия предыдущего окна
-            FrameBullsAndCows.stopWatch.startStopWatch();
+//            FrameBullsAndCows.stopWatch.startStopWatch();
+            jpTimer.startTimer();
 
 //            временное окно загаданного числа для отладки
 //            JOptionPane.showMessageDialog(frameBullsAndCows, Data.numberRandom, "Подсказка", JOptionPane.INFORMATION_MESSAGE);
+
         });
 
 // В результате работы кода, будет выбран разрядность загадываемого числа. Вернём его для дальнейшей обработки.

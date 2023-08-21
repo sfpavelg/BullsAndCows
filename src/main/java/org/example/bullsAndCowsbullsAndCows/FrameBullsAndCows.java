@@ -64,7 +64,8 @@ public class FrameBullsAndCows extends JFrame {
 //    private String randomNumberTable;    //Строковая переменная
 //    private JTextArea textAreaHighScoreTable; //поле таблицы рекордов
     private int intCounter = 0; //переменная счётчика попыток
-    public static StopWatch stopWatch; //таймер
+//    public static StopWatch stopWatch; //таймер
+    public JPTimer jpTimer; // Таймер
     private JTable tableHistory; //Табличная панель для истории попыток
     private JTable tableHighScore; //Таблица Рекордов
     private TableModelHistory tableModelHistory; //Это модель принимающая данные истории попыток
@@ -85,7 +86,7 @@ public class FrameBullsAndCows extends JFrame {
         addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosing(WindowEvent e) {
-                FrameBullsAndCows.stopWatch.stopStopWatch();
+ //               FrameBullsAndCows.stopWatch.stopStopWatch();
                 System.exit(0);
             }
         });
@@ -109,7 +110,8 @@ public class FrameBullsAndCows extends JFrame {
 //        randomNumberTable = "1.Павел 45 sec  5 попыток"; //временная заглушка для таблицы результатов
 //        textAreaHighScoreTable = new JTextArea(25, 18); //создаём текстовое поле таблицы результатов
 //        textAreaHighScoreTable.setText(randomNumberTable); // это временный муляж таблицы
-        stopWatch = new StopWatch(); //создаём экземпляр таймера
+//        stopWatch = new StopWatch(); //создаём экземпляр таймера
+        jpTimer = new JPTimer();  //создаём экземпляр таймера
 
 
 // Таблица Истории угадываемых попыток
@@ -162,7 +164,7 @@ public class FrameBullsAndCows extends JFrame {
 //кнопки
         btInstruction = new ButtonInstruction(this); //создаём кнопку "Инструкция"
         btOk = new ButtonOK(numberEnter, lblCowsResult, lblBullsResult, lblCounter, tableModelHistory, this);     //создаём кнопку "ОК"
-        btStart = new ButtonStart(lblBitDepth, this, tableModelHistory, lblCounter); //создаём кнопку "Старт Игры!"
+        btStart = new ButtonStart(lblBitDepth, this, tableModelHistory, lblCounter, jpTimer); //создаём кнопку "Старт Игры!"
         stringBitDepth = btStart.buttonStart(); //Запускаем слушателя в кнопке "Старт Игры!" и ловим выбранную разрядность числа типа String
         btRegistration = new ButtonAuthorization(this, lblUserName); //создаём кнопку "Регистрация"
 
@@ -246,8 +248,9 @@ public class FrameBullsAndCows extends JFrame {
 
 //тут таймер
         pnTimer.setLayout(new BorderLayout());//без этого менеджера графика не рисуется?!!
-        pnTimer.setPreferredSize(new Dimension(80, 30));//Так как вставка рисунка, то размеры нужно задать, автоматически панель не понимает
-        pnTimer.add(new JPTimer());
+        pnTimer.setPreferredSize(new Dimension(80, 30));// Таймер вставляется как графический контент, размеры нужно задать вручную.
+//        pnTimer.add(new JPTimer());
+        pnTimer.add(jpTimer); // В панель таймера добавляем сам таймер
 
 //закидываем панели счётчика и таймера в панель pnNorth3
         pnNorth3.add(pnCounter);

@@ -115,7 +115,7 @@
       <workItem from="1692259344513" duration="600000" />
       <workItem from="1692264214679" duration="1953000" />
       <workItem from="1692350345528" duration="4633000" />
-      <workItem from="1692602988937" duration="2247000" />
+      <workItem from="1692602988937" duration="9172000" />
     </task>
     <task id="LOCAL-00001" summary="№2 Сокращаем класс выбора разрядности">
       <created>1691408923774</created>
@@ -243,7 +243,14 @@
       <option name="project" value="LOCAL" />
       <updated>1692604667518</updated>
     </task>
-    <option name="localTasksCounter" value="19" />
+    <task id="LOCAL-00019" summary="№18 Размеры таблицы &quot;Рекордов&quot;">
+      <created>1692606049024</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1692606049024</updated>
+    </task>
+    <option name="localTasksCounter" value="20" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -278,7 +285,8 @@
     <MESSAGE value="№15 Проверка дубликатов при регистрации" />
     <MESSAGE value="№16 Полная авторизация" />
     <MESSAGE value="№17 Модель + таблица &quot;рекордов&quot;" />
-    <option name="LAST_COMMIT_MESSAGE" value="№17 Модель + таблица &quot;рекордов&quot;" />
+    <MESSAGE value="№18 Размеры таблицы &quot;Рекордов&quot;" />
+    <option name="LAST_COMMIT_MESSAGE" value="№18 Размеры таблицы &quot;Рекордов&quot;" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

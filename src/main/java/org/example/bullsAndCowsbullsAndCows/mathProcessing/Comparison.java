@@ -77,15 +77,14 @@ public class Comparison {
             String warning = " Проверьте разрядность числа. \n В вашем числе либо больше\n цифр, либо меньше. ";
             JOptionPane.showMessageDialog(frameBullsAndCows, warning, "Ошибка", JOptionPane.INFORMATION_MESSAGE);
         }
+// условие автостопа таймера это быки равно разрядности
+// и значение быков не нулевое как в начале игры, потому что разрядность тоже нулевая в начале игры.
+        if ((Data.bulls == Data.bitDepth) && (Data.bulls != 0)) { // Остановка таймера и окно поздравления с победой
 
-        if ((Data.bulls == Data.bitDepth) && (Data.bulls != 0)) { //остановка таймера и окно поздравления с победой
-//условие автостопа таймера это быки равно разрядности
-//и значение быков не нулевое как в начале игры, потомучто разрядность тоже нулевая в начале игры.
-            FrameBullsAndCows.stopWatch.stopStopWatch();//остановка таймера
-            //и тут запись куда-то результата.... нужно дописать код (таблица рекордов!)
-
-//окно поздравления с победой
-            new Victory(); //Заполняем переменную Data.victory актуальными данными.
+//            FrameBullsAndCows.stopWatch.stopStopWatch();//остановка таймера
+            frameBullsAndCows.jpTimer.stopTimer(); //остановка таймера
+// окно поздравления с победой
+            new Victory(); // Заполняем переменную Data.victory актуальными данными.
             /**
              * JOptionPane Тут мы открываем окно с дополнительной информацией Victory
              * Главная фишка такого окна в том, что программа стопорится и ждёт его закрытия.
@@ -96,6 +95,8 @@ public class Comparison {
              * JOptionPane.INFORMATION_MESSAGE -
              */
             JOptionPane.showMessageDialog(frameBullsAndCows, Data.victory, "Победа", JOptionPane.INFORMATION_MESSAGE);
+
+            //и тут запись куда-то результата.... нужно дописать код (таблица рекордов!)
         }
     }//конец конструктора
 }//конец класса
