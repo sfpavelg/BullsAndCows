@@ -13,7 +13,7 @@ public class ButtonAuthorization extends JButton {
     public ButtonAuthorization(FrameBullsAndCows frameBullsAndCows, JLabel lblUserName) {
         this.frameBullsAndCows = frameBullsAndCows;
         this.lblUserName = lblUserName;
-        setText("Авторизация");
+        setText("Аутентификация");
         addActionListener(e -> {
             openRegistrationDialog();
         });

@@ -13,14 +13,13 @@ public class ButtonRegistration extends JButton {
         this.registrationDialog = registrationDialog;
         setText("Зарегистрироваться");
         addActionListener(e -> {
-            // Здесь вы можете получить значения из RegistrationDialog
+            // Здесь  получаем значения из RegistrationDialog
             String username = registrationDialog.getUsername();
             String password = registrationDialog.getPassword();
 
-            // ... выполните необходимые действия с полученными значениями ...
+            // Выполняем необходимые действия с полученными значениями.
             connector = new SQLiteConnectorForUserTable();
             connector.insertUser(username, password);
-
             connector.closeConnection();
         });
     }

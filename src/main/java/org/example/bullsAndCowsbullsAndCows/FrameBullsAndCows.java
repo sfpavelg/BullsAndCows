@@ -1,15 +1,13 @@
 package org.example.bullsAndCowsbullsAndCows;
 
-import org.example.bullsAndCowsbullsAndCows.button.ButtonInstruction;
-import org.example.bullsAndCowsbullsAndCows.button.ButtonOK;
-import org.example.bullsAndCowsbullsAndCows.button.ButtonAuthorization;
-import org.example.bullsAndCowsbullsAndCows.button.ButtonStart;
+import org.example.bullsAndCowsbullsAndCows.button.*;
 import org.example.bullsAndCowsbullsAndCows.data.Data;
 import org.example.bullsAndCowsbullsAndCows.graphic.BullsSmile;
 import org.example.bullsAndCowsbullsAndCows.graphic.CowsSmile;
 import org.example.bullsAndCowsbullsAndCows.mathProcessing.JPTimer;
+import org.example.bullsAndCowsbullsAndCows.repository.SQLiteConnectorForHighScoreTable;
 import org.example.bullsAndCowsbullsAndCows.tableModel.CenteredTableCellRenderer;
-import org.example.bullsAndCowsbullsAndCows.tableModel.TableModelHighScore;
+import org.example.bullsAndCowsbullsAndCows.tableModel.TableModelHighScoreBitDepth3;
 import org.example.bullsAndCowsbullsAndCows.tableModel.TableModelHistory;
 
 import javax.swing.*;
@@ -30,6 +28,8 @@ public class FrameBullsAndCows extends JFrame {
     private ButtonStart btStart;        //кнопка  Старта
     private ButtonAuthorization btRegistration; //кнопка регистрации
     private ButtonInstruction btInstruction;  //кнопка правила игры
+    private ButtonViewHighScore buttonViewHighScore; // Кнопка просмотра таблицы рекордов
+    private ButtonOnLine buttonOnLine; // Кнопка оффлайн/онлайн
     private JPanel pnBulls;         //панель картинки Бык
     private JPanel pnCows;          //панель картинки Корова
     private JPanel pnBullsResult;   //панель вывода результата: Бык
@@ -51,22 +51,23 @@ public class FrameBullsAndCows extends JFrame {
     private JPanel pnCenter;        //панель ЦЕНТР
     private JLabel lblCowsResult;        //лейбл количества Коров
     private JLabel lblBullsResult;       //лейбл количества Быков
-    private JLabel lblUserName;          //лейбл имени игрока
+    public JLabel lblUserName;          //лейбл имени игрока
     private JLabel lblCounter;           //лейбл количества попыток
     private JLabel lblBitDepth;          //лейбл разрядности загаданного числа
-    //    private JLabel lblTimer;             //лейбл таймер
     private JScrollPane scrollPaneHistory;//окно прокрутки введённых чисел
     private JScrollPane scrollPaneHighScore;//окно прокрутки таблицы рекордов
     private String CowsResult = "Поймано Коров 0"; //Строковая переменная
     private String BullsResult = "Поймано Быков 0"; //Строковая переменная
     private String stringBitDepth; //Переменная индикации разрядности
-    private String userName;   //Строковая переменная
+    public String userName;   //Строковая переменная
     private int intCounter = 0; //переменная счётчика попыток
     public JPTimer jpTimer; // Таймер
     private JTable tableHistory; //Табличная панель для истории попыток
     private JTable tableHighScore; //Таблица Рекордов
     private TableModelHistory tableModelHistory; //Это модель принимающая данные истории попыток
-    private TableModelHighScore tableModelHighScore; //Это модель для таблицы Рекордов
+    private TableModelHighScoreBitDepth3 tableModelHighScoreBitDepth3; //Это модель для таблицы Рекордов
+    SQLiteConnectorForHighScoreTable sqLiteConnectorForHighScoreTable; // Соединение с таблицей highScore Рекордов в БД
+
     public Data data; // Объект данных
 
 
@@ -74,7 +75,7 @@ public class FrameBullsAndCows extends JFrame {
     FrameBullsAndCows() {
 
 //создаём окно игры
-        super("Быки и Коровы");  //заголовок
+        super("Проверка логического мышления \"Быки и Коровы\" (автор: Павел Софеин)");  //заголовок
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE); //завершение программы при закрытии окна
         setBounds(50, 50, 1250, 550); //размер окна и местоположение на экране
         setResizable(false); //размер окна нельзя изменить
@@ -96,9 +97,9 @@ public class FrameBullsAndCows extends JFrame {
         pnTimer = new JPanel();    //создаём панель Таймера
         pnCounter = new JPanel();  //создаём панель Счётчика
         pnBitDepth = new JPanel(); //создаём панель выбранной разрядности
-        pnCowsResult = new JPanel();  //создаём объект pnCowsResult (нужно перенести выше....)
+        pnCowsResult = new JPanel();  //создаём объект pnCowsResult
         pnBullsResult = new JPanel(); //создаём объект pnBullsResult
-        userName = "Смените пользователя"; //Временная текстовая переменная, которая будет заглушкой для лейбла регистрации
+        userName = "<html><font color='red'>Смените пользователя</font></html>"; //Предупреждение о том, что пользователь не выбран (цвет красный)
         lblUserName = new JLabel(userName); //лейбл имени игрока
         lblCowsResult = new JLabel(CowsResult);   //лейбл результатов Коров
         lblBullsResult = new JLabel(BullsResult); //лейбл результатов Быков
@@ -106,6 +107,7 @@ public class FrameBullsAndCows extends JFrame {
         lblCounter = new JLabel("" + intCounter); //лейбл счётчика попыток
         jpTimer = new JPTimer();  //создаём экземпляр таймера
         data = new Data(); // Экземпляр класса данных
+        sqLiteConnectorForHighScoreTable = new SQLiteConnectorForHighScoreTable(); // Создаём объект соединения с таблицей highScore Рекордов в БД
 
 
 // Таблица Истории угадываемых попыток
@@ -133,8 +135,8 @@ public class FrameBullsAndCows extends JFrame {
 
 // таблица Рекордов
         tableHighScore = new JTable();//Табличная панель Рекордов. Её инициализируем раньше, чем tableModel, так как этот объект нужен tableModel на вход
-        tableModelHighScore = new TableModelHighScore(new Object[0][0], tableHighScore); //Объект модели истории попыток
-        tableHighScore.setModel(tableModelHighScore); // Ну а теперь уже на вход поступает tableModel
+        tableModelHighScoreBitDepth3 = new TableModelHighScoreBitDepth3(new Object[0][0], tableHighScore); //Объект модели истории попыток
+        tableHighScore.setModel(tableModelHighScoreBitDepth3); // Ну а теперь уже на вход поступает tableModel
         scrollPaneHighScore = new JScrollPane(tableHighScore);//создаём скролл панель для таблицы Рекордов
 
         tableHighScore.getColumnModel().getColumn(2).setCellRenderer(new CenteredTableCellRenderer()); // устанавливаем выравнивание по центру для второй колонки (попытки)
@@ -150,17 +152,22 @@ public class FrameBullsAndCows extends JFrame {
          * вторая и третья по одному символу, это будут быки и коровы
          */
         scrollPaneHighScore.setPreferredSize(new Dimension(300, 400)); // Установим предпочитаемый размер JScrollPane
-        tableHighScore.getColumnModel().getColumn(0).setPreferredWidth(10); // Установим ширину столбца порядковый "№"
-        tableHighScore.getColumnModel().getColumn(1).setPreferredWidth(70);  // Установим ширину столбца "Ник игрока"
-        tableHighScore.getColumnModel().getColumn(2).setPreferredWidth(10);  // Установим ширину столбца "Попытки"
-        tableHighScore.getColumnModel().getColumn(2).setPreferredWidth(10);  // Установим ширину столбца "Время""
+        tableHighScore.getColumnModel().getColumn(0).setPreferredWidth(5); // Установим ширину столбца порядковый "№"
+        tableHighScore.getColumnModel().getColumn(1).setPreferredWidth(110);  // Установим ширину столбца "Ник игрока"
+        tableHighScore.getColumnModel().getColumn(2).setPreferredWidth(5);  // Установим ширину столбца "Попытки"
+        tableHighScore.getColumnModel().getColumn(3).setPreferredWidth(90);  // Установим ширину столбца "Время""
+        tableHighScore.getColumnModel().getColumn(4).setPreferredWidth(40);  // Установим ширину столбца "Ранг""
+
+        tableModelHighScoreBitDepth3.updateData(sqLiteConnectorForHighScoreTable.selectData()); // Заполняем таблицу Рекордов всем, что есть в таблице highScore в БД
 
 //кнопки
         btInstruction = new ButtonInstruction(this); //создаём кнопку "Инструкция"
-        btOk = new ButtonOK(numberEnter, lblCowsResult, lblBullsResult, lblCounter, tableModelHistory, this);     //создаём кнопку "ОК"
-        btStart = new ButtonStart(lblBitDepth, this, tableModelHistory, lblCounter, jpTimer); //создаём кнопку "Старт Игры!"
-        stringBitDepth = btStart.buttonStart(); //Запускаем слушателя в кнопке "Старт Игры!" и ловим выбранную разрядность числа типа String
-        btRegistration = new ButtonAuthorization(this, lblUserName); //создаём кнопку "Регистрация"
+        btOk = new ButtonOK(numberEnter, lblCowsResult, lblBullsResult, lblCounter, tableModelHistory, this, tableModelHighScoreBitDepth3);  //создаём кнопку "ОК"
+        btStart = new ButtonStart(lblBitDepth, this, tableModelHistory, lblCounter, jpTimer); // Создаём кнопку "Старт Игры!"
+        stringBitDepth = btStart.buttonStart(); // Запускаем слушателя в кнопке "Старт Игры!" и ловим выбранную разрядность числа типа String
+        btRegistration = new ButtonAuthorization(this, lblUserName); // Создаём кнопку "Регистрация"
+        buttonViewHighScore = new ButtonViewHighScore(); // Создаём кнопку просмотра таблицы рекордов.
+        buttonOnLine = new ButtonOnLine(); // Создаём кнопку сетевой игры
 
 //Блокируем поле ввода не более выбранной разрядности
 //    numberEnter.addKeyListener(new KeyAdapter() {
@@ -195,10 +202,11 @@ public class FrameBullsAndCows extends JFrame {
         pnSouth1.setLayout(new FlowLayout(FlowLayout.LEFT));//ориентация по левому краю
         pnSouth2.setLayout(new FlowLayout(FlowLayout.CENTER));//ориентация по центру
         pnSouth3.setLayout(new FlowLayout(FlowLayout.RIGHT));//ориентация по правому краю
-        pnSouth1.add(new JLabel("Поле для ввода числа"));
+        pnSouth1.add(new JLabel( "<html><font color='purple'>Поле для ввода числа</font></html>"));
         pnSouth1.add(numberEnter);
         pnSouth1.add(btOk);
         pnSouth2.add(btStart);
+        pnSouth3.add(buttonViewHighScore);
         pnSouth3.add(btInstruction);
 
         pnSouth.setLayout(new BorderLayout());
@@ -223,13 +231,18 @@ public class FrameBullsAndCows extends JFrame {
         pnNorth.add(pnNorth3, BorderLayout.EAST);
 
 //Подсказка выбранной разрядности
-        stringBitDepth = "Разрядность ещё не выбрана"; // Значение разрядности до выбора
+        // Значение разрядности до выбора числа, с помощью <html> делаем её красным цветом как предупреждение.
+        stringBitDepth = "<html><font color='red'>Разрядность еще не выбрана</font></html>";
         // использование лейбла и метода setText() позволяют обновлять графический компонент автоматически, при изменении значения stringBitDepth
         lblBitDepth.setText(stringBitDepth);
+        // Установите красный цвет для текста
+//        lblBitDepth.setForeground(Color.RED);
+        // Добавляем лейбл на панель
         pnBitDepth.add(lblBitDepth);
 
 //Заполняем северные панели
         pnNorth1.add(pnBitDepth);
+        pnNorth1.add(buttonOnLine);
         pnUserName.add(lblUserName);
         pnNorth2.add(pnUserName);
         pnNorth2.add(btRegistration);
@@ -243,7 +256,6 @@ public class FrameBullsAndCows extends JFrame {
 //тут таймер
         pnTimer.setLayout(new BorderLayout());//без этого менеджера графика не рисуется?!!
         pnTimer.setPreferredSize(new Dimension(80, 30));// Таймер вставляется как графический контент, размеры нужно задать вручную.
-//        pnTimer.add(new JPTimer());
         pnTimer.add(jpTimer); // В панель таймера добавляем сам таймер
 
 //закидываем панели счётчика и таймера в панель pnNorth3

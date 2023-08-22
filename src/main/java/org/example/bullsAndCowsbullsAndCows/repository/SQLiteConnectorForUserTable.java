@@ -54,7 +54,7 @@ public class SQLiteConnectorForUserTable {
             connection = DriverManager.getConnection("jdbc:sqlite:database.db"); //Соединение с БД database.db, одно на все запросы
 
             // Создание таблицы, если она не существует
-            createTableUser(); // А вот и первый запрос к БД. Создаём, если ещё не создана, таблицу юзеров.
+            createTableUser(); // А вот и первый запрос к БД. Создаём, если ещё не создана, таблицу юзеров. Этот метод в блоке try-catch, именно тут обработаем исключение.
         } catch (ClassNotFoundException | SQLException e) {
             e.printStackTrace();
         }
@@ -82,8 +82,9 @@ public class SQLiteConnectorForUserTable {
      */
     public void insertUser(String username, String password) {
         // Проверяем длину имени пользователя
-        if (username.length() > 30) {
-            JOptionPane.showMessageDialog(null, "Имя пользователя должно содержать не более 30 символов!");
+        if (username.length() > 10 | username.length() == 0) {
+            JOptionPane.showMessageDialog(null, "Имя пользователя должно содержать не более 10 символов!\n" +
+                    "И должно состоять хотя бы из одного символа!");
             return;
         }
         // SQL запросы
@@ -117,28 +118,43 @@ public class SQLiteConnectorForUserTable {
     /**
      * Метод смены зарегистрированного пользователя.
      *
-     * @param username
-     * @param password
-     * @return
+     * @param username - первый входной параметр это имя пользователя
+     * @param password - второй входной параметр это пароль
+     * @return - возвратом будет имя пользователя, если такой пользователь найден, либо null
      */
     public String changeUser(String username, String password) {
+        // QDL- запрос в БД. Берём имя пользователя username из таблицы user, где username равен приходящему параметру и password равен приходящему параметру
         String selectSql = "SELECT username FROM user WHERE username = ? AND password = ?";
-        try {
+        try { // Блок try-catch для выполнения кода и обработки исключений
+            /**
+             * `PreparedStatement` - это интерфейс в Java, представляющий подготовленные операторы SQL,
+             * которые используются для выполнения параметризованных запросов к базе данных.
+             * Он представляет предварительно откомпилированный SQL-запрос, в котором значения параметров могут быть установлены позже.
+             *
+             * `connection` - это объект типа `Connection`, который представляет соединение с базой данных.
+             * Обычно соединение создается с использованием драйвера JDBC для конкретной базы данных.
+             *
+             * `prepareStatement(selectSql)` - это метод `prepareStatement()`, вызываемый на объекте `connection`,
+             * который создает экземпляр `PreparedStatement`. В качестве параметра `selectSql` передается SQL-запрос, который будет подготовлен и выполнен.
+             *
+             * В итоге, `selectStatement` будет ссылкой на объект `PreparedStatement`,
+             * который содержит предварительно подготовленный SQL-запрос и может быть использован для выполнения запроса к базе данных.
+             * Этот объект позволяет установить значения параметров в запросе (`selectStatement.setXXX()`)
+             * и выполнить запрос с помощью метода `executeQuery()` или `executeUpdate()`.
+             */
             PreparedStatement selectStatement = connection.prepareStatement(selectSql);
-            selectStatement.setString(1, username);
-            selectStatement.setString(2, password);
-            ResultSet resultSet = selectStatement.executeQuery();
+            selectStatement.setString(1, username); // Первым параметром передаём имя пользователя
+            selectStatement.setString(2, password); // Вторым параметром передаём пароль
+            ResultSet resultSet = selectStatement.executeQuery(); //Результат запроса помещаем в специальный объект ResultSet
 
             // Проверяем наличие совпадения логина и пароля
-            if (resultSet.next()) {
-                JOptionPane.showMessageDialog(null, "Приветствую вас, " + username + "!");
-                return resultSet.getString("username"); // Возвращаем имя пользователя
+            if (resultSet.next()) { // Метод next() булевый, если значение есть, и курсор к нему переместился, значит вернётся true.
+                return resultSet.getString("username"); // Тогда возвращаем имя пользователя
             }
 
-        } catch (SQLException e) {
+        } catch (SQLException e) { // Обрабатываем исключение
             e.printStackTrace();
         }
-        JOptionPane.showMessageDialog(null, "Пользователь с таким именем и паролем не существует!");
         return null; // Если совпадения не найдены, возвращаем null
     }
 

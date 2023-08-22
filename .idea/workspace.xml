@@ -115,7 +115,8 @@
       <workItem from="1692259344513" duration="600000" />
       <workItem from="1692264214679" duration="1953000" />
       <workItem from="1692350345528" duration="4633000" />
-      <workItem from="1692602988937" duration="16088000" />
+      <workItem from="1692602988937" duration="41727000" />
+      <workItem from="1692689685724" duration="3125000" />
     </task>
     <task id="LOCAL-00001" summary="№2 Сокращаем класс выбора разрядности">
       <created>1691408923774</created>
@@ -264,7 +265,14 @@
       <option name="project" value="LOCAL" />
       <updated>1692623092038</updated>
     </task>
-    <option name="localTasksCounter" value="22" />
+    <task id="LOCAL-00022" summary="№21 Корректный вывод информации &quot;Победа&quot;">
+      <created>1692624284161</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1692624284161</updated>
+    </task>
+    <option name="localTasksCounter" value="23" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -302,7 +310,8 @@
     <MESSAGE value="№18 Размеры таблицы &quot;Рекордов&quot;" />
     <MESSAGE value="№19 Переделка Таймера" />
     <MESSAGE value="№20 Переделка Data. Убрал статику." />
-    <option name="LAST_COMMIT_MESSAGE" value="№20 Переделка Data. Убрал статику." />
+    <MESSAGE value="№21 Корректный вывод информации &quot;Победа&quot;" />
+    <option name="LAST_COMMIT_MESSAGE" value="№21 Корректный вывод информации &quot;Победа&quot;" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
