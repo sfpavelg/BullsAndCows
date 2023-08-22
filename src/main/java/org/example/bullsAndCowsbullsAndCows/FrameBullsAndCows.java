@@ -67,7 +67,7 @@ public class FrameBullsAndCows extends JFrame {
     private JTable tableHistory; //Табличная панель для истории попыток
     private JTable tableHighScore; //Таблица Рекордов
     private TableModelHistory tableModelHistory; //Это модель принимающая данные истории попыток
-    private TableModelHighScore tableModelHighScore; //Это модель для таблицы Рекордов
+    public TableModelHighScore tableModelHighScore; //Это модель для таблицы Рекордов
     private SQLiteConnectorForHighScoreTable sqLiteConnectorForHighScoreTable; // Соединение с таблицей highScore Рекордов в БД
     private String tableName = "" + HighScoreTableName.findByValueHighScoreTableName(3); //По умолчанию таблицу рекордов заполним данными из таблицы с разрядностью "три"
     public TitledBorder titledBorderHighScoreTable; // Выносим заголовок рамки таблицы рекордов в поле, так как заголовок будет меняться
@@ -171,7 +171,7 @@ public class FrameBullsAndCows extends JFrame {
         btStart = new ButtonStart(lblBitDepth, this, tableModelHistory, lblCounter, jpTimer, tableModelHighScore); // Создаём кнопку "Старт Игры!"
         stringBitDepth = btStart.buttonStart(); // Запускаем слушателя в кнопке "Старт Игры!" и ловим выбранную разрядность числа типа String
         btRegistration = new ButtonAuthorization(this, lblUserName); // Создаём кнопку "Регистрация"
-        buttonViewHighScore = new ButtonViewHighScore(); // Создаём кнопку просмотра таблицы рекордов.
+        buttonViewHighScore = new ButtonViewHighScore(this); // Создаём кнопку просмотра таблицы рекордов.
         buttonOnLine = new ButtonOnLine(); // Создаём кнопку сетевой игры
 
 //Блокируем поле ввода не более выбранной разрядности

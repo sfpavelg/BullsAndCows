@@ -4,7 +4,7 @@ import org.example.bullsAndCowsbullsAndCows.*;
 import org.example.bullsAndCowsbullsAndCows.enumBitDepth.BitDepth;
 import org.example.bullsAndCowsbullsAndCows.enumBitDepth.HighScoreTableName;
 import org.example.bullsAndCowsbullsAndCows.information.Notation;
-import org.example.bullsAndCowsbullsAndCows.mathProcessing.JFrameSelection;
+import org.example.bullsAndCowsbullsAndCows.frames.JFrameSelection;
 import org.example.bullsAndCowsbullsAndCows.mathProcessing.JPTimer;
 import org.example.bullsAndCowsbullsAndCows.mathProcessing.NumberRandom;
 import org.example.bullsAndCowsbullsAndCows.repository.SQLiteConnectorForHighScoreTable;
@@ -75,7 +75,7 @@ public class ButtonStart extends JButton {
                 jpTimer.startTimer(); //запуск таймера, сразу после закрытия предыдущего окна
                 int intBitDepth = frameBullsAndCows.data.getBitDepth(); //Выбранная разрядность угадываемого числа
 
-                // Меняем таблицу Рекордов согласно выбранной разрядности. Данные берём из БД
+// Меняем таблицу Рекордов согласно выбранной разрядности. Данные берём из БД
                 String nameTable = "" + HighScoreTableName.findByValueHighScoreTableName(intBitDepth);
                 SQLiteConnectorForHighScoreTable sqLiteConnectorForHighScoreTable = new SQLiteConnectorForHighScoreTable(nameTable);
                 tableModelHighScore.updateData(sqLiteConnectorForHighScoreTable.selectData(nameTable));
