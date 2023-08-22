@@ -13,8 +13,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Enum" />
         <option value="Class" />
+        <option value="Enum" />
       </list>
     </option>
   </component>
@@ -116,7 +116,7 @@
       <workItem from="1692264214679" duration="1953000" />
       <workItem from="1692350345528" duration="4633000" />
       <workItem from="1692602988937" duration="41727000" />
-      <workItem from="1692689685724" duration="3125000" />
+      <workItem from="1692689685724" duration="15657000" />
     </task>
     <task id="LOCAL-00001" summary="№2 Сокращаем класс выбора разрядности">
       <created>1691408923774</created>
@@ -272,7 +272,14 @@
       <option name="project" value="LOCAL" />
       <updated>1692624284161</updated>
     </task>
-    <option name="localTasksCounter" value="23" />
+    <task id="LOCAL-00023" summary="№22 Сопряжение Таблиц Рекордов в БД и на Фрейме">
+      <created>1692694786699</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1692694786699</updated>
+    </task>
+    <option name="localTasksCounter" value="24" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -311,7 +318,8 @@
     <MESSAGE value="№19 Переделка Таймера" />
     <MESSAGE value="№20 Переделка Data. Убрал статику." />
     <MESSAGE value="№21 Корректный вывод информации &quot;Победа&quot;" />
-    <option name="LAST_COMMIT_MESSAGE" value="№21 Корректный вывод информации &quot;Победа&quot;" />
+    <MESSAGE value="№22 Сопряжение Таблиц Рекордов в БД и на Фрейме" />
+    <option name="LAST_COMMIT_MESSAGE" value="№22 Сопряжение Таблиц Рекордов в БД и на Фрейме" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

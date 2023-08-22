@@ -2,15 +2,15 @@ package org.example.bullsAndCowsbullsAndCows.enumBitDepth;
 
 import java.util.Arrays;
 
-public enum BitDepth {
-    трёхзначное(3),
-    четырёхзначное(4),
-    пятизначное(5),
-    шестизначное(6),
-    семизначное(7);
+public enum HighScoreTableName {
+    highScoreBitDepth3(3),
+    highScoreBitDepth4(4),
+    highScoreBitDepth5(5),
+    highScoreBitDepth6(6),
+    highScoreBitDepth7(7);
     private int value;
 
-    BitDepth(int value) {
+    HighScoreTableName(int value) {
         this.value = value;
     }
 
@@ -18,7 +18,7 @@ public enum BitDepth {
         return value;
     }
 
-    public static BitDepth findByValueBitDepth(int value) {
+    public static HighScoreTableName findByValueHighScoreTableName(int value) {
         return Arrays.stream(values()).filter(item -> item.getValue() == value).findFirst().orElse(null);
     }
 }

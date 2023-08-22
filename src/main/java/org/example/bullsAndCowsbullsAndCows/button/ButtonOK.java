@@ -1,10 +1,11 @@
 package org.example.bullsAndCowsbullsAndCows.button;
 
+import org.example.bullsAndCowsbullsAndCows.enumBitDepth.HighScoreTableName;
 import org.example.bullsAndCowsbullsAndCows.information.Victory;
 import org.example.bullsAndCowsbullsAndCows.mathProcessing.Comparison;
 import org.example.bullsAndCowsbullsAndCows.FrameBullsAndCows;
 import org.example.bullsAndCowsbullsAndCows.repository.SQLiteConnectorForHighScoreTable;
-import org.example.bullsAndCowsbullsAndCows.tableModel.TableModelHighScoreBitDepth3;
+import org.example.bullsAndCowsbullsAndCows.tableModel.TableModelHighScore;
 import org.example.bullsAndCowsbullsAndCows.tableModel.TableModelHistory;
 
 import javax.swing.*;
@@ -19,18 +20,18 @@ public class ButtonOK extends JButton {
     private String randomNumberStory = "";    //Строковая переменная
     private JLabel lblCounter;     //лейбл количества попыток
     private TableModelHistory tableModelHistory; //Класс, который является моделью, принимающей данные истории попыток
-    private TableModelHighScoreBitDepth3 tableModelHighScoreBitDepth3; ////Класс, который является моделью, принимающей данные из БД для таблицы Рекордов
+    private TableModelHighScore tableModelHighScore; ////Класс, который является моделью, принимающей данные из БД для таблицы Рекордов
     private FrameBullsAndCows frameBullsAndCows; // Основной класс. Нужен здесь для привязки как к основному фрейму дополнительного окна "Победа" в new Comparison
 
     public ButtonOK(TextField numberEnter, JLabel lblCowsResult, JLabel lblBullsResult, JLabel lblCounter,
-                    TableModelHistory tableModelHistory, FrameBullsAndCows frameBullsAndCows, TableModelHighScoreBitDepth3 tableModelHighScoreBitDepth3) {
+                    TableModelHistory tableModelHistory, FrameBullsAndCows frameBullsAndCows, TableModelHighScore tableModelHighScore) {
         this.numberEnter = numberEnter;
         this.lblCowsResult = lblCowsResult;
         this.lblBullsResult = lblBullsResult;
         this.lblCounter = lblCounter;
         this.tableModelHistory = tableModelHistory;
         this.frameBullsAndCows = frameBullsAndCows;
-        this.tableModelHighScoreBitDepth3 = tableModelHighScoreBitDepth3;
+        this.tableModelHighScore = tableModelHighScore;
 
         setText("OK");
 
@@ -88,20 +89,24 @@ public class ButtonOK extends JButton {
                  */
                 JOptionPane.showMessageDialog(frameBullsAndCows, frameBullsAndCows.data.getVictory(), "Победа", JOptionPane.INFORMATION_MESSAGE);
 
-                // ..... и тут запись куда-то результата.... нужно дописать код (таблица рекордов!) .....
-                // Создаём объект соединения с БД
-                SQLiteConnectorForHighScoreTable sqLiteConnectorForHighScoreTable = new SQLiteConnectorForHighScoreTable();
+
 // Заполняем Таблицу в БД новой записью "Победа!"
                 String rating = "Junior"; //Заглушка рейтинг
                 String times = frameBullsAndCows.data.getHour() + "ч:" + frameBullsAndCows.data.getMin() + "м:"
-                        + frameBullsAndCows.data.getSec() + "с:" + frameBullsAndCows.data.getMis() + "ms"; //время
-                String attempts = frameBullsAndCows.data.getIntCounter() + "";
+                        + frameBullsAndCows.data.getSec() + "с:" + frameBullsAndCows.data.getMis() + "ms"; // Забираем из Data время
+                String attempts = frameBullsAndCows.data.getIntCounter() + ""; // Забираем из Data счётчик попыток
+                String userName = frameBullsAndCows.lblUserName.getText(); // Забираем с лейбла имя текущего игрока
+                // Забираем из Data выбранную разрядность, передаём её в ENUM и извлекаем от туда нужное название таблицы в БД, куда будем класть данные
+                String nameTable = "" + HighScoreTableName.findByValueHighScoreTableName(frameBullsAndCows.data.getBitDepth());
 
-                sqLiteConnectorForHighScoreTable.insertData(frameBullsAndCows.lblUserName.getText(), attempts, times, rating);
+                // Создаём объект соединения с БД
+                SQLiteConnectorForHighScoreTable sqLiteConnectorForHighScoreTable = new SQLiteConnectorForHighScoreTable(nameTable);
+                //Вызываем метод заполнения таблицы в БД, и передаём на вход все эти параметры
+                sqLiteConnectorForHighScoreTable.insertData(nameTable, userName, attempts, times, rating);
 
 // Заполнение Таблицы рекордов данными из БД
-                // Обновляем из БД таблицу рекордов актуальными данными...
-                tableModelHighScoreBitDepth3.updateData(sqLiteConnectorForHighScoreTable.selectData());
+                // Обновляем из БД таблицу рекордов актуальными данными
+                tableModelHighScore.updateData(sqLiteConnectorForHighScoreTable.selectData(nameTable));
             }
         });
     }

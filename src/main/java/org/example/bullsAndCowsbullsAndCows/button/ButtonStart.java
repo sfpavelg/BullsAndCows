@@ -2,10 +2,13 @@ package org.example.bullsAndCowsbullsAndCows.button;
 
 import org.example.bullsAndCowsbullsAndCows.*;
 import org.example.bullsAndCowsbullsAndCows.enumBitDepth.BitDepth;
+import org.example.bullsAndCowsbullsAndCows.enumBitDepth.HighScoreTableName;
 import org.example.bullsAndCowsbullsAndCows.information.Notation;
 import org.example.bullsAndCowsbullsAndCows.mathProcessing.JFrameSelection;
 import org.example.bullsAndCowsbullsAndCows.mathProcessing.JPTimer;
 import org.example.bullsAndCowsbullsAndCows.mathProcessing.NumberRandom;
+import org.example.bullsAndCowsbullsAndCows.repository.SQLiteConnectorForHighScoreTable;
+import org.example.bullsAndCowsbullsAndCows.tableModel.TableModelHighScore;
 import org.example.bullsAndCowsbullsAndCows.tableModel.TableModelHistory;
 
 import javax.swing.*;
@@ -15,16 +18,18 @@ public class ButtonStart extends JButton {
     private int intBitDepth; // Переменная разрядности выбранного числа типа int.
     private String stringBitDepth = null; // Переменная разрядности выбранного числа типа String.
     private TableModelHistory tableModelHistory; // Класс, который является моделью, принимающей данные истории попыток. Здесь он нужен для обнуления данных
+    private TableModelHighScore tableModelHighScore; // Класс, который является моделью, принимающей данные для таблицы Рекордов. Здесь он нужен для обнуления таблицы
     private FrameBullsAndCows frameBullsAndCows; // Основной класс. Нужен здесь для привязки как к основному фрейму дополнительного окна нотации
     private JLabel lblCounter;     //лейбл количества попыток
     private JPTimer jpTimer; //Таймер
 
-    public ButtonStart(JLabel lblBitDepth, FrameBullsAndCows frameBullsAndCows, TableModelHistory tableModelHistory, JLabel lblCounter, JPTimer jpTimer) {
+    public ButtonStart(JLabel lblBitDepth, FrameBullsAndCows frameBullsAndCows, TableModelHistory tableModelHistory, JLabel lblCounter, JPTimer jpTimer, TableModelHighScore tableModelHighScore) {
         this.lblBitDepth = lblBitDepth;
         this.frameBullsAndCows = frameBullsAndCows;
         this.tableModelHistory = tableModelHistory;
         this.lblCounter = lblCounter;
         this.jpTimer = jpTimer;
+        this.tableModelHighScore = tableModelHighScore;
 
         setText("Начать Игру!");
     }
@@ -67,8 +72,18 @@ public class ButtonStart extends JButton {
                  */
                 JOptionPane.showMessageDialog(frameBullsAndCows, frameBullsAndCows.data.getNotation(), "Нотация", JOptionPane.INFORMATION_MESSAGE);
 
-//запуск таймера, сразу после закрытия предыдущего окна
-                jpTimer.startTimer();
+                jpTimer.startTimer(); //запуск таймера, сразу после закрытия предыдущего окна
+                int intBitDepth = frameBullsAndCows.data.getBitDepth(); //Выбранная разрядность угадываемого числа
+
+                // Меняем таблицу Рекордов согласно выбранной разрядности. Данные берём из БД
+                String nameTable = "" + HighScoreTableName.findByValueHighScoreTableName(intBitDepth);
+                SQLiteConnectorForHighScoreTable sqLiteConnectorForHighScoreTable = new SQLiteConnectorForHighScoreTable(nameTable);
+                tableModelHighScore.updateData(sqLiteConnectorForHighScoreTable.selectData(nameTable));
+
+// В зависимости от выбранной разрядности, меняется отображение соответствующей таблицы Рекордов, а значит нужно поменять заголовок рамки этой таблицы.
+                frameBullsAndCows.lineName = "" + BitDepth.findByValueBitDepth(intBitDepth);
+                frameBullsAndCows.titledBorderHighScoreTable.setTitle("Таблица Рекордов(" + frameBullsAndCows.lineName  + " число)");
+                frameBullsAndCows.pnEast.repaint(); // Обновление отображения панели pnEast
 
 //            временное окно загаданного числа для отладки
                 JOptionPane.showMessageDialog(frameBullsAndCows, frameBullsAndCows.data.getNumberRandom(), "Подсказка", JOptionPane.INFORMATION_MESSAGE);

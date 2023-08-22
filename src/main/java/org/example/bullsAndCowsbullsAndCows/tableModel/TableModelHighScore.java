@@ -4,12 +4,12 @@ import javax.swing.*;
 import javax.swing.table.AbstractTableModel;
 
 //Класс, который является моделью, принимающей данные истории попыток
-public class TableModelHighScoreBitDepth3 extends AbstractTableModel {
+public class TableModelHighScore extends AbstractTableModel {
     private String[] columnNames = {"№", "Игрок", "СП", "Время", "Ранг"}; //Собираем столбцы в массив строк, это будет шапка таблицы.
     private Object[][] data; //Двумерный массив будет телом таблицы. То есть каждая строка будет содержать значения *********************
     private JTable tableHistory; //Табличная панель для Рекордов. /Эта зависимость нужна здесь для визуализации последней строки в скролл панели/- убрать!
 
-    public TableModelHighScoreBitDepth3(Object[][] data, JTable tableHistory) { //Конструктором принимаем данные на вход: заполненный массив и табличную панель
+    public TableModelHighScore(Object[][] data, JTable tableHistory) { //Конструктором принимаем данные на вход: заполненный массив и табличную панель
         this.data = data;
         this.tableHistory = tableHistory;
     }
