@@ -1,7 +1,5 @@
 package org.example.bullsAndCowsbullsAndCows.frames;
 
-import org.example.bullsAndCowsbullsAndCows.FrameBullsAndCows;
-
 import javax.swing.*;
 
 //Класс Окна выбора разрядности

@@ -1,4 +1,4 @@
-package org.example.bullsAndCowsbullsAndCows;
+package org.example.bullsAndCowsbullsAndCows.frames;
 
 import org.example.bullsAndCowsbullsAndCows.button.*;
 import org.example.bullsAndCowsbullsAndCows.data.Data;
@@ -76,7 +76,7 @@ public class FrameBullsAndCows extends JFrame {
 
 
     //КОНСТРУКТОР
-    FrameBullsAndCows() {
+    public FrameBullsAndCows() {
 
 //создаём окно игры
         super("Проверка логического мышления \"Быки и Коровы\" (автор: Павел Софеин)");  //заголовок

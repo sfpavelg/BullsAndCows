@@ -15,6 +15,10 @@ public class SQLiteConnectorForHighScoreTable {
             Class.forName("org.sqlite.JDBC"); //поиск драйвера SQLite
             connection = DriverManager.getConnection("jdbc:sqlite:database.db"); //Соединение с БД database.db, одно на все запросы
 
+//            String  databaseFilePath = "https://drive.google.com/file/d/1rlILdlYSwQ0dEzcbC_JjuMmF4aCL8Apy/view?usp=drive_link";
+//            String url = "jdbc:sqlite::resource:" + databaseFilePath; // путь к файлу базы данных на удаленном диске
+//            connection = DriverManager.getConnection(url);
+
             // Создание таблицы, если она не существует
             createTableHighScore(tableName); // Запрос к БД. Создаём, если ещё не создана, таблицу рекордов.
         } catch (ClassNotFoundException | SQLException e) {

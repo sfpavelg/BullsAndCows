@@ -3,7 +3,7 @@ package org.example.bullsAndCowsbullsAndCows.button;
 import org.example.bullsAndCowsbullsAndCows.enumBitDepth.HighScoreTableName;
 import org.example.bullsAndCowsbullsAndCows.information.Victory;
 import org.example.bullsAndCowsbullsAndCows.mathProcessing.Comparison;
-import org.example.bullsAndCowsbullsAndCows.FrameBullsAndCows;
+import org.example.bullsAndCowsbullsAndCows.frames.FrameBullsAndCows;
 import org.example.bullsAndCowsbullsAndCows.repository.SQLiteConnectorForHighScoreTable;
 import org.example.bullsAndCowsbullsAndCows.tableModel.TableModelHighScore;
 import org.example.bullsAndCowsbullsAndCows.tableModel.TableModelHistory;

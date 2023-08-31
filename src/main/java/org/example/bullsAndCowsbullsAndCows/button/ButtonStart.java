@@ -1,8 +1,8 @@
 package org.example.bullsAndCowsbullsAndCows.button;
 
-import org.example.bullsAndCowsbullsAndCows.*;
 import org.example.bullsAndCowsbullsAndCows.enumBitDepth.BitDepth;
 import org.example.bullsAndCowsbullsAndCows.enumBitDepth.HighScoreTableName;
+import org.example.bullsAndCowsbullsAndCows.frames.FrameBullsAndCows;
 import org.example.bullsAndCowsbullsAndCows.information.Notation;
 import org.example.bullsAndCowsbullsAndCows.frames.JFrameSelection;
 import org.example.bullsAndCowsbullsAndCows.mathProcessing.JPTimer;
@@ -86,7 +86,7 @@ public class ButtonStart extends JButton {
                 frameBullsAndCows.pnEast.repaint(); // Обновление отображения панели pnEast
 
 //            временное окно загаданного числа для отладки
-                JOptionPane.showMessageDialog(frameBullsAndCows, frameBullsAndCows.data.getNumberRandom(), "Подсказка", JOptionPane.INFORMATION_MESSAGE);
+//                JOptionPane.showMessageDialog(frameBullsAndCows, frameBullsAndCows.data.getNumberRandom(), "Подсказка", JOptionPane.INFORMATION_MESSAGE);
             }
         });
 // В результате работы кода, будет выбран разрядность загадываемого числа. Вернём его для дальнейшей обработки.

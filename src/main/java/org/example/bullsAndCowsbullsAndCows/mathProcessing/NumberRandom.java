@@ -1,7 +1,6 @@
 package org.example.bullsAndCowsbullsAndCows.mathProcessing;
 
-import org.example.bullsAndCowsbullsAndCows.FrameBullsAndCows;
-import org.example.bullsAndCowsbullsAndCows.data.Data;
+import org.example.bullsAndCowsbullsAndCows.frames.FrameBullsAndCows;
 
 // Задача класса нарандомить число и вернуть его
 public class NumberRandom {

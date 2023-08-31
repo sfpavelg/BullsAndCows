@@ -1,17 +1,14 @@
 package org.example.bullsAndCowsbullsAndCows.registration;
 
-import org.example.bullsAndCowsbullsAndCows.FrameBullsAndCows;
+import org.example.bullsAndCowsbullsAndCows.frames.FrameBullsAndCows;
 import org.example.bullsAndCowsbullsAndCows.button.ButtonRegistration;
 import org.example.bullsAndCowsbullsAndCows.button.ButtonUserChange;
 
-import javax.swing.JDialog;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JTextField;
+import javax.swing.*;
 
 public class RegistrationDialog extends JDialog { // Наследуемся от JDialog
     private JTextField usernameField;
-    private JTextField passwordField;
+    private JPasswordField passwordField;
     private ButtonUserChange changeUserButton;
     private ButtonRegistration registerButton;
     private JLabel lblUserName;
@@ -20,7 +17,7 @@ public class RegistrationDialog extends JDialog { // Наследуемся от
         super(frameBullsAndCows, "Зарегистрируйтесь, или зайдите под своей учётной записью!", true); // Заголовок
         this.lblUserName = lblUserName;
         usernameField = new JTextField(20); // Поле ввода имени
-        passwordField = new JTextField(20); // Поле ввода пароля
+        passwordField = new JPasswordField(20);
         changeUserButton = new ButtonUserChange(this, lblUserName); // Кнопка смены пользователя
         registerButton = new ButtonRegistration(this); // Кнопка Регистрации
 
@@ -50,6 +47,6 @@ public class RegistrationDialog extends JDialog { // Наследуемся от
     }
 
     public String getPassword() {
-        return passwordField.getText();
+        return new String(passwordField.getPassword());
     }
 }

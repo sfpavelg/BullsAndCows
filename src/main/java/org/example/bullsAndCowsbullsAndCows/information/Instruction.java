@@ -1,6 +1,6 @@
 package org.example.bullsAndCowsbullsAndCows.information;
 
-import org.example.bullsAndCowsbullsAndCows.FrameBullsAndCows;
+import org.example.bullsAndCowsbullsAndCows.frames.FrameBullsAndCows;
 
 public class Instruction {
     public Instruction(FrameBullsAndCows frameBullsAndCows) {

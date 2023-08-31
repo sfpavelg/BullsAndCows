@@ -1,6 +1,6 @@
 package org.example.bullsAndCowsbullsAndCows.information;
 
-import org.example.bullsAndCowsbullsAndCows.FrameBullsAndCows;
+import org.example.bullsAndCowsbullsAndCows.frames.FrameBullsAndCows;
 import org.example.bullsAndCowsbullsAndCows.enumBitDepth.BitDepth;
 
 public class Notation {//Заполняем String переменную дополнительной нотации

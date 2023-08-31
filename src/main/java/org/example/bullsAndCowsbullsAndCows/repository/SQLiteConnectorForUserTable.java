@@ -13,7 +13,7 @@ public class SQLiteConnectorForUserTable {
     /**
      * Connection - подключение к БД SQLite с названием database.db
      * Если подключение произошло, и БД с именем database.db, такая БД будет автоматически создана.
-     * Ео подключения не будет, если отсутствует драйвер SQLite.
+     * Но подключения не будет, если отсутствует драйвер SQLite.
      * Для подключения драйвера к проекту нужно сделать следующее:
      * 1. Подключить Maven к проекту (как это сделать описано ниже).
      * 2. В pom-файле прописать зависимость:
@@ -52,6 +52,10 @@ public class SQLiteConnectorForUserTable {
         try {
             Class.forName("org.sqlite.JDBC"); //поиск драйвера SQLite
             connection = DriverManager.getConnection("jdbc:sqlite:database.db"); //Соединение с БД database.db, одно на все запросы
+
+//            String  databaseFilePath = "https://drive.google.com/file/d/1rlILdlYSwQ0dEzcbC_JjuMmF4aCL8Apy/view?usp=drive_link";
+//            String url = "jdbc:sqlite::resource:" + databaseFilePath; // путь к файлу базы данных на удаленном диске
+//            connection = DriverManager.getConnection(url);
 
             // Создание таблицы, если она не существует
             createTableUser(); // А вот и первый запрос к БД. Создаём, если ещё не создана, таблицу юзеров. Этот метод в блоке try-catch, именно тут обработаем исключение.
@@ -123,7 +127,7 @@ public class SQLiteConnectorForUserTable {
      * @return - возвратом будет имя пользователя, если такой пользователь найден, либо null
      */
     public String changeUser(String username, String password) {
-        // QDL- запрос в БД. Берём имя пользователя username из таблицы user, где username равен приходящему параметру и password равен приходящему параметру
+        // SQL- запрос в БД. Берём имя пользователя username из таблицы user, где username равен приходящему параметру и password равен приходящему параметру
         String selectSql = "SELECT username FROM user WHERE username = ? AND password = ?";
         try { // Блок try-catch для выполнения кода и обработки исключений
             /**

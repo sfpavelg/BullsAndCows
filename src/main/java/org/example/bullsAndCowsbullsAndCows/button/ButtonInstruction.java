@@ -1,6 +1,6 @@
 package org.example.bullsAndCowsbullsAndCows.button;
 
-import org.example.bullsAndCowsbullsAndCows.FrameBullsAndCows;
+import org.example.bullsAndCowsbullsAndCows.frames.FrameBullsAndCows;
 import org.example.bullsAndCowsbullsAndCows.information.Instruction;
 
 import javax.swing.*;
