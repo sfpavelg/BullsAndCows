@@ -71,13 +71,13 @@
     ]
   }
 }</component>
-  <component name="RunManager" selected="JUnit.RatingCalculatorTest">
+  <component name="RunManager" selected="Application.StartBullsAndCows">
     <configuration name="StartBullsAndCows" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="org.example.bullsAndCowsbullsAndCows.StartBullsAndCows" />
       <module name="BullsAndCows" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="org.example.bullsAndCowsbullsAndCows.graphic.*" />
+          <option name="PATTERN" value="org.example.bullsAndCowsbullsAndCows.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -85,17 +85,33 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="AppTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="NumberRandomTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="BullsAndCows" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="org.example.*" />
+          <option name="PATTERN" value="org.example.bullsAndCowsbullsAndCows.mathProcessing.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="org.example" />
-      <option name="MAIN_CLASS_NAME" value="org.example.AppTest" />
+      <option name="PACKAGE_NAME" value="org.example.bullsAndCowsbullsAndCows.mathProcessing" />
+      <option name="MAIN_CLASS_NAME" value="org.example.bullsAndCowsbullsAndCows.mathProcessing.NumberRandomTest" />
       <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="NumberRandomTest.testNumberRandomWithSevenDigits" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="BullsAndCows" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="org.example.bullsAndCowsbullsAndCows.mathProcessing.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="org.example.bullsAndCowsbullsAndCows.mathProcessing" />
+      <option name="MAIN_CLASS_NAME" value="org.example.bullsAndCowsbullsAndCows.mathProcessing.NumberRandomTest" />
+      <option name="METHOD_NAME" value="testNumberRandomWithSevenDigits" />
+      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -115,11 +131,29 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="RatingCalculatorTest.testCalculateRating" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="BullsAndCows" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="org.example.bullsAndCowsbullsAndCows.enumClass.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="org.example.bullsAndCowsbullsAndCows.enumClass" />
+      <option name="MAIN_CLASS_NAME" value="org.example.bullsAndCowsbullsAndCows.enumClass.RatingCalculatorTest" />
+      <option name="METHOD_NAME" value="testCalculateRating" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.RatingCalculatorTest" />
-        <item itemvalue="JUnit.AppTest" />
         <item itemvalue="Application.StartBullsAndCows" />
+        <item itemvalue="JUnit.RatingCalculatorTest" />
+        <item itemvalue="JUnit.RatingCalculatorTest.testCalculateRating" />
+        <item itemvalue="JUnit.NumberRandomTest" />
+        <item itemvalue="JUnit.NumberRandomTest.testNumberRandomWithSevenDigits" />
       </list>
     </recent_temporary>
   </component>
@@ -157,7 +191,7 @@
       <workItem from="1693248638082" duration="278000" />
       <workItem from="1693474212408" duration="1333000" />
       <workItem from="1693480649910" duration="6297000" />
-      <workItem from="1693555634531" duration="7916000" />
+      <workItem from="1693555634531" duration="25006000" />
     </task>
     <task id="LOCAL-00001" summary="№2 Сокращаем класс выбора разрядности">
       <created>1691408923774</created>
@@ -348,7 +382,14 @@
       <option name="project" value="LOCAL" />
       <updated>1693561062083</updated>
     </task>
-    <option name="localTasksCounter" value="28" />
+    <task id="LOCAL-00028" summary="Commit #27 add: junit Test and RatingCalculatorTest&#10;&#10;adding RatingCalculatorTest and junit tests &#10;version 4.13.2">
+      <created>1693565770422</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1693565770422</updated>
+    </task>
+    <option name="localTasksCounter" value="29" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -366,7 +407,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="№2 Сокращаем класс выбора разрядности" />
     <MESSAGE value="№3 Соблюдаем первый принцип SOLID. &#10;Разбиваем класс FrameBullsAndCows на части.&#10;Выносим кнопку &quot;Старт&quot; в отдельный класс." />
     <MESSAGE value="№3 Меняем if-ы на ENUM" />
     <MESSAGE value="№4 Вынесли кнопку &quot;ОК&quot; в отдельный класс" />
@@ -391,7 +431,8 @@
     <MESSAGE value="№24 Кнопка выбора просмотра таблиц Результатов" />
     <MESSAGE value="Commit #25 update: change the password field&#10;&#10;Change password field from JTextField to JPasswordField" />
     <MESSAGE value="Commit #26 add: password encryption/decryption&#10;&#10;encryption/library based: &#10;at.favre.lib.crypto.bcrypt.BCrypt" />
-    <option name="LAST_COMMIT_MESSAGE" value="Commit #26 add: password encryption/decryption&#10;&#10;encryption/library based: &#10;at.favre.lib.crypto.bcrypt.BCrypt" />
+    <MESSAGE value="Commit #27 add: junit Test and RatingCalculatorTest&#10;&#10;adding RatingCalculatorTest and junit tests &#10;version 4.13.2" />
+    <option name="LAST_COMMIT_MESSAGE" value="Commit #27 add: junit Test and RatingCalculatorTest&#10;&#10;adding RatingCalculatorTest and junit tests &#10;version 4.13.2" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

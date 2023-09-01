@@ -1,6 +1,7 @@
 package org.example.bullsAndCowsbullsAndCows.button;
 
 import org.example.bullsAndCowsbullsAndCows.enumClass.HighScoreTableName;
+import org.example.bullsAndCowsbullsAndCows.enumClass.RatingCalculator;
 import org.example.bullsAndCowsbullsAndCows.information.Victory;
 import org.example.bullsAndCowsbullsAndCows.mathProcessing.Comparison;
 import org.example.bullsAndCowsbullsAndCows.frames.FrameBullsAndCows;
@@ -90,8 +91,10 @@ public class ButtonOK extends JButton {
                 JOptionPane.showMessageDialog(frameBullsAndCows, frameBullsAndCows.data.getVictory(), "Победа", JOptionPane.INFORMATION_MESSAGE);
 
 
-// Заполняем Таблицу в БД новой записью "Победа!"
-                String rating = "Junior"; //Заглушка рейтинг
+// Заполняем Таблицу в БД новой записью результатов победителя
+                String rating = "" + new RatingCalculator().calculateRating(frameBullsAndCows.data.getBitDepth(),
+                        frameBullsAndCows.data.getIntCounter(),
+                        (frameBullsAndCows.data.getMin() * 60 + frameBullsAndCows.data.getSec()));//Определяем рейтинг по результатам победы
                 String times = frameBullsAndCows.data.getHour() + "ч:" + frameBullsAndCows.data.getMin() + "м:"
                         + frameBullsAndCows.data.getSec() + "с:" + frameBullsAndCows.data.getMis() + "ms"; // Забираем из Data время
                 String attempts = frameBullsAndCows.data.getIntCounter() + ""; // Забираем из Data счётчик попыток
