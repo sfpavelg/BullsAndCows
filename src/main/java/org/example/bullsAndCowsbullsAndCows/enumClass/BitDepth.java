@@ -1,4 +1,4 @@
-package org.example.bullsAndCowsbullsAndCows.enumBitDepth;
+package org.example.bullsAndCowsbullsAndCows.enumClass;
 
 import java.util.Arrays;
 

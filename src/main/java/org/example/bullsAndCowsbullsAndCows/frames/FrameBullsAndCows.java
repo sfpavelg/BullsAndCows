@@ -2,7 +2,7 @@ package org.example.bullsAndCowsbullsAndCows.frames;
 
 import org.example.bullsAndCowsbullsAndCows.button.*;
 import org.example.bullsAndCowsbullsAndCows.data.Data;
-import org.example.bullsAndCowsbullsAndCows.enumBitDepth.HighScoreTableName;
+import org.example.bullsAndCowsbullsAndCows.enumClass.HighScoreTableName;
 import org.example.bullsAndCowsbullsAndCows.graphic.BullsSmile;
 import org.example.bullsAndCowsbullsAndCows.graphic.CowsSmile;
 import org.example.bullsAndCowsbullsAndCows.mathProcessing.JPTimer;

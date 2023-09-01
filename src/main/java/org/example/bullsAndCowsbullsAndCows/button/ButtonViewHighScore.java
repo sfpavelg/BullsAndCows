@@ -1,8 +1,8 @@
 package org.example.bullsAndCowsbullsAndCows.button;
 
 import org.example.bullsAndCowsbullsAndCows.frames.FrameBullsAndCows;
-import org.example.bullsAndCowsbullsAndCows.enumBitDepth.BitDepth;
-import org.example.bullsAndCowsbullsAndCows.enumBitDepth.HighScoreTableName;
+import org.example.bullsAndCowsbullsAndCows.enumClass.BitDepth;
+import org.example.bullsAndCowsbullsAndCows.enumClass.HighScoreTableName;
 import org.example.bullsAndCowsbullsAndCows.frames.JFrameSelection;
 import org.example.bullsAndCowsbullsAndCows.repository.SQLiteConnectorForHighScoreTable;
 

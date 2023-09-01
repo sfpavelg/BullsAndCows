@@ -1,6 +1,6 @@
 package org.example.bullsAndCowsbullsAndCows.button;
 
-import org.example.bullsAndCowsbullsAndCows.enumBitDepth.HighScoreTableName;
+import org.example.bullsAndCowsbullsAndCows.enumClass.HighScoreTableName;
 import org.example.bullsAndCowsbullsAndCows.information.Victory;
 import org.example.bullsAndCowsbullsAndCows.mathProcessing.Comparison;
 import org.example.bullsAndCowsbullsAndCows.frames.FrameBullsAndCows;

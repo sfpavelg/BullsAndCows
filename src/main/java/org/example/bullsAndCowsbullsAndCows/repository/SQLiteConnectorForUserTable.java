@@ -8,7 +8,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.ResultSet;
-//import org.mindrot.jbcrypt.BCrypt;
+
 
 public class SQLiteConnectorForUserTable {
     private Connection connection;
@@ -55,10 +55,6 @@ public class SQLiteConnectorForUserTable {
         try {
             Class.forName("org.sqlite.JDBC"); //поиск драйвера SQLite
             connection = DriverManager.getConnection("jdbc:sqlite:database.db"); //Соединение с БД database.db, одно на все запросы
-
-//            String  databaseFilePath = "https://drive.google.com/file/d/1rlILdlYSwQ0dEzcbC_JjuMmF4aCL8Apy/view?usp=drive_link";
-//            String url = "jdbc:sqlite::resource:" + databaseFilePath; // путь к файлу базы данных на удаленном диске
-//            connection = DriverManager.getConnection(url);
 
             // Создание таблицы, если она не существует
             createTableUser(); // А вот и первый запрос к БД. Создаём, если ещё не создана, таблицу юзеров. Этот метод в блоке try-catch, именно тут обработаем исключение.

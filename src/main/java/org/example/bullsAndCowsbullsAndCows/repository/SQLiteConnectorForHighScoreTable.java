@@ -2,7 +2,6 @@ package org.example.bullsAndCowsbullsAndCows.repository;
 
 import java.sql.*;
 import java.util.ArrayList;
-//Класс соединения с таблицей в БД в случае, если разрядность загаданного числа выбрана:3.
 public class SQLiteConnectorForHighScoreTable {
     private Connection connection;
 
@@ -14,10 +13,6 @@ public class SQLiteConnectorForHighScoreTable {
         try {
             Class.forName("org.sqlite.JDBC"); //поиск драйвера SQLite
             connection = DriverManager.getConnection("jdbc:sqlite:database.db"); //Соединение с БД database.db, одно на все запросы
-
-//            String  databaseFilePath = "https://drive.google.com/file/d/1rlILdlYSwQ0dEzcbC_JjuMmF4aCL8Apy/view?usp=drive_link";
-//            String url = "jdbc:sqlite::resource:" + databaseFilePath; // путь к файлу базы данных на удаленном диске
-//            connection = DriverManager.getConnection(url);
 
             // Создание таблицы, если она не существует
             createTableHighScore(tableName); // Запрос к БД. Создаём, если ещё не создана, таблицу рекордов.
