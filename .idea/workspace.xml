@@ -124,6 +124,8 @@
       <workItem from="1693147095340" duration="2504000" />
       <workItem from="1693248638082" duration="278000" />
       <workItem from="1693474212408" duration="1333000" />
+      <workItem from="1693480649910" duration="6297000" />
+      <workItem from="1693555634531" duration="2765000" />
     </task>
     <task id="LOCAL-00001" summary="№2 Сокращаем класс выбора разрядности">
       <created>1691408923774</created>
@@ -300,7 +302,14 @@
       <option name="project" value="LOCAL" />
       <updated>1692712892936</updated>
     </task>
-    <option name="localTasksCounter" value="26" />
+    <task id="LOCAL-00026" summary="Commit #25 update: change the password field&#10;&#10;Change password field from JTextField to JPasswordField">
+      <created>1693480969518</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1693480969518</updated>
+    </task>
+    <option name="localTasksCounter" value="27" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -342,7 +351,8 @@
     <MESSAGE value="№22 Сопряжение Таблиц Рекордов в БД и на Фрейме" />
     <MESSAGE value="№23 На каждую разрядность своя таблица Рекордов" />
     <MESSAGE value="№24 Кнопка выбора просмотра таблиц Результатов" />
-    <option name="LAST_COMMIT_MESSAGE" value="№24 Кнопка выбора просмотра таблиц Результатов" />
+    <MESSAGE value="Commit #25 update: change the password field&#10;&#10;Change password field from JTextField to JPasswordField" />
+    <option name="LAST_COMMIT_MESSAGE" value="Commit #25 update: change the password field&#10;&#10;Change password field from JTextField to JPasswordField" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

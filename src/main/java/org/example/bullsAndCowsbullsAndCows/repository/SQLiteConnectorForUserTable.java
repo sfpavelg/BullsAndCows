@@ -1,11 +1,14 @@
 package org.example.bullsAndCowsbullsAndCows.repository;
 
+import at.favre.lib.crypto.bcrypt.BCrypt;
+
 import javax.swing.*;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.ResultSet;
+//import org.mindrot.jbcrypt.BCrypt;
 
 public class SQLiteConnectorForUserTable {
     private Connection connection;
@@ -107,10 +110,11 @@ public class SQLiteConnectorForUserTable {
                 return;
             }
 
-            // Если пользователя с заданным именем нет, выполняем вставку
+            // Если пользователя с заданным именем нет, шифруем пароль и выполняем вставку
+            String hashedPassword = BCrypt.withDefaults().hashToString(12, password.toCharArray()); // Шифруем пароль
             PreparedStatement insertStatement = connection.prepareStatement(insertSql);
             insertStatement.setString(1, username);
-            insertStatement.setString(2, password);
+            insertStatement.setString(2, hashedPassword);
             insertStatement.executeUpdate();
             JOptionPane.showMessageDialog(null, "Пользователь успешно зарегистрирован!\nНажмите кнопку смены пользователя.");
 
@@ -128,7 +132,8 @@ public class SQLiteConnectorForUserTable {
      */
     public String changeUser(String username, String password) {
         // SQL- запрос в БД. Берём имя пользователя username из таблицы user, где username равен приходящему параметру и password равен приходящему параметру
-        String selectSql = "SELECT username FROM user WHERE username = ? AND password = ?";
+//        String selectSql = "SELECT username FROM user WHERE username = ? AND password = ?";
+        String selectSql = "SELECT * FROM user WHERE username = ?";
         try { // Блок try-catch для выполнения кода и обработки исключений
             /**
              * `PreparedStatement` - это интерфейс в Java, представляющий подготовленные операторы SQL,
@@ -148,12 +153,19 @@ public class SQLiteConnectorForUserTable {
              */
             PreparedStatement selectStatement = connection.prepareStatement(selectSql);
             selectStatement.setString(1, username); // Первым параметром передаём имя пользователя
-            selectStatement.setString(2, password); // Вторым параметром передаём пароль
+//            selectStatement.setString(2, password); // Вторым параметром передаём пароль
             ResultSet resultSet = selectStatement.executeQuery(); //Результат запроса помещаем в специальный объект ResultSet
 
             // Проверяем наличие совпадения логина и пароля
             if (resultSet.next()) { // Метод next() булевый, если значение есть, и курсор к нему переместился, значит вернётся true.
-                return resultSet.getString("username"); // Тогда возвращаем имя пользователя
+                String hashedPassword = resultSet.getString("password");
+
+                // Проверяем соответствие паролей
+                boolean passwordMatch = BCrypt.verifyer().verify(password.toCharArray(), hashedPassword).verified;
+
+                if (passwordMatch) {
+                    return resultSet.getString("username"); // Тогда возвращаем имя пользователя
+                }
             }
 
         } catch (SQLException e) { // Обрабатываем исключение
