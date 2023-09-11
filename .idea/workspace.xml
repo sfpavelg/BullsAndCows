@@ -191,7 +191,16 @@
       <workItem from="1693248638082" duration="278000" />
       <workItem from="1693474212408" duration="1333000" />
       <workItem from="1693480649910" duration="6297000" />
-      <workItem from="1693555634531" duration="25006000" />
+      <workItem from="1693555634531" duration="25283000" />
+      <workItem from="1693820067825" duration="9000" />
+      <workItem from="1694018879131" duration="1122000" />
+      <workItem from="1694020893108" duration="897000" />
+      <workItem from="1694088227558" duration="598000" />
+      <workItem from="1694100323406" duration="3000" />
+      <workItem from="1694100375170" duration="607000" />
+      <workItem from="1694148034930" duration="12000" />
+      <workItem from="1694258332709" duration="6777000" />
+      <workItem from="1694418510448" duration="18049000" />
     </task>
     <task id="LOCAL-00001" summary="№2 Сокращаем класс выбора разрядности">
       <created>1691408923774</created>
@@ -389,7 +398,14 @@
       <option name="project" value="LOCAL" />
       <updated>1693565770422</updated>
     </task>
-    <option name="localTasksCounter" value="29" />
+    <task id="LOCAL-00029" summary="Commit #28 add:  RatingCalculator&#10;&#10;adding RatingCalculator">
+      <created>1693601056538</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1693601056538</updated>
+    </task>
+    <option name="localTasksCounter" value="30" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -407,7 +423,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="№3 Соблюдаем первый принцип SOLID. &#10;Разбиваем класс FrameBullsAndCows на части.&#10;Выносим кнопку &quot;Старт&quot; в отдельный класс." />
     <MESSAGE value="№3 Меняем if-ы на ENUM" />
     <MESSAGE value="№4 Вынесли кнопку &quot;ОК&quot; в отдельный класс" />
     <MESSAGE value="№5 Добавлена таблица историй попыток угадать число" />
@@ -432,7 +447,18 @@
     <MESSAGE value="Commit #25 update: change the password field&#10;&#10;Change password field from JTextField to JPasswordField" />
     <MESSAGE value="Commit #26 add: password encryption/decryption&#10;&#10;encryption/library based: &#10;at.favre.lib.crypto.bcrypt.BCrypt" />
     <MESSAGE value="Commit #27 add: junit Test and RatingCalculatorTest&#10;&#10;adding RatingCalculatorTest and junit tests &#10;version 4.13.2" />
-    <option name="LAST_COMMIT_MESSAGE" value="Commit #27 add: junit Test and RatingCalculatorTest&#10;&#10;adding RatingCalculatorTest and junit tests &#10;version 4.13.2" />
+    <MESSAGE value="Commit #28 add:  RatingCalculator&#10;&#10;adding RatingCalculator" />
+    <option name="LAST_COMMIT_MESSAGE" value="Commit #28 add:  RatingCalculator&#10;&#10;adding RatingCalculator" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <breakpoint enabled="true" type="java-exception">
+          <properties class="java.lang.ArrayIndexOutOfBoundsException" package="java.lang" />
+          <option name="timeStamp" value="2" />
+        </breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

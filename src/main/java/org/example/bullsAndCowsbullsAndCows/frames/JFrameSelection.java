@@ -5,6 +5,7 @@ import javax.swing.*;
 //Класс Окна выбора разрядности
 public class JFrameSelection {
     private FrameBullsAndCows frameBullsAndCows;
+    private int result;
 
     public JFrameSelection(FrameBullsAndCows frameBullsAndCows) {
         this.frameBullsAndCows = frameBullsAndCows;
@@ -39,9 +40,13 @@ public class JFrameSelection {
          * 8. `Object initialValue`: Значение, которое будет выбрано по умолчанию при открытии окна диалога.
          *  В этом случае передано значение `options[0]`, то есть 3 будет выбрано по умолчанию.
          * Метод `showOptionDialog()` вернет индекс выбранного элемента массива `options`, который соответствует выбранному варианту пользователем.
+         * return (int) options[result] - теперь по индексу мы оператором return возвращаем элемент из массива options, и приводим его к типу (int).
+         * Но, переменная result может получить значение -1, в результате закрытия окна без выбора, а в массиве такого индекса нет.
+         * Поэтому перед возвратом делаем проверку (result != -1) ?
+         * и либо возвращаем значение из массива, либо -1
          */
 
-        int result = JOptionPane.showOptionDialog(frameBullsAndCows,
+        result = JOptionPane.showOptionDialog(frameBullsAndCows,
                 "Выберите разрядность загадываемого числа:",
                 "Разрядность",
                 JOptionPane.DEFAULT_OPTION,
@@ -49,6 +54,7 @@ public class JFrameSelection {
                 null,
                 options,
                 options[0]);
-        return (int) options[result];
+
+        return (result != -1) ? (int) options[result] : -1;
     }
 }

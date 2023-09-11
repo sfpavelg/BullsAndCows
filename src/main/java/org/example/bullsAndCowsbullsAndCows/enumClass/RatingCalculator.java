@@ -32,7 +32,7 @@ public class RatingCalculator {
                     return Rating.Senior;
                 } else if (attempts <= 15 && times < 110) {
                     return Rating.Middle;
-                } else if (attempts > 15 && times > 110) {
+                } else if (attempts > 15 || times > 110) {
                     return Rating.Junior;
                 }
                 break;
@@ -50,7 +50,7 @@ public class RatingCalculator {
                     return Rating.Senior;
                 } else if (attempts <= 17 && times <= 130) {
                     return Rating.Middle;
-                } else if (attempts > 17 && times > 130) {
+                } else if (attempts > 17 || times > 130) {
                     return Rating.Junior;
                 }
                 break;

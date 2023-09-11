@@ -60,7 +60,7 @@ public class FrameBullsAndCows extends JFrame {
     private String CowsResult = "Поймано Коров 0"; //Строковая переменная
     private String BullsResult = "Поймано Быков 0"; //Строковая переменная
     private String stringBitDepth; //Переменная индикации разрядности
-    public String userName;   //Строковая переменная
+    public final String userName;   //Строковая переменная выводящая предупреждение о смене имени игрока
     public String lineName; // Имя рамки таблицы Рекордов
     private int intCounter = 0; //переменная счётчика попыток
     public JPTimer jpTimer; // Таймер

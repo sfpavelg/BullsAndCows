@@ -37,8 +37,14 @@ public class ButtonStart extends JButton {
     public String buttonStart() {
         //Слушатель кнопки (Начать игру)
         addActionListener(e -> {
-            // Тут идёт проверка, была ли произведена аутентификация.
-            if (frameBullsAndCows.lblUserName.getText().equals(frameBullsAndCows.userName)){ // Если на лейбле lblUserName имя игрока не сменилось, запуска не будет.
+            /**
+             * Первым пунктом идёт проверка на смену имени игрока.
+             * Логика простая, берём то что на лейбле и сравниваем с содержимым текстовой переменной,
+             * которая содержит предупреждение о смене имени игрока и является константой.
+             * Любая другая надпись на лейбле даст false и пустит далее по коду.
+             * Но другой запись может быть только реальным именем игрока, за этим следит аутентификация.
+             */
+            if (frameBullsAndCows.lblUserName.getText().equals(frameBullsAndCows.userName)) { // Если на лейбле lblUserName имя игрока не сменилось, запуска не будет.
                 /**
                  * JOptionPane Тут мы открываем окно с дополнительной информацией о том, что не было аутентификации.
                  * Главная фишка такого окна в том, что программа стопорится и ждёт его закрытия.
@@ -52,7 +58,10 @@ public class ButtonStart extends JButton {
                         "Внимание!", JOptionPane.INFORMATION_MESSAGE);
             } else { //Если Аутентификация пройдена, то откроется доступ к выбору разрядности и запуску игры.
                 JFrameSelection jFrameSelection = new JFrameSelection(frameBullsAndCows); //вызвали класс выбора разрядности.
-                intBitDepth = jFrameSelection.startJFrameSelection(); // После выбора, нам вернётся число разрядности.
+                intBitDepth = jFrameSelection.startJFrameSelection(); // После выбора, нам вернётся число разрядности или -1, если мы просто закроем окно без выбора.
+                if (intBitDepth == -1) { //Если закроем экран без выбора, вернётся число разрядности -1, и завершим этот метод без дальнейшего запуска
+                    return;
+                }
                 stringBitDepth = "Загадано " + BitDepth.findByValueBitDepth(intBitDepth) + " число!"; //Достаём из ENUM нужное текстовое значение разрядности по int-вому значению.
                 lblBitDepth.setText(stringBitDepth); //Выводим на лейбл информацию о выбранной разрядности загаданного числа.
                 new NumberRandom(intBitDepth, frameBullsAndCows); //Теперь запускаем класс рандома числа с выбранной разрядностью.
@@ -82,7 +91,7 @@ public class ButtonStart extends JButton {
 
 // В зависимости от выбранной разрядности, меняется отображение соответствующей таблицы Рекордов, а значит нужно поменять заголовок рамки этой таблицы.
                 frameBullsAndCows.lineName = "" + BitDepth.findByValueBitDepth(intBitDepth);
-                frameBullsAndCows.titledBorderHighScoreTable.setTitle("Таблица Рекордов(" + frameBullsAndCows.lineName  + " число)");
+                frameBullsAndCows.titledBorderHighScoreTable.setTitle("Таблица Рекордов(" + frameBullsAndCows.lineName + " число)");
                 frameBullsAndCows.pnEast.repaint(); // Обновление отображения панели pnEast
 
 //            временное окно загаданного числа для отладки
