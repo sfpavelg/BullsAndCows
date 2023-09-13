@@ -11,6 +11,10 @@ import org.example.bullsAndCowsbullsAndCows.tableModel.TableModelHistory;
 
 import javax.swing.*;
 import java.awt.*;
+import java.sql.Time;
+import java.sql.Timestamp;
+import java.util.Calendar;
+import java.util.Date;
 
 public class ButtonOK extends JButton {
     private TextField numberEnter;  //поле для ввода цифр
@@ -90,13 +94,26 @@ public class ButtonOK extends JButton {
                  */
                 JOptionPane.showMessageDialog(frameBullsAndCows, frameBullsAndCows.data.getVictory(), "Победа", JOptionPane.INFORMATION_MESSAGE);
 
-
 // Заполняем Таблицу в БД новой записью результатов победителя
                 String rating = "" + new RatingCalculator().calculateRating(frameBullsAndCows.data.getBitDepth(),
                         frameBullsAndCows.data.getIntCounter(),
                         (frameBullsAndCows.data.getMin() * 60 + frameBullsAndCows.data.getSec()));//Определяем рейтинг по результатам победы
-                String times = frameBullsAndCows.data.getHour() + "ч:" + frameBullsAndCows.data.getMin() + "м:"
-                        + frameBullsAndCows.data.getSec() + "с:" + frameBullsAndCows.data.getMis() + "ms"; // Забираем из Data время
+//Формируем дату и время. Дата реальная, а время, это результат таймера.
+                Date currentDate = new Date();
+                Calendar calendar = Calendar.getInstance();
+                calendar.setTime(currentDate);
+                int year = calendar.get(Calendar.YEAR);
+                int month = calendar.get(Calendar.MONTH) + 1; // Месяцы в Calendar начинаются с 0
+                int day = calendar.get(Calendar.DAY_OF_MONTH);
+                int hour = frameBullsAndCows.data.getHour(); // Забираем из Data время и формируем String переменную.
+                int min = frameBullsAndCows.data.getMin();
+                int sec = frameBullsAndCows.data.getSec();
+                int mis = frameBullsAndCows.data.getMis();
+
+                String time = String.format(year + "-" + month + "-" + day +" %02d:%02d:%02d.%02d", hour, min, sec, mis);//Собираем дату и время в String
+                Timestamp times= Timestamp.valueOf(time); //Конвертируем String в Timestamp, которую хорошо понимает БД
+
+
                 int attempts = frameBullsAndCows.data.getIntCounter(); // Забираем из Data счётчик попыток
                 String userName = frameBullsAndCows.lblUserName.getText(); // Забираем с лейбла имя текущего игрока
                 // Забираем из Data выбранную разрядность, передаём её в ENUM и извлекаем от туда нужное название таблицы в БД, куда будем класть данные
@@ -108,7 +125,7 @@ public class ButtonOK extends JButton {
                 sqLiteConnectorForHighScoreTable.insertData(nameTable, userName, attempts, times, rating);
 
 // Заполнение Таблицы рекордов данными из БД
-                // Обновляем из БД таблицу рекордов актуальными данными
+                //Обновляем из БД таблицу рекордов актуальными данными
                 tableModelHighScore.updateData(sqLiteConnectorForHighScoreTable.selectData(nameTable));
             }
         });

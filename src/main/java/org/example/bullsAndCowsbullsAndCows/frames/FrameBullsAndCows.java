@@ -88,7 +88,6 @@ public class FrameBullsAndCows extends JFrame {
         addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosing(WindowEvent e) {
-                //               FrameBullsAndCows.stopWatch.stopStopWatch();
                 System.exit(0);
             }
         });
@@ -155,12 +154,12 @@ public class FrameBullsAndCows extends JFrame {
          * первая должна вместить 7 символов, это будет угадываемое число,
          * вторая и третья по одному символу, это будут быки и коровы
          */
-        scrollPaneHighScore.setPreferredSize(new Dimension(300, 400)); // Установим предпочитаемый размер JScrollPane
+        scrollPaneHighScore.setPreferredSize(new Dimension(310, 400)); // Установим предпочитаемый размер JScrollPane
         tableHighScore.getColumnModel().getColumn(0).setPreferredWidth(5); // Установим ширину столбца порядковый "№"
-        tableHighScore.getColumnModel().getColumn(1).setPreferredWidth(110);  // Установим ширину столбца "Ник игрока"
+        tableHighScore.getColumnModel().getColumn(1).setPreferredWidth(85);  // Установим ширину столбца "Ник игрока"
         tableHighScore.getColumnModel().getColumn(2).setPreferredWidth(5);  // Установим ширину столбца "Попытки"
-        tableHighScore.getColumnModel().getColumn(3).setPreferredWidth(90);  // Установим ширину столбца "Время""
-        tableHighScore.getColumnModel().getColumn(4).setPreferredWidth(40);  // Установим ширину столбца "Ранг""
+        tableHighScore.getColumnModel().getColumn(3).setPreferredWidth(135);  // Установим ширину столбца "Время""
+        tableHighScore.getColumnModel().getColumn(4).setPreferredWidth(35);  // Установим ширину столбца "Ранг""
         lineName = "трёхзначное";
 
         tableModelHighScore.updateData(sqLiteConnectorForHighScoreTable.selectData(tableName)); // Заполняем таблицу Рекордов всем, что есть в таблице highScore3 из БД, как по умолчанию
@@ -255,7 +254,7 @@ public class FrameBullsAndCows extends JFrame {
         pnNorth3.add(pnTimer);
 
 //счётчик
-        pnCounter.add(new JLabel("Счётчик попыток:"));
+        pnCounter.add(new JLabel("Счётчик Попыток:"));
         pnCounter.add(lblCounter);
 
 //тут таймер

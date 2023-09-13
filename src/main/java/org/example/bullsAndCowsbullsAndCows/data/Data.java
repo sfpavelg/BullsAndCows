@@ -4,10 +4,10 @@ package org.example.bullsAndCowsbullsAndCows.data;
 public class Data {
 
     //Поле
-    private long mis;            //таймер - миллисекунды
-    private long sec;            //таймер - секунды
-    private long min;            //таймер - минуты
-    private long hour;           //таймер - часы
+    private int mis;            //таймер - миллисекунды
+    private int sec;            //таймер - секунды
+    private int min;            //таймер - минуты
+    private int hour;           //таймер - часы
     private int numberRandom;    //число рандома
     private String numberEnter;  //вводимое число в строчном типе
     private int cows = 0;          //Количество коров
@@ -21,35 +21,35 @@ public class Data {
     public Data() {
     }
 
-    public long getMis() {
+    public int getMis() {
         return mis;
     }
 
-    public void setMis(long mis) {
+    public void setMis(int mis) {
         this.mis = mis;
     }
 
-    public long getSec() {
+    public int getSec() {
         return sec;
     }
 
-    public void setSec(long sec) {
+    public void setSec(int sec) {
         this.sec = sec;
     }
 
-    public long getMin() {
+    public int getMin() {
         return min;
     }
 
-    public void setMin(long min) {
+    public void setMin(int min) {
         this.min = min;
     }
 
-    public long getHour() {
+    public int getHour() {
         return hour;
     }
 
-    public void setHour(long hour) {
+    public void setHour(int hour) {
         this.hour = hour;
     }
 
