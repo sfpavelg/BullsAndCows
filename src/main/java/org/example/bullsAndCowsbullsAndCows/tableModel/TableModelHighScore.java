@@ -73,7 +73,7 @@ public class TableModelHighScore extends AbstractTableModel {
         return CenteredTableCellRenderer.class;
     }
 
-    // Новый метод для обновления данных в таблице:
+    // Метод для обновления данных в таблице:
     public void updateData(Object[][] newData) {
         data = newData;
         fireTableDataChanged(); //это реализованный метод в AbstractTableModel
@@ -84,7 +84,7 @@ public class TableModelHighScore extends AbstractTableModel {
         }
     }
 
-    // Новый метод для очистки данных в таблице:
+    // Метод для очистки данных в таблице:
     public void clearData() {
         data = new Object[0][0];
         fireTableDataChanged();

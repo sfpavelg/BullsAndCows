@@ -10,17 +10,16 @@ import javax.swing.*;
 
 public class ButtonViewHighScore extends JButton {
     public ButtonViewHighScore(FrameBullsAndCows frameBullsAndCows) {
-        setText("Просмотр таблицы рекордов");
-        //Слушатель кнопки
-        addActionListener(e -> {
-            int intBitDepth = new JFrameSelection(frameBullsAndCows).startJFrameSelection();// После выбора, нам вернётся число разрядности, или -1, если мы закроем окно без выбора
+        setText("Просмотр таблицы рекордов"); // Надпись на кнопку
+                addActionListener(e -> { //Слушатель кнопки
+            int intBitDepth = new JFrameSelection(frameBullsAndCows).startJFrameSelection();// После выбора, нам вернётся число разрядности, или -1.
             if (intBitDepth == -1) { //Если закроем экран без выбора, вернётся число разрядности -1, и завершим этот метод без изменений в таблице
                 return;
             }
 // Меняем таблицу Рекордов согласно выбранной разрядности. Данные берём из БД
-            String nameTable = "" + HighScoreTableName.findByValueHighScoreTableName(intBitDepth);
-            SQLiteConnectorForHighScoreTable sqLiteConnectorForHighScoreTable = new SQLiteConnectorForHighScoreTable(nameTable);
-            frameBullsAndCows.tableModelHighScore.updateData(sqLiteConnectorForHighScoreTable.selectData(nameTable));
+            String nameTable = "" + HighScoreTableName.findByValueHighScoreTableName(intBitDepth);//Из Enum достаём название таблицы, соответствующей выбранной разрядности.
+            SQLiteConnectorForHighScoreTable sqLiteConnectorForHighScoreTable = new SQLiteConnectorForHighScoreTable(nameTable); //Соединение с нужной таблицей
+            frameBullsAndCows.tableModelHighScore.updateData(sqLiteConnectorForHighScoreTable.selectData(nameTable)); //заполняем двумерный массив tableModelHighScore
 
 // В зависимости от выбранной разрядности, меняется отображение соответствующей таблицы Рекордов, а значит нужно поменять заголовок рамки этой таблицы.
             frameBullsAndCows.lineName = "" + BitDepth.findByValueBitDepth(intBitDepth);

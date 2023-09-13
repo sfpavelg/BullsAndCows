@@ -72,7 +72,7 @@ public class SQLiteConnectorForHighScoreTable {
             PreparedStatement selectStatement = connection.prepareStatement(selectDataSql); // Запрос в БД
             ResultSet resultSet = selectStatement.executeQuery(); // результат запроса кладём в ResultSet
 
-            ArrayList<Object[]> dataList = new ArrayList<>(); // Список для хранения данных из БД
+            ArrayList<Object[]> dataList = new ArrayList<>(); // Список для хранения данных из БД. Все элементы списка это массивы на 5 ячеек.
             // Используем итератор и из ResultSet заполняем Список
             while (resultSet.next()) {
                 Object[] rowData = new Object[5]; // Создаём временный массив на 5 ячеек
@@ -81,10 +81,10 @@ public class SQLiteConnectorForHighScoreTable {
                 rowData[2] = resultSet.getString("attempts");
                 rowData[3] = resultSet.getString("times");
                 rowData[4] = resultSet.getString("rating");
-                dataList.add(rowData); // это будет соответствовать одной полностью заполненной строке. и так по циклу, пока строки не закончатся.
+                dataList.add(rowData); // Это будет соответствовать одной полностью заполненной строке. И так по циклу, пока строки не закончатся.
             } // По окончанию цикла у нас будет заполненный Список, где каждый элемент, это пятизначный массив - строка
 
-            // теперь нужно преобразовать преобразовать Список в двумерный массив данных
+            // теперь нужно преобразовать Список в двумерный массив данных
             newData = new Object[dataList.size()][5];
             for (int i = 0; i < dataList.size(); i++) {
                 newData[i] = dataList.get(i);

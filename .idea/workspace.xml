@@ -4,7 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c4f092e3-c195-4b53-b563-cf5851ff9b37" name="Changes" comment="" />
+    <list default="true" id="c4f092e3-c195-4b53-b563-cf5851ff9b37" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -200,7 +202,11 @@
       <workItem from="1694100375170" duration="607000" />
       <workItem from="1694148034930" duration="12000" />
       <workItem from="1694258332709" duration="6777000" />
-      <workItem from="1694418510448" duration="18049000" />
+      <workItem from="1694418510448" duration="18340000" />
+      <workItem from="1694501777705" duration="3197000" />
+      <workItem from="1694509654840" duration="5577000" />
+      <workItem from="1694590634551" duration="9000" />
+      <workItem from="1694601182165" duration="3521000" />
     </task>
     <task id="LOCAL-00001" summary="№2 Сокращаем класс выбора разрядности">
       <created>1691408923774</created>
@@ -405,7 +411,14 @@
       <option name="project" value="LOCAL" />
       <updated>1693601056538</updated>
     </task>
-    <option name="localTasksCounter" value="30" />
+    <task id="LOCAL-00030" summary="Commit #29 fix:  Exception Handling&#10;&#10;handling exceptions when closing windows for selecting the bit depth of a guessed number without selecting a number">
+      <created>1694454306851</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1694454306851</updated>
+    </task>
+    <option name="localTasksCounter" value="31" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -423,7 +436,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="№3 Меняем if-ы на ENUM" />
     <MESSAGE value="№4 Вынесли кнопку &quot;ОК&quot; в отдельный класс" />
     <MESSAGE value="№5 Добавлена таблица историй попыток угадать число" />
     <MESSAGE value="№6 code style, Инструкция с JFrame -&gt; на JOptionPane" />
@@ -448,7 +460,8 @@
     <MESSAGE value="Commit #26 add: password encryption/decryption&#10;&#10;encryption/library based: &#10;at.favre.lib.crypto.bcrypt.BCrypt" />
     <MESSAGE value="Commit #27 add: junit Test and RatingCalculatorTest&#10;&#10;adding RatingCalculatorTest and junit tests &#10;version 4.13.2" />
     <MESSAGE value="Commit #28 add:  RatingCalculator&#10;&#10;adding RatingCalculator" />
-    <option name="LAST_COMMIT_MESSAGE" value="Commit #28 add:  RatingCalculator&#10;&#10;adding RatingCalculator" />
+    <MESSAGE value="Commit #29 fix:  Exception Handling&#10;&#10;handling exceptions when closing windows for selecting the bit depth of a guessed number without selecting a number" />
+    <option name="LAST_COMMIT_MESSAGE" value="Commit #29 fix:  Exception Handling&#10;&#10;handling exceptions when closing windows for selecting the bit depth of a guessed number without selecting a number" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
