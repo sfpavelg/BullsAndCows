@@ -206,7 +206,7 @@
       <workItem from="1694501777705" duration="3197000" />
       <workItem from="1694509654840" duration="5577000" />
       <workItem from="1694590634551" duration="9000" />
-      <workItem from="1694601182165" duration="3521000" />
+      <workItem from="1694601182165" duration="7767000" />
     </task>
     <task id="LOCAL-00001" summary="№2 Сокращаем класс выбора разрядности">
       <created>1691408923774</created>
@@ -418,7 +418,14 @@
       <option name="project" value="LOCAL" />
       <updated>1694454306851</updated>
     </task>
-    <option name="localTasksCounter" value="31" />
+    <task id="LOCAL-00031" summary="Commit #30 add:  Rating annotation&#10;&#10;added a description of the conditions for assigning the rating junior, middle, senior">
+      <created>1694607402182</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1694607402182</updated>
+    </task>
+    <option name="localTasksCounter" value="32" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -436,7 +443,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="№4 Вынесли кнопку &quot;ОК&quot; в отдельный класс" />
     <MESSAGE value="№5 Добавлена таблица историй попыток угадать число" />
     <MESSAGE value="№6 code style, Инструкция с JFrame -&gt; на JOptionPane" />
     <MESSAGE value="№7 Обнуление таблицы попыток и счётчика попыток" />
@@ -461,7 +467,8 @@
     <MESSAGE value="Commit #27 add: junit Test and RatingCalculatorTest&#10;&#10;adding RatingCalculatorTest and junit tests &#10;version 4.13.2" />
     <MESSAGE value="Commit #28 add:  RatingCalculator&#10;&#10;adding RatingCalculator" />
     <MESSAGE value="Commit #29 fix:  Exception Handling&#10;&#10;handling exceptions when closing windows for selecting the bit depth of a guessed number without selecting a number" />
-    <option name="LAST_COMMIT_MESSAGE" value="Commit #29 fix:  Exception Handling&#10;&#10;handling exceptions when closing windows for selecting the bit depth of a guessed number without selecting a number" />
+    <MESSAGE value="Commit #30 add:  Rating annotation&#10;&#10;added a description of the conditions for assigning the rating junior, middle, senior" />
+    <option name="LAST_COMMIT_MESSAGE" value="Commit #30 add:  Rating annotation&#10;&#10;added a description of the conditions for assigning the rating junior, middle, senior" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

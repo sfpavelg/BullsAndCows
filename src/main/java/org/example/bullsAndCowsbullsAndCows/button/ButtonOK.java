@@ -97,7 +97,7 @@ public class ButtonOK extends JButton {
                         (frameBullsAndCows.data.getMin() * 60 + frameBullsAndCows.data.getSec()));//Определяем рейтинг по результатам победы
                 String times = frameBullsAndCows.data.getHour() + "ч:" + frameBullsAndCows.data.getMin() + "м:"
                         + frameBullsAndCows.data.getSec() + "с:" + frameBullsAndCows.data.getMis() + "ms"; // Забираем из Data время
-                String attempts = frameBullsAndCows.data.getIntCounter() + ""; // Забираем из Data счётчик попыток
+                int attempts = frameBullsAndCows.data.getIntCounter(); // Забираем из Data счётчик попыток
                 String userName = frameBullsAndCows.lblUserName.getText(); // Забираем с лейбла имя текущего игрока
                 // Забираем из Data выбранную разрядность, передаём её в ENUM и извлекаем от туда нужное название таблицы в БД, куда будем класть данные
                 String nameTable = "" + HighScoreTableName.findByValueHighScoreTableName(frameBullsAndCows.data.getBitDepth());

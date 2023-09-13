@@ -29,7 +29,7 @@ public class SQLiteConnectorForHighScoreTable {
      * @throws SQLException - ожидаемое, но не обрабатываемое исключение
      */
     private void createTableHighScore(String tableName) throws SQLException { //В этом запросе может быть исключение, но обработку пробрасываем дальше
-        String sql = "CREATE TABLE IF NOT EXISTS " + tableName + " (id INTEGER PRIMARY KEY AUTOINCREMENT, username TEXT, attempts TEXT, times TEXT, rating TEXT)"; //SQL запрос
+        String sql = "CREATE TABLE IF NOT EXISTS " + tableName + " (id INTEGER PRIMARY KEY AUTOINCREMENT, username TEXT, attempts INTEGER, times TEXT, rating TEXT)"; //SQL запрос
         PreparedStatement statement = connection.prepareStatement(sql); //Это и есть запрос к БД. Это как грузовик, а connection - дорога до БД, sql - то что нужно отвезти
         statement.execute(); //Команда грузовику statement - "ехать!"
     }
@@ -43,12 +43,12 @@ public class SQLiteConnectorForHighScoreTable {
      * @param rating   - Определён рейтинг на основании количества попыток и затраченного времени.
      */
 
-    public void insertData(String tableName, String username, String attempts, String times, String rating) {
+    public void insertData(String tableName, String username, int attempts, String times, String rating) {
         String insertDataSql = "INSERT INTO " + tableName + " (username, attempts, times, rating) VALUES (?, ?, ?, ?)"; //Заносим данные "Победы" в БД
         try {
             PreparedStatement insertStatement = connection.prepareStatement(insertDataSql);
             insertStatement.setString(1, username);
-            insertStatement.setString(2, attempts);
+            insertStatement.setInt(2, attempts);
             insertStatement.setString(3, times);
             insertStatement.setString(4, rating);
             insertStatement.executeUpdate();
@@ -78,7 +78,7 @@ public class SQLiteConnectorForHighScoreTable {
                 Object[] rowData = new Object[5]; // Создаём временный массив на 5 ячеек
                 rowData[0] = resultSet.getInt("id"); // в каждую кладём соответсвующее значение
                 rowData[1] = resultSet.getString("username");
-                rowData[2] = resultSet.getString("attempts");
+                rowData[2] = resultSet.getInt("attempts");
                 rowData[3] = resultSet.getString("times");
                 rowData[4] = resultSet.getString("rating");
                 dataList.add(rowData); // Это будет соответствовать одной полностью заполненной строке. И так по циклу, пока строки не закончатся.

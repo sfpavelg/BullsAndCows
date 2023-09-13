@@ -95,7 +95,7 @@ public class ButtonStart extends JButton {
                 frameBullsAndCows.pnEast.repaint(); // Обновление отображения панели pnEast
 
 //            временное окно загаданного числа для отладки
-//                JOptionPane.showMessageDialog(frameBullsAndCows, frameBullsAndCows.data.getNumberRandom(), "Подсказка", JOptionPane.INFORMATION_MESSAGE);
+                JOptionPane.showMessageDialog(frameBullsAndCows, frameBullsAndCows.data.getNumberRandom(), "Подсказка", JOptionPane.INFORMATION_MESSAGE);
             }
         });
 // В результате работы кода, будет выбран разрядность загадываемого числа. Вернём его для дальнейшей обработки.
