@@ -207,7 +207,8 @@
       <workItem from="1694509654840" duration="5577000" />
       <workItem from="1694590634551" duration="9000" />
       <workItem from="1694601182165" duration="7767000" />
-      <workItem from="1694617122481" duration="6618000" />
+      <workItem from="1694617122481" duration="7148000" />
+      <workItem from="1694679356897" duration="2255000" />
     </task>
     <task id="LOCAL-00001" summary="№2 Сокращаем класс выбора разрядности">
       <created>1691408923774</created>
@@ -433,7 +434,14 @@
       <option name="project" value="LOCAL" />
       <updated>1694617474917</updated>
     </task>
-    <option name="localTasksCounter" value="33" />
+    <task id="LOCAL-00033" summary="Commit #32 fix:  Date and Time&#10;&#10;Changed date and time type to Timestamp format">
+      <created>1694631320059</created>
+      <option name="number" value="00033" />
+      <option name="presentableId" value="LOCAL-00033" />
+      <option name="project" value="LOCAL" />
+      <updated>1694631320059</updated>
+    </task>
+    <option name="localTasksCounter" value="34" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -451,7 +459,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="№6 code style, Инструкция с JFrame -&gt; на JOptionPane" />
     <MESSAGE value="№7 Обнуление таблицы попыток и счётчика попыток" />
     <MESSAGE value="№9 Comparison" />
     <MESSAGE value="№10 Позиционирование по центру колонок Быки и коровы" />
@@ -476,7 +483,8 @@
     <MESSAGE value="Commit #29 fix:  Exception Handling&#10;&#10;handling exceptions when closing windows for selecting the bit depth of a guessed number without selecting a number" />
     <MESSAGE value="Commit #30 add:  Rating annotation&#10;&#10;added a description of the conditions for assigning the rating junior, middle, senior" />
     <MESSAGE value="Commit #31 fix:  variable attempts&#10;&#10;in the database this variable is now stored in an Integer type value" />
-    <option name="LAST_COMMIT_MESSAGE" value="Commit #31 fix:  variable attempts&#10;&#10;in the database this variable is now stored in an Integer type value" />
+    <MESSAGE value="Commit #32 fix:  Date and Time&#10;&#10;Changed date and time type to Timestamp format" />
+    <option name="LAST_COMMIT_MESSAGE" value="Commit #32 fix:  Date and Time&#10;&#10;Changed date and time type to Timestamp format" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

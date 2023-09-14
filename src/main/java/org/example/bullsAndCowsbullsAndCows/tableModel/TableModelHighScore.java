@@ -7,11 +7,10 @@ import javax.swing.table.AbstractTableModel;
 public class TableModelHighScore extends AbstractTableModel {
     private String[] columnNames = {"№", "Игрок", "П", "Время", "Ранг"}; //Собираем столбцы в массив строк, это будет шапка таблицы.
     private Object[][] data; //Двумерный массив будет телом таблицы. То есть каждая строка будет содержать значения *********************
-    private JTable tableHistory; //Табличная панель для Рекордов. /Эта зависимость нужна здесь для визуализации последней строки в скролл панели/- убрать!
 
-    public TableModelHighScore(Object[][] data, JTable tableHistory) { //Конструктором принимаем данные на вход: заполненный массив и табличную панель
+    public TableModelHighScore(Object[][] data) { //Конструктором принимаем данные на вход: заполненный массив и табличную панель
         this.data = data;
-        this.tableHistory = tableHistory;
+
     }
 
     /**
@@ -77,11 +76,6 @@ public class TableModelHighScore extends AbstractTableModel {
     public void updateData(Object[][] newData) {
         data = newData;
         fireTableDataChanged(); //это реализованный метод в AbstractTableModel
-        // Прокручиваем скролл-панель к последней строке
-        if (data.length > 0) {
-            int lastIndex = data.length - 1;
-            tableHistory.scrollRectToVisible(tableHistory.getCellRect(lastIndex, 0, true));
-        }
     }
 
     // Метод для очистки данных в таблице:

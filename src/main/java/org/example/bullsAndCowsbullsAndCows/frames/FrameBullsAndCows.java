@@ -81,7 +81,7 @@ public class FrameBullsAndCows extends JFrame {
 //создаём окно игры
         super("Проверка логического мышления \"Быки и Коровы\" (автор: Павел Софеин)");  //заголовок
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE); //завершение программы при закрытии окна
-        setBounds(50, 50, 1250, 550); //размер окна и местоположение на экране
+        setBounds(50, 50, 1260, 550); //размер окна и местоположение на экране
         setResizable(false); //размер окна нельзя изменить
 
 //при закрытии основного окна, закроет все дополнительные и отключит таймер, если он запущен
@@ -138,7 +138,7 @@ public class FrameBullsAndCows extends JFrame {
 
 // таблица Рекордов
         tableHighScore = new JTable();//Табличная панель Рекордов. Её инициализируем раньше, чем tableModel, так как этот объект нужен tableModel на вход
-        tableModelHighScore = new TableModelHighScore(new Object[0][0], tableHighScore); //Объект модели истории попыток
+        tableModelHighScore = new TableModelHighScore(new Object[0][0]); //Объект модели истории попыток
         tableHighScore.setModel(tableModelHighScore); // Ну а теперь уже на вход поступает tableModel
         scrollPaneHighScore = new JScrollPane(tableHighScore);//создаём скролл панель для таблицы Рекордов
 
@@ -154,12 +154,12 @@ public class FrameBullsAndCows extends JFrame {
          * первая должна вместить 7 символов, это будет угадываемое число,
          * вторая и третья по одному символу, это будут быки и коровы
          */
-        scrollPaneHighScore.setPreferredSize(new Dimension(310, 400)); // Установим предпочитаемый размер JScrollPane
-        tableHighScore.getColumnModel().getColumn(0).setPreferredWidth(5); // Установим ширину столбца порядковый "№"
-        tableHighScore.getColumnModel().getColumn(1).setPreferredWidth(85);  // Установим ширину столбца "Ник игрока"
+        scrollPaneHighScore.setPreferredSize(new Dimension(320, 400)); // Установим предпочитаемый размер JScrollPane
+        tableHighScore.getColumnModel().getColumn(0).setPreferredWidth(10); // Установим ширину столбца порядковый "№"
+        tableHighScore.getColumnModel().getColumn(1).setPreferredWidth(80);  // Установим ширину столбца "Ник игрока"
         tableHighScore.getColumnModel().getColumn(2).setPreferredWidth(5);  // Установим ширину столбца "Попытки"
         tableHighScore.getColumnModel().getColumn(3).setPreferredWidth(135);  // Установим ширину столбца "Время""
-        tableHighScore.getColumnModel().getColumn(4).setPreferredWidth(35);  // Установим ширину столбца "Ранг""
+        tableHighScore.getColumnModel().getColumn(4).setPreferredWidth(40);  // Установим ширину столбца "Ранг""
         lineName = "трёхзначное";
 
         tableModelHighScore.updateData(sqLiteConnectorForHighScoreTable.selectData(tableName)); // Заполняем таблицу Рекордов всем, что есть в таблице highScore3 из БД, как по умолчанию
