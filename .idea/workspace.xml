@@ -208,7 +208,9 @@
       <workItem from="1694590634551" duration="9000" />
       <workItem from="1694601182165" duration="7767000" />
       <workItem from="1694617122481" duration="7148000" />
-      <workItem from="1694679356897" duration="2255000" />
+      <workItem from="1694679356897" duration="4964000" />
+      <workItem from="1694694227006" duration="1760000" />
+      <workItem from="1694700417827" duration="422000" />
     </task>
     <task id="LOCAL-00001" summary="№2 Сокращаем класс выбора разрядности">
       <created>1691408923774</created>
@@ -441,7 +443,14 @@
       <option name="project" value="LOCAL" />
       <updated>1694631320059</updated>
     </task>
-    <option name="localTasksCounter" value="34" />
+    <task id="LOCAL-00034" summary="Commit #33 fix: TableModelHighScore&#10;&#10;Removed fixation on the last record in the TableModelHighScore table">
+      <created>1694682201798</created>
+      <option name="number" value="00034" />
+      <option name="presentableId" value="LOCAL-00034" />
+      <option name="project" value="LOCAL" />
+      <updated>1694682201798</updated>
+    </task>
+    <option name="localTasksCounter" value="35" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -459,7 +468,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="№7 Обнуление таблицы попыток и счётчика попыток" />
     <MESSAGE value="№9 Comparison" />
     <MESSAGE value="№10 Позиционирование по центру колонок Быки и коровы" />
     <MESSAGE value="№11 Позиционирование последней строки в scrollPaneHistory" />
@@ -484,7 +492,8 @@
     <MESSAGE value="Commit #30 add:  Rating annotation&#10;&#10;added a description of the conditions for assigning the rating junior, middle, senior" />
     <MESSAGE value="Commit #31 fix:  variable attempts&#10;&#10;in the database this variable is now stored in an Integer type value" />
     <MESSAGE value="Commit #32 fix:  Date and Time&#10;&#10;Changed date and time type to Timestamp format" />
-    <option name="LAST_COMMIT_MESSAGE" value="Commit #32 fix:  Date and Time&#10;&#10;Changed date and time type to Timestamp format" />
+    <MESSAGE value="Commit #33 fix: TableModelHighScore&#10;&#10;Removed fixation on the last record in the TableModelHighScore table" />
+    <option name="LAST_COMMIT_MESSAGE" value="Commit #33 fix: TableModelHighScore&#10;&#10;Removed fixation on the last record in the TableModelHighScore table" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
