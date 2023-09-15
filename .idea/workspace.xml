@@ -212,7 +212,7 @@
       <workItem from="1694694227006" duration="1760000" />
       <workItem from="1694700417827" duration="1313000" />
       <workItem from="1694715171055" duration="2000" />
-      <workItem from="1694767556959" duration="4054000" />
+      <workItem from="1694767556959" duration="5307000" />
     </task>
     <task id="LOCAL-00001" summary="№2 Сокращаем класс выбора разрядности">
       <created>1691408923774</created>
@@ -459,7 +459,14 @@
       <option name="project" value="LOCAL" />
       <updated>1694700925159</updated>
     </task>
-    <option name="localTasksCounter" value="36" />
+    <task id="LOCAL-00036" summary="Commit #35 fix:  Enter number&#10;&#10;After winning and before selecting the digit number, you cannot enter a number">
+      <created>1694771740927</created>
+      <option name="number" value="00036" />
+      <option name="presentableId" value="LOCAL-00036" />
+      <option name="project" value="LOCAL" />
+      <updated>1694771740927</updated>
+    </task>
+    <option name="localTasksCounter" value="37" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -477,7 +484,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="№10 Позиционирование по центру колонок Быки и коровы" />
     <MESSAGE value="№11 Позиционирование последней строки в scrollPaneHistory" />
     <MESSAGE value="№12 Панель Регистрации" />
     <MESSAGE value="№13 Подключил БД SQLite + Repository,ButtonRegistration" />
@@ -502,7 +508,8 @@
     <MESSAGE value="Commit #32 fix:  Date and Time&#10;&#10;Changed date and time type to Timestamp format" />
     <MESSAGE value="Commit #33 fix: TableModelHighScore&#10;&#10;Removed fixation on the last record in the TableModelHighScore table" />
     <MESSAGE value="Commit #34 add: Button Enter&#10;&#10;Added an Enter button parallel to the OK button if the cursor is activated in the number input field" />
-    <option name="LAST_COMMIT_MESSAGE" value="Commit #34 add: Button Enter&#10;&#10;Added an Enter button parallel to the OK button if the cursor is activated in the number input field" />
+    <MESSAGE value="Commit #35 fix:  Enter number&#10;&#10;After winning and before selecting the digit number, you cannot enter a number" />
+    <option name="LAST_COMMIT_MESSAGE" value="Commit #35 fix:  Enter number&#10;&#10;After winning and before selecting the digit number, you cannot enter a number" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

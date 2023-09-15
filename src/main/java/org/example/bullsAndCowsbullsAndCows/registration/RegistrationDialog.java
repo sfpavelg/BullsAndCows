@@ -5,6 +5,8 @@ import org.example.bullsAndCowsbullsAndCows.button.ButtonRegistration;
 import org.example.bullsAndCowsbullsAndCows.button.ButtonUserChange;
 
 import javax.swing.*;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 
 public class RegistrationDialog extends JDialog { // Наследуемся от JDialog
     private JTextField usernameField;
@@ -38,6 +40,16 @@ public class RegistrationDialog extends JDialog { // Наследуемся от
          */
         pack();
         setLocationRelativeTo(frameBullsAndCows); // Выравнивание по центру основного окна frameBullsAndCows
+
+        // Добавляем слушатель KeyListener кнопки клавиатуры Enter к текстовому полю ввода пароля.
+        passwordField.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyPressed(KeyEvent e) {
+                if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+                    changeUserButton.doClick(); // Вызываем событие клика для кнопки "ButtonUserChange"
+                }
+            }
+        });
 
     }
 
