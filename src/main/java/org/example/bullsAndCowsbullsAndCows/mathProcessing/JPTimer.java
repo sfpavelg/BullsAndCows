@@ -22,6 +22,9 @@ public class JPTimer extends JComponent {
                     if (minutes >= 59) {
                         hours++;
                         minutes = 0;
+                        if (hours >=24){
+                            stopTimer();
+                        }
                     }
                 }
             }

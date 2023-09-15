@@ -30,7 +30,7 @@ public class Comparison {
         bulls = 0;//обнуляем старые данные быков и коров
         cows = 0;
 
-        if (numberRandomChar.length == numberEnterChar.length)//проверка разрядности
+        if (numberRandomChar.length == numberEnterChar.length && numberRandomChar.length >= 3) //проверка разрядности
         {
             for (int i = 0; i < numberRandomChar.length; i++) {
                 for (int j = 0; j < numberEnterChar.length; j++) //ищем быков
@@ -62,7 +62,7 @@ public class Comparison {
 //тут мы закинем в data коров
             frameBullsAndCows.data.setCows(cows);
         } else {
-//окно предупреждения о не совпадении разрядности чисел
+//окно предупреждения о не совпадении разрядности чисел. Оно не совпадёт в том случае, если не была выбрана разрядность и в этом случае не будет загадано число рандома.
             /**
              * JOptionPane Тут мы открываем окно с дополнительной информацией warning
              * Главная фишка такого окна в том, что программа стопорится и ждёт его закрытия.
@@ -72,7 +72,7 @@ public class Comparison {
              * "Сообщение" - заголовок
              * JOptionPane.INFORMATION_MESSAGE -
              */
-            String warning = " Проверьте разрядность числа. \n В вашем числе либо больше\n цифр, либо меньше. ";
+            String warning = " Проверьте разрядность числа. \n В вашем числе либо больше\n цифр, либо меньше.\n Либо вы его ещё не загадали. ";
             JOptionPane.showMessageDialog(frameBullsAndCows, warning, "Ошибка", JOptionPane.INFORMATION_MESSAGE);
         }
     }//конец конструктора
